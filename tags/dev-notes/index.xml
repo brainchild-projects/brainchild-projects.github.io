@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>dev notes on Brainchild Projects</title>
+    <link>https://brainchildprojects.org/tags/dev-notes/</link>
+    <description>Recent content in dev notes on Brainchild Projects</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 12 Oct 2017 00:08:01 +0800</lastBuildDate>
+    
+	<atom:link href="https://brainchildprojects.org/tags/dev-notes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Refactoring Nitrolinks Part 3: Pondo Cleanup</title>
+      <link>https://brainchildprojects.org/posts/refactoring-nitrolinks-part-3-pondo-cleanup/</link>
+      <pubDate>Thu, 12 Oct 2017 00:08:01 +0800</pubDate>
+      
+      <guid>https://brainchildprojects.org/posts/refactoring-nitrolinks-part-3-pondo-cleanup/</guid>
+      <description>&lt;p&gt;This is Part 3 of a series of posts about refactoring
+&lt;a href=&#34;https://github.com/asartalo/pondo&#34;&gt;Nitrolinks&lt;/a&gt;
+out of &lt;a href=&#34;https://github.com/asartalo/pondo&#34;&gt;Pondo&lt;/a&gt;. Last time we&amp;rsquo;ve
+&lt;a href=&#34;https://brainchildprojects.org/posts/refactoring-nitrolinks-part-2-tests-for-a-rails-engine/&#34;&gt;successfully copied the Nitrolinks tests from Pondo&lt;/a&gt;
+but left the original tests on Pondo. This time we&amp;rsquo;ll move them out of Pondo for
+good.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Refactoring Nitrolinks, Part 2: Tests for a Rails Engine</title>
+      <link>https://brainchildprojects.org/posts/refactoring-nitrolinks-part-2-tests-for-a-rails-engine/</link>
+      <pubDate>Wed, 11 Oct 2017 18:00:33 +0800</pubDate>
+      
+      <guid>https://brainchildprojects.org/posts/refactoring-nitrolinks-part-2-tests-for-a-rails-engine/</guid>
+      <description>&lt;p&gt;This is Part 2 of a series of posts about refactoring
+&lt;a href=&#34;https://github.com/asartalo/pondo&#34;&gt;Nitrolinks&lt;/a&gt;
+out of &lt;a href=&#34;https://github.com/asartalo/pondo&#34;&gt;Pondo&lt;/a&gt;. Last time we&amp;rsquo;ve
+&lt;a href=&#34;https://brainchildprojects.org/posts/refactoring-nitrolinks-part-1-creating-a-gem/&#34;&gt;successfully moved Nitrolinks out of Pondo&lt;/a&gt;
+but we left most of the Nitrolinks-specific tests on the Pondo source code
+itself. This time we&amp;rsquo;ll move the tests to Nitrolinks so we can narrow Pondo&amp;rsquo;s
+test concerns.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Refactoring Nitrolinks, Part 1: Creating a Gem</title>
+      <link>https://brainchildprojects.org/posts/refactoring-nitrolinks-part-1-creating-a-gem/</link>
+      <pubDate>Wed, 20 Sep 2017 06:33:29 +0800</pubDate>
+      
+      <guid>https://brainchildprojects.org/posts/refactoring-nitrolinks-part-1-creating-a-gem/</guid>
+      <description>&lt;p&gt;I am building &lt;a href=&#34;https://github.com/asartalo/pondo&#34;&gt;Pondo&lt;/a&gt; as an experiment on how
+to build a functional, modern web application without necessarily using a large
+front-end framework (e.g. Angular, Ember, React). The idea is to mostly develop
+applications as one would within the usual semantics of the normal
+Request-Response cycle. If you&amp;rsquo;ve used &lt;a href=&#34;https://yuilibrary.com/yui/docs/pjax/&#34;&gt;Pjax&lt;/a&gt;,
+or &lt;a href=&#34;https://github.com/turbolinks/turbolinks&#34;&gt;Turbolinks&lt;/a&gt; then you&amp;rsquo;re familiar
+with this.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

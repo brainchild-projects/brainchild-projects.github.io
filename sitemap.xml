@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://brainchildprojects.org/posts/happy-birthday-dinosaur/</loc>
+    <lastmod>2019-04-09T00:33:48+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brainchildprojects.org/posts/</loc>
+    <lastmod>2019-04-09T00:33:48+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brainchildprojects.org/tags/dev-notes/</loc>
+    <lastmod>2017-10-12T00:08:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brainchildprojects.org/tags/projectpondo/</loc>
+    <lastmod>2017-10-12T00:08:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brainchildprojects.org/posts/refactoring-nitrolinks-part-3-pondo-cleanup/</loc>
+    <lastmod>2017-10-12T00:08:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brainchildprojects.org/tags/</loc>
+    <lastmod>2017-10-12T00:08:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brainchildprojects.org/posts/refactoring-nitrolinks-part-2-tests-for-a-rails-engine/</loc>
+    <lastmod>2017-10-11T18:00:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brainchildprojects.org/posts/refactoring-nitrolinks-part-1-creating-a-gem/</loc>
+    <lastmod>2017-09-20T06:33:29+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brainchildprojects.org/posts/ideas-execution/</loc>
+    <lastmod>2017-09-05T23:01:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brainchildprojects.org/tags/making/</loc>
+    <lastmod>2017-09-05T23:01:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brainchildprojects.org/</loc>
+    <lastmod>2017-08-30T21:47:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brainchildprojects.org/style-guide/</loc>
+    <lastmod>2017-08-30T21:47:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brainchildprojects.org/categories/</loc>
+  </url>
+  
+</urlset>

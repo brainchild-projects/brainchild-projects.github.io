@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Brainchild Projects</title>
-    <link>https://brainchildprojects.org/tags/</link>
+    <link>https://brainchild-projects.github.io/tags/</link>
     <description>Recent content in Tags on Brainchild Projects</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 12 Oct 2017 00:08:01 +0800</lastBuildDate>
     
-	<atom:link href="https://brainchildprojects.org/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://brainchild-projects.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>dev notes</title>
-      <link>https://brainchildprojects.org/tags/dev-notes/</link>
+      <link>https://brainchild-projects.github.io/tags/dev-notes/</link>
       <pubDate>Thu, 12 Oct 2017 00:08:01 +0800</pubDate>
       
-      <guid>https://brainchildprojects.org/tags/dev-notes/</guid>
+      <guid>https://brainchild-projects.github.io/tags/dev-notes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>project:pondo</title>
-      <link>https://brainchildprojects.org/tags/projectpondo/</link>
+      <link>https://brainchild-projects.github.io/tags/projectpondo/</link>
       <pubDate>Thu, 12 Oct 2017 00:08:01 +0800</pubDate>
       
-      <guid>https://brainchildprojects.org/tags/projectpondo/</guid>
+      <guid>https://brainchild-projects.github.io/tags/projectpondo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>making</title>
-      <link>https://brainchildprojects.org/tags/making/</link>
+      <link>https://brainchild-projects.github.io/tags/making/</link>
       <pubDate>Tue, 05 Sep 2017 23:01:01 +0800</pubDate>
       
-      <guid>https://brainchildprojects.org/tags/making/</guid>
+      <guid>https://brainchild-projects.github.io/tags/making/</guid>
       <description></description>
     </item>
     

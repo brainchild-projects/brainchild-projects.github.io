@@ -9,7 +9,7 @@
 
 /* SITE */
 	Site Name: Brainchild Projects
-	Site URL: https://brainchildprojects.org
-	Last Update: 2017/09/05
+	Site URL: https://brainchild-projects.github.io
+	Last Update: 2020/07/15
 	Language: English
 	Generator: Hugo

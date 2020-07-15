@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>making on Brainchild Projects</title>
-    <link>https://brainchildprojects.org/tags/making/</link>
+    <link>https://brainchild-projects.github.io/tags/making/</link>
     <description>Recent content in making on Brainchild Projects</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 05 Sep 2017 23:01:01 +0800</lastBuildDate>
     
-	<atom:link href="https://brainchildprojects.org/tags/making/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://brainchild-projects.github.io/tags/making/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Ideas &amp; Execution</title>
-      <link>https://brainchildprojects.org/posts/ideas-execution/</link>
+      <link>https://brainchild-projects.github.io/posts/ideas-execution/</link>
       <pubDate>Tue, 05 Sep 2017 23:01:01 +0800</pubDate>
       
-      <guid>https://brainchildprojects.org/posts/ideas-execution/</guid>
+      <guid>https://brainchild-projects.github.io/posts/ideas-execution/</guid>
       <description>&lt;p&gt;Ideas are cheap. That&amp;rsquo;s great. Expend just a few calories and after a while, we
 have a lot of them. Executing on them is harder.&lt;/p&gt;</description>
     </item>

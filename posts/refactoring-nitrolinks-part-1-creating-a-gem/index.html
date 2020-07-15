@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
   
+  
   <meta name="generator" content="Hugo 0.68.3" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
@@ -105,12 +106,13 @@ Luckily, Pondo has good test coverage. Nitrolinks itself has some tests that
 were written for it specifically, but we&rsquo;ll have to leave them on the Pondo
 codebase for now to make things simpler.</p>
 <p>First, we&rsquo;ll create the gem using bundler:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ bundle gem nitrolinks-rails
-</code></pre></div><p>Bundler makes creating gems really easy. Running the previous command creates
+<pre><code class="language-sh">$ bundle gem nitrolinks-rails
+</code></pre>
+<p>Bundler makes creating gems really easy. Running the previous command creates
 the files and directories we need to get started. However, we need to clean it
 up a bit. We don&rsquo;t need the bin and spec directories right now and some other
 files. Here&rsquo;s what it looks now:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">├── Gemfile
+<pre><code class="language-sh">├── Gemfile
 ├── Rakefile
 ├── README.md
 ├── lib
@@ -119,33 +121,36 @@ files. Here&rsquo;s what it looks now:</p>
 │       │   └── version.rb
 │       └── rails.rb
 └── nitrolinks-rails.gemspec
-</code></pre></div><h2 id="rails-engine">Rails Engine</h2>
+</code></pre>
+<h2 id="rails-engine">Rails Engine</h2>
 <p>Since we&rsquo;re using this with Rails, we&rsquo;ll turn this gem into a
 <a href="http://guides.rubyonrails.org/engines.html">Rails Engine</a>. To do that, let&rsquo;s
 create an <!-- raw HTML omitted -->Engine<!-- raw HTML omitted --> class under nitrolinks.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># lib/nitrolinks/rails/engine.rb</span>
+<pre><code class="language-ruby"># lib/nitrolinks/rails/engine.rb
 
-<span style="color:#66d9ef">module</span> Nitrolinks
-  <span style="color:#66d9ef">module</span> Rails
-    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Engine</span> <span style="color:#f92672">&lt;</span> <span style="color:#f92672">::</span><span style="color:#66d9ef">Rails</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Engine</span>
-      isolate_namespace <span style="color:#66d9ef">Nitrolinks</span>
-    <span style="color:#66d9ef">end</span>
-  <span style="color:#66d9ef">end</span>
-<span style="color:#66d9ef">end</span>
+module Nitrolinks
+  module Rails
+    class Engine &lt; ::Rails::Engine
+      isolate_namespace Nitrolinks
+    end
+  end
+end
 
-</code></pre></div><p>And we can require this on the nitrolinks module code itself.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># lib/nitrolinks.rb</span>
+</code></pre>
+<p>And we can require this on the nitrolinks module code itself.</p>
+<pre><code class="language-ruby"># lib/nitrolinks.rb
 
-require <span style="color:#e6db74">&#34;nitrolinks/version&#34;</span>
-require <span style="color:#e6db74">&#34;nitrolinks/engine&#34;</span>
+require &quot;nitrolinks/version&quot;
+require &quot;nitrolinks/engine&quot;
 
-<span style="color:#66d9ef">module</span> Nitrolinks
-<span style="color:#66d9ef">end</span>
-</code></pre></div><p>The next part is just moving the nitrolinks javascript code from Pondo to
+module Nitrolinks
+end
+</code></pre>
+<p>The next part is just moving the nitrolinks javascript code from Pondo to
 Nitrolinks itself. We&rsquo;re going to match the directory structure here. We&rsquo;re also
 going to need the set-dom library so we&rsquo;ll place it at the vendor directory.
 Here&rsquo;s what the directory looks now:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">├── Gemfile
+<pre><code class="language-sh">├── Gemfile
 ├── Rakefile
 ├── README.md
 ├── app
@@ -163,23 +168,26 @@ Here&rsquo;s what the directory looks now:</p>
     └── assets
         └── javascripts
             └── set-dom.js
-</code></pre></div><h2 id="importing-nitrolinks">Importing Nitrolinks</h2>
+</code></pre>
+<h2 id="importing-nitrolinks">Importing Nitrolinks</h2>
 <p>On Pondo, let&rsquo;s add <!-- raw HTML omitted -->nitrolinks-rails<!-- raw HTML omitted --> as a dependency. We&rsquo;ll point
 it to our local copy for now for testing.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># Gemfile</span>
-gem <span style="color:#e6db74">&#34;nitrolinks-rails&#34;</span>, <span style="color:#e6db74">path</span>: <span style="color:#e6db74">&#34;../nitrolinks-rails&#34;</span>
-</code></pre></div><p>After that, we&rsquo;ll have to remove Pondo&rsquo;s copy of nitrolinks code. At this point,
+<pre><code class="language-ruby"># Gemfile
+gem &quot;nitrolinks-rails&quot;, path: &quot;../nitrolinks-rails&quot;
+</code></pre>
+<p>After that, we&rsquo;ll have to remove Pondo&rsquo;s copy of nitrolinks code. At this point,
 we need to make sure that everything works as expected. Luckily, we still have
 our nitrolinks tests on Pondo so this really helps.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># Pondo directory</span>
+<pre><code class="language-sh"># Pondo directory
 $ bundle exec cucumber
 
-<span style="color:#75715e"># TEST RUN OUTPUT #</span>
+# TEST RUN OUTPUT #
 
-<span style="color:#ae81ff">29</span> scenarios <span style="color:#f92672">(</span><span style="color:#ae81ff">29</span> passed<span style="color:#f92672">)</span>
-<span style="color:#ae81ff">148</span> steps <span style="color:#f92672">(</span><span style="color:#ae81ff">148</span> passed<span style="color:#f92672">)</span>
+29 scenarios (29 passed)
+148 steps (148 passed)
 0m35.374s
-</code></pre></div><p>Great!</p>
+</code></pre>
+<p>Great!</p>
 <h2 id="a-temporary-duplication">A Temporary Duplication</h2>
 <p>Between Pondo app itself and Nitrolinks, they share a common js script I wrote
 called <code>pu</code> (for &ldquo;pondo utilities&rdquo;, :/ ). Some of them may need to be moved to
@@ -198,117 +206,123 @@ copy all of the pu script for now. We&rsquo;ll manage this duplication of code l
 <p>Now that we know that the Nitrolinks scripts are working, it&rsquo;s time to move the
 controller-related Nitrolinks code on Pondo to Nitrolinks itself. That way we
 we&rsquo;re left with just Pondo code on Pondo.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># lib/nitrolinks/rails/engine.rb</span>
+<pre><code class="language-ruby"># lib/nitrolinks/rails/engine.rb
 
-<span style="color:#66d9ef">module</span> Nitrolinks
-  <span style="color:#66d9ef">module</span> Rails
+module Nitrolinks
+  module Rails
 
-    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Engine</span> <span style="color:#f92672">&lt;</span> <span style="color:#f92672">::</span><span style="color:#66d9ef">Rails</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Engine</span>
-      isolate_namespace <span style="color:#66d9ef">Nitrolinks</span>
+    class Engine &lt; ::Rails::Engine
+      isolate_namespace Nitrolinks
 
-      config<span style="color:#f92672">.</span>nitrolinks <span style="color:#f92672">=</span> <span style="color:#66d9ef">ActiveSupport</span><span style="color:#f92672">::</span><span style="color:#66d9ef">OrderedOptions</span><span style="color:#f92672">.</span>new
-      config<span style="color:#f92672">.</span>nitrolinks<span style="color:#f92672">.</span>auto_include <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
+      config.nitrolinks = ActiveSupport::OrderedOptions.new
+      config.nitrolinks.auto_include = true
 
-      initializer <span style="color:#e6db74">:turbolinks</span> <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>app<span style="color:#f92672">|</span>
-        <span style="color:#66d9ef">ActiveSupport</span><span style="color:#f92672">.</span>on_load(<span style="color:#e6db74">:action_controller</span>) <span style="color:#66d9ef">do</span>
-          <span style="color:#66d9ef">if</span> app<span style="color:#f92672">.</span>config<span style="color:#f92672">.</span>nitrolinks<span style="color:#f92672">.</span>auto_include
-            <span style="color:#66d9ef">include</span> <span style="color:#66d9ef">Controller</span>
-          <span style="color:#66d9ef">end</span>
-        <span style="color:#66d9ef">end</span>
-      <span style="color:#66d9ef">end</span>
-    <span style="color:#66d9ef">end</span>
+      initializer :turbolinks do |app|
+        ActiveSupport.on_load(:action_controller) do
+          if app.config.nitrolinks.auto_include
+            include Controller
+          end
+        end
+      end
+    end
 
-  <span style="color:#66d9ef">end</span>
-<span style="color:#66d9ef">end</span>
+  end
+end
 
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># lib/nitrolinks/rails/controller.rb</span>
+</code></pre>
+<pre><code class="language-ruby"># lib/nitrolinks/rails/controller.rb
 
-<span style="color:#66d9ef">module</span> Nitrolinks
-  <span style="color:#66d9ef">module</span> Rails
+module Nitrolinks
+  module Rails
 
-    <span style="color:#66d9ef">module</span> Controller
-      <span style="color:#66d9ef">extend</span> <span style="color:#66d9ef">ActiveSupport</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Concern</span>
+    module Controller
+      extend ActiveSupport::Concern
 
-      included <span style="color:#66d9ef">do</span>
-        before_action <span style="color:#e6db74">:set_nitrolinks_location_header_from_session</span> <span style="color:#66d9ef">if</span> respond_to?(<span style="color:#e6db74">:before_action</span>)
-      <span style="color:#66d9ef">end</span>
+      included do
+        before_action :set_nitrolinks_location_header_from_session if respond_to?(:before_action)
+      end
 
-      <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">nitrolinks_request?</span>
-        request<span style="color:#f92672">.</span>headers<span style="color:#f92672">.</span>key? <span style="color:#e6db74">&#34;nitrolinks-referrer&#34;</span>
-      <span style="color:#66d9ef">end</span>
+      def nitrolinks_request?
+        request.headers.key? &quot;nitrolinks-referrer&quot;
+      end
 
-      <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">redirect_to</span>(url <span style="color:#f92672">=</span> {}, options <span style="color:#f92672">=</span> {})
-        <span style="color:#66d9ef">super</span><span style="color:#f92672">.</span>tap <span style="color:#66d9ef">do</span>
-          <span style="color:#66d9ef">if</span> nitrolinks_request?
+      def redirect_to(url = {}, options = {})
+        super.tap do
+          if nitrolinks_request?
             store_nitrolinks_location_in_session(location)
-          <span style="color:#66d9ef">end</span>
-        <span style="color:#66d9ef">end</span>
-      <span style="color:#66d9ef">end</span>
+          end
+        end
+      end
 
-      <span style="color:#66d9ef">protected</span>
+      protected
 
-      <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">nitrolinks_location</span>(location)
-        response<span style="color:#f92672">.</span>headers<span style="color:#f92672">[</span><span style="color:#e6db74">&#34;Nitrolinks-Location&#34;</span><span style="color:#f92672">]</span> <span style="color:#f92672">=</span> location
-      <span style="color:#66d9ef">end</span>
+      def nitrolinks_location(location)
+        response.headers[&quot;Nitrolinks-Location&quot;] = location
+      end
 
-      <span style="color:#66d9ef">private</span>
+      private
 
-      <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">store_nitrolinks_location_in_session</span>(location)
-        session<span style="color:#f92672">[</span><span style="color:#e6db74">:nitrolinks_location</span><span style="color:#f92672">]</span> <span style="color:#f92672">=</span> location <span style="color:#66d9ef">if</span> session
-      <span style="color:#66d9ef">end</span>
+      def store_nitrolinks_location_in_session(location)
+        session[:nitrolinks_location] = location if session
+      end
 
-      <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">set_nitrolinks_location_header_from_session</span>
-        <span style="color:#66d9ef">if</span> session <span style="color:#f92672">&amp;&amp;</span> session<span style="color:#f92672">[</span><span style="color:#e6db74">:nitrolinks_location</span><span style="color:#f92672">]</span>
-          nitrolinks_location(session<span style="color:#f92672">.</span>delete(<span style="color:#e6db74">:nitrolinks_location</span>))
-        <span style="color:#66d9ef">end</span>
-      <span style="color:#66d9ef">end</span>
-    <span style="color:#66d9ef">end</span>
+      def set_nitrolinks_location_header_from_session
+        if session &amp;&amp; session[:nitrolinks_location]
+          nitrolinks_location(session.delete(:nitrolinks_location))
+        end
+      end
+    end
 
-  <span style="color:#66d9ef">end</span>
-<span style="color:#66d9ef">end</span>
-</code></pre></div><p>Okay. Is everything still working? Let&rsquo;s run some tests:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># Pondo directory</span>
+  end
+end
+</code></pre>
+<p>Okay. Is everything still working? Let&rsquo;s run some tests:</p>
+<pre><code class="language-sh"># Pondo directory
 $ bundle exec cucumber
 
-<span style="color:#75715e"># TEST RUN OUTPUT #</span>
+# TEST RUN OUTPUT #
 
-<span style="color:#ae81ff">29</span> scenarios <span style="color:#f92672">(</span><span style="color:#ae81ff">29</span> passed<span style="color:#f92672">)</span>
-<span style="color:#ae81ff">148</span> steps <span style="color:#f92672">(</span><span style="color:#ae81ff">148</span> passed<span style="color:#f92672">)</span>
+29 scenarios (29 passed)
+148 steps (148 passed)
 0m29.948s
-</code></pre></div><p>Awesome!</p>
+</code></pre>
+<p>Awesome!</p>
 <h2 id="publishing-the-gem">Publishing the Gem</h2>
 <p>Now it&rsquo;s time to publish our gem to rubygems. First we&rsquo;ll update our README to
 talk about what Nitrolinks is and warn people because it&rsquo;s not yet ready for
 production.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">&lt;!-- README.md --&gt;
+<pre><code class="language-markdown">&lt;!-- README.md --&gt;
 # Nitrolinks
 
 Nitrolinks is PJAX-like library for making website navigation fast and more like
 modern web apps. Nitrolinks is inspired by and borrows heavily from
-[<span style="color:#f92672">Turbolinks</span>](<span style="color:#a6e22e">https://github.com/turbolinks/turbolinks</span>) implementation on the
+[Turbolinks](https://github.com/turbolinks/turbolinks) implementation on the
 Rails-side.
 
-<span style="color:#75715e">## Warning! Not Production-Ready
-</span><span style="color:#75715e"></span>This is an experiment and not yet heavily tested. Please don&#39;t use in critical
+## Warning! Not Production-Ready
+This is an experiment and not yet heavily tested. Please don't use in critical
 applications.
 
-</code></pre></div><p>Then we commit everything. And add it to our remote repository, which in this
+</code></pre>
+<p>Then we commit everything. And add it to our remote repository, which in this
 case is <a href="https://github.com/asartalo/nitrolinks-rails.git">https://github.com/asartalo/nitrolinks-rails.git</a></p>
 <p>And lastly, run a helpful rake task from Bundler:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ rake release
+<pre><code class="language-sh">$ rake release
 Tagged v0.1.0.
 Pushed git commits and tags.
 Pushed nitrolinks-rails 0.1.0 to rubygems.org.
-</code></pre></div><p>And we&rsquo;re done! Now it&rsquo;s just a matter of testing it out again&hellip;</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># Pondo directory</span>
+</code></pre>
+<p>And we&rsquo;re done! Now it&rsquo;s just a matter of testing it out again&hellip;</p>
+<pre><code class="language-sh"># Pondo directory
 $ bundle exec cucumber
 
-<span style="color:#75715e"># TEST RUN OUTPUT #</span>
+# TEST RUN OUTPUT #
 
-<span style="color:#ae81ff">29</span> scenarios <span style="color:#f92672">(</span><span style="color:#ae81ff">29</span> passed<span style="color:#f92672">)</span>
-<span style="color:#ae81ff">148</span> steps <span style="color:#f92672">(</span><span style="color:#ae81ff">148</span> passed<span style="color:#f92672">)</span>
+29 scenarios (29 passed)
+148 steps (148 passed)
 0m28.503s
-</code></pre></div><p>Green! This ends our first task for refactoring Nitrolinks. The next part is
+</code></pre>
+<p>Green! This ends our first task for refactoring Nitrolinks. The next part is
 figuring out how to add tests to our gem. That will be a post for another day.</p>
     </section>
     <footer>

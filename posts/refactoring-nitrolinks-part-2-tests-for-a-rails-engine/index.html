@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
   
+  
   <meta name="generator" content="Hugo 0.68.3" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
@@ -97,11 +98,12 @@ What we need specifically is a dummy app we can use to plug our engine into so
 we can run the test scenarios. Luckily, rails already provides a tool for this
 with the <code>rails plugin new</code> generator.</p>
 <p>Running the command on the parent of our root directory:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ rails plugin new --skip-turbolinks --skip-yarn -TMPOC --mountable nitrolinks-rails
-</code></pre></div><p>&hellip;will add new files and folders to the engine directory. Some of them we need
+<pre><code class="language-sh">$ rails plugin new --skip-turbolinks --skip-yarn -TMPOC --mountable nitrolinks-rails
+</code></pre>
+<p>&hellip;will add new files and folders to the engine directory. Some of them we need
 while others we&rsquo;ll have to clean up.</p>
 <p>Here&rsquo;s what it looks like now after cleaning things up:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">├── Gemfile
+<pre><code class="language-sh">├── Gemfile
 ├── Gemfile.lock
 ├── MIT-LICENSE
 ├── README.md
@@ -125,12 +127,13 @@ while others we&rsquo;ll have to clean up.</p>
 │       └── nitrolinks
 │           └── rails_tasks.rake
 ├── nitrolinks-rails.gemspec
-├── features <span style="color:#75715e"># renamed from spec</span>
-│   └── dummy <span style="color:#75715e"># Dummy rails app</span>
+├── features # renamed from spec
+│   └── dummy # Dummy rails app
 └── vendor
     └── assets
         └── javascripts
-</code></pre></div><h2 id="moving-tests">Moving Tests</h2>
+</code></pre>
+<h2 id="moving-tests">Moving Tests</h2>
 <p>These were written as cucumber specs and they work quite well for testing the
 end-user features. They do make it slow to run the tests. In the future, we&rsquo;ll
 figure out a way to use mainly javascript tests for these and concern ourselves
@@ -140,22 +143,23 @@ engine. This is a significant undertaking that it&rsquo;ll probably fill this wh
 post with just to describe everything. I&rsquo;ll just point out the most important
 changes I did.</p>
 <h3 id="gemfile">Gemfile</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">source <span style="color:#e6db74">&#39;https://rubygems.org&#39;</span>
+<pre><code class="language-ruby">source 'https://rubygems.org'
 
 gemspec
 
-group <span style="color:#e6db74">:test</span> <span style="color:#66d9ef">do</span>
-  gem <span style="color:#e6db74">&#34;cucumber-rails&#34;</span>, <span style="color:#e6db74">&#34;&gt;= 1.5.0&#34;</span>, require: <span style="color:#66d9ef">false</span>
-  gem <span style="color:#e6db74">&#39;selenium-webdriver&#39;</span>
-  gem <span style="color:#e6db74">&#39;chromedriver-helper&#39;</span>, <span style="color:#e6db74">&#39;&gt;= 1.1.0&#39;</span>
-<span style="color:#66d9ef">end</span>
+group :test do
+  gem &quot;cucumber-rails&quot;, &quot;&gt;= 1.5.0&quot;, require: false
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper', '&gt;= 1.1.0'
+end
 
-group <span style="color:#e6db74">:test</span>, <span style="color:#e6db74">:development</span> <span style="color:#66d9ef">do</span>
-  gem <span style="color:#e6db74">&#34;slim-rails&#34;</span>, <span style="color:#e6db74">&#34;~&gt; 3.1&#34;</span>
-  gem <span style="color:#e6db74">&#39;sass-rails&#39;</span>, <span style="color:#e6db74">&#39;~&gt; 5.0&#39;</span>
-  gem <span style="color:#e6db74">&#39;coffee-rails&#39;</span>, <span style="color:#e6db74">&#39;~&gt; 4.2&#39;</span>
-<span style="color:#66d9ef">end</span>
-</code></pre></div><p>To use cucumber, I had to add <code>cucumber-rails</code> and other test dependencies to
+group :test, :development do
+  gem &quot;slim-rails&quot;, &quot;~&gt; 3.1&quot;
+  gem 'sass-rails', '~&gt; 5.0'
+  gem 'coffee-rails', '~&gt; 4.2'
+end
+</code></pre>
+<p>To use cucumber, I had to add <code>cucumber-rails</code> and other test dependencies to
 the Gemfile itself. I wish I didn&rsquo;t have to but just adding this on the gemspec
 as a development dependency doesn&rsquo;t work. We also probably don&rsquo;t need the
 <code>:development</code> group here and just leave all of them to the <code>:test</code> group. I&rsquo;ll
@@ -165,42 +169,45 @@ that would have solved a lot of these problems. But I haven&rsquo;t tried it on 
 rails engine and the feature specs have already been written anyway so we&rsquo;ll
 use cucumber for now.</p>
 <h3 id="binrails">bin/rails</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e">#!/usr/bin/env ruby</span>
-<span style="color:#75715e"># This command will automatically be run when you run &#34;rails&#34; with Rails gems</span>
-<span style="color:#75715e"># installed from the root of your application.</span>
+<pre><code class="language-ruby">#!/usr/bin/env ruby
+# This command will automatically be run when you run &quot;rails&quot; with Rails gems
+# installed from the root of your application.
 
-<span style="color:#66d9ef">ENGINE_ROOT</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>expand_path(<span style="color:#e6db74">&#39;../..&#39;</span>, __FILE__)
-<span style="color:#66d9ef">ENGINE_PATH</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>expand_path(<span style="color:#e6db74">&#39;../../lib/nitrolinks/rails/engine&#39;</span>, __FILE__)
-<span style="color:#66d9ef">APP_PATH</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>expand_path(<span style="color:#e6db74">&#39;../../features/dummy/config/application&#39;</span>, __FILE__)
+ENGINE_ROOT = File.expand_path('../..', __FILE__)
+ENGINE_PATH = File.expand_path('../../lib/nitrolinks/rails/engine', __FILE__)
+APP_PATH = File.expand_path('../../features/dummy/config/application', __FILE__)
 
-<span style="color:#75715e"># Set up gems listed in the Gemfile.</span>
-<span style="color:#66d9ef">ENV</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;BUNDLE_GEMFILE&#39;</span><span style="color:#f92672">]</span> <span style="color:#f92672">||=</span> <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>expand_path(<span style="color:#e6db74">&#39;../../Gemfile&#39;</span>, __FILE__)
-require <span style="color:#e6db74">&#39;bundler/setup&#39;</span> <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>exist?(<span style="color:#66d9ef">ENV</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;BUNDLE_GEMFILE&#39;</span><span style="color:#f92672">]</span>)
+# Set up gems listed in the Gemfile.
+ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
+require 'bundler/setup' if File.exist?(ENV['BUNDLE_GEMFILE'])
 
-<span style="color:#75715e"># Pick the frameworks you want:</span>
-require <span style="color:#e6db74">&#34;action_controller/railtie&#34;</span>
-require <span style="color:#e6db74">&#34;action_view/railtie&#34;</span>
-require <span style="color:#e6db74">&#34;sprockets/railtie&#34;</span>
+# Pick the frameworks you want:
+require &quot;action_controller/railtie&quot;
+require &quot;action_view/railtie&quot;
+require &quot;sprockets/railtie&quot;
 
-require <span style="color:#e6db74">&#39;rails/engine/commands&#39;</span>
-</code></pre></div><p>I had to add a <code>bin/rails</code> script file so that cucumber will know where the
+require 'rails/engine/commands'
+</code></pre>
+<p>I had to add a <code>bin/rails</code> script file so that cucumber will know where the
 dummy application is. After that, I run the cucumber install task for cucumber.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ rails generate cucumber:install
-</code></pre></div><h3 id="feature-specs">Feature Specs</h3>
+<pre><code class="language-sh">$ rails generate cucumber:install
+</code></pre>
+<h3 id="feature-specs">Feature Specs</h3>
 <p>The rest of what I did was just making sure the feature specs copied from pondo
 would run and removing traces of pondo from the code. That meant a lot of
 renames and clean up. I&rsquo;ll have to do a thorough sweep next time in case I
 missed anything.</p>
 <p>Here is the <a href="https://github.com/asartalo/nitrolinks-rails/commit/abdae8083e0e472b4ef4c282660b50cc6bd9d47a">change commit</a>.</p>
 <p>What does our specs look now?</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ cucumber
+<pre><code class="language-sh">$ cucumber
 
-<span style="color:#75715e"># ... bunch of tests</span>
+# ... bunch of tests
 
-<span style="color:#ae81ff">14</span> scenarios <span style="color:#f92672">(</span><span style="color:#ae81ff">14</span> passed<span style="color:#f92672">)</span>
-<span style="color:#ae81ff">55</span> steps <span style="color:#f92672">(</span><span style="color:#ae81ff">55</span> passed<span style="color:#f92672">)</span>
+14 scenarios (14 passed)
+55 steps (55 passed)
 0m8.182s
-</code></pre></div><p>And that&rsquo;s it. We now have a well-tested rails engine. That took more effort
+</code></pre>
+<p>And that&rsquo;s it. We now have a well-tested rails engine. That took more effort
 than I anticipated but it&rsquo;s well worth it.</p>
     </section>
     <footer>

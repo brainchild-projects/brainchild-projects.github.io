@@ -95,15 +95,20 @@ function findElement(selector) {
 }
 
 function ready(fn) {
-  if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){
+  if (
+    document.attachEvent
+      ? document.readyState === "complete"
+      : document.readyState !== "loading"
+  ) {
     fn();
   } else {
-    document.addEventListener('DOMContentLoaded', fn);
+    document.addEventListener("DOMContentLoaded", fn);
   }
 }
 
 function onKeypress(key, fn) {
-  document.addEventListener('keypress', function(e) {
+  document.addEventListener("keypress", function(e) {
+    console.log(e);
     if (e.isTrusted && key.key === e.key && e.ctrlKey === e.ctrlKey) {
       fn(e);
     }
@@ -111,13 +116,15 @@ function onKeypress(key, fn) {
 }
 
 function dasherize(string) {
-  return string.replace(/([A-Z])/g, (g) => `-${g[0].toLowerCase()}`);
+  return string.replace(/([A-Z])/g, g => `-${g[0].toLowerCase()}`);
 }
 
 function style(element, styles) {
-  element.style.cssText = Object.entries(styles).map(([prop, value]) => {
-    return `${dasherize(prop)}:${value}`;
-  }).join(';');
+  element.style.cssText = Object.entries(styles)
+    .map(([prop, value]) => {
+      return `${dasherize(prop)}:${value}`;
+    })
+    .join(";");
 }
 
 class OverlayElement {
@@ -126,10 +133,12 @@ class OverlayElement {
   }
 
   listen() {
-    console.log('listening...');
-    ready(()=> {
-      console.log('ready done');
-      onKeypress({key: 'g', ctrlKey: true}, ()=> { this.toggleOverlay(); });
+    console.log("listening...");
+    ready(() => {
+      console.log("ready done");
+      onKeypress({ key: "g", ctrlKey: true }, () => {
+        this.toggleOverlay();
+      });
     });
   }
 
@@ -143,7 +152,7 @@ class OverlayElement {
 
   showOverlay() {
     if (this.overlay()) {
-      this.overlay().style.display = 'block';
+      this.overlay().style.display = "block";
     } else {
       this.createOverlay();
     }
@@ -151,7 +160,7 @@ class OverlayElement {
 
   hideOverlay() {
     if (this.overlay()) {
-      this.overlay().style.display = 'none';
+      this.overlay().style.display = "none";
     }
   }
 
@@ -165,20 +174,19 @@ class OverlayElement {
 
   overlayIsVisible() {
     const overlay = this.overlay();
-    return overlay && overlay.style.display !== 'none';
+    return overlay && overlay.style.display !== "none";
   }
 
   createOverlay() {
-    const overlay = document.createElement('div');
+    const overlay = document.createElement("div");
     const container = this.container();
     overlay.classList.add("grid-overlay");
-    container.style.position = 'relative';
+    container.style.position = "relative";
     container.appendChild(overlay);
   }
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (OverlayElement);
-
 
 
 /***/ }),

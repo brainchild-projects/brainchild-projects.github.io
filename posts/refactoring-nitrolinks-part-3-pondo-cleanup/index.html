@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
   
+  
   <meta name="generator" content="Hugo 0.68.3" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
@@ -88,31 +89,33 @@ good.</p>
 <h2 id="nitrolinks-bump">Nitrolinks Bump</h2>
 <p>Since last time we bumped nitrolinks-rails gem&rsquo;s version number. Let&rsquo;s use that
 in pondo.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># Gemfile</span>
-gem <span style="color:#e6db74">&#34;nitrolinks-rails&#34;</span>, <span style="color:#e6db74">&#34;&gt;= 0.2.0&#34;</span>
-</code></pre></div><p>Let&rsquo;s do a test run to make sure everything is green.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cucumber
+<pre><code class="language-ruby"># Gemfile
+gem &quot;nitrolinks-rails&quot;, &quot;&gt;= 0.2.0&quot;
+</code></pre>
+<p>Let&rsquo;s do a test run to make sure everything is green.</p>
+<pre><code class="language-bash">$ cucumber
 
-<span style="color:#75715e"># Bunch of spec output</span>
+# Bunch of spec output
 
-<span style="color:#ae81ff">29</span> scenarios <span style="color:#f92672">(</span><span style="color:#ae81ff">29</span> passed<span style="color:#f92672">)</span>
-<span style="color:#ae81ff">148</span> steps <span style="color:#f92672">(</span><span style="color:#ae81ff">148</span> passed<span style="color:#f92672">)</span>
+29 scenarios (29 passed)
+148 steps (148 passed)
 0m27.379s
-</code></pre></div><p>Great! We&rsquo;re in a good place now.</p>
+</code></pre>
+<p>Great! We&rsquo;re in a good place now.</p>
 <h2 id="cleanup">Cleanup</h2>
 <p>Next we&rsquo;ll remove nitrolinks feature specs.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tree -l features
+<pre><code class="language-bash">$ tree -l features
 features
 ├── adding_income.feature
 ├── deducting_expense.feature
 ├── first_time.feature
 ├── inviting_subscribers.feature
 ├── login.feature
-├── nitrolinks <span style="color:#75715e"># DELETED</span>
-│   ├── errors.feature <span style="color:#75715e"># DELETED</span>
-│   ├── get.feature <span style="color:#75715e"># DELETED</span>
-│   ├── hash.feature <span style="color:#75715e"># DELETED</span>
-│   └── loading.feature <span style="color:#75715e"># DELETED</span>
+├── nitrolinks # DELETED
+│   ├── errors.feature # DELETED
+│   ├── get.feature # DELETED
+│   ├── hash.feature # DELETED
+│   └── loading.feature # DELETED
 ├── step_definitions
 │   ├── authentication_steps.rb
 │   ├── common_steps.rb
@@ -127,17 +130,19 @@ features
     ├── env.rb
     ├── pondo_testing_utils.rb
     └── wait_for_things.rb
-</code></pre></div><p>How are we on the specs?</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cucumber
+</code></pre>
+<p>How are we on the specs?</p>
+<pre><code class="language-bash">$ cucumber
 
-<span style="color:#75715e"># Bunch of spec output</span>
+# Bunch of spec output
 
-<span style="color:#ae81ff">15</span> scenarios <span style="color:#f92672">(</span><span style="color:#ae81ff">15</span> passed<span style="color:#f92672">)</span>
-<span style="color:#ae81ff">93</span> steps <span style="color:#f92672">(</span><span style="color:#ae81ff">93</span> passed<span style="color:#f92672">)</span>
+15 scenarios (15 passed)
+93 steps (93 passed)
 0m21.142s
-</code></pre></div><p>That reduced our scenario count from 29 to 15 and our steps from 148 to 93. Next
+</code></pre>
+<p>That reduced our scenario count from 29 to 15 and our steps from 148 to 93. Next
 let&rsquo;s remove the nitrolinks step definitions and check our specs again.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tree -l features
+<pre><code class="language-bash">tree -l features
 features
 ├── adding_income.feature
 ├── deducting_expense.feature
@@ -149,7 +154,7 @@ features
 │   ├── common_steps.rb
 │   ├── first_time_steps.rb
 │   ├── money_steps.rb
-│   ├── nitrolinks_steps.rb <span style="color:#75715e"># DELETED</span>
+│   ├── nitrolinks_steps.rb # DELETED
 │   ├── pondo_specs
 │   │   └── pages.rb
 │   └── subscription_steps.rb
@@ -158,92 +163,98 @@ features
     ├── env.rb
     ├── pondo_testing_utils.rb
     └── wait_for_things.rb
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cucumber
+</code></pre>
+<pre><code class="language-bash">$ cucumber
 
-<span style="color:#75715e"># Bunch of spec output</span>
+# Bunch of spec output
 
-<span style="color:#ae81ff">15</span> scenarios <span style="color:#f92672">(</span><span style="color:#ae81ff">15</span> passed<span style="color:#f92672">)</span>
-<span style="color:#ae81ff">93</span> steps <span style="color:#f92672">(</span><span style="color:#ae81ff">93</span> passed<span style="color:#f92672">)</span>
+15 scenarios (15 passed)
+93 steps (93 passed)
 0m26.099s
-</code></pre></div><p>Good we&rsquo;re still green. Next we&rsquo;ll edit our pages helper and step definitions to
+</code></pre>
+<p>Good we&rsquo;re still green. Next we&rsquo;ll edit our pages helper and step definitions to
 remove any trace of nitrolinks.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># features/step_definitions/pondo_specs/pages.rb</span>
-<span style="color:#66d9ef">module</span> PondoSpecs
-  <span style="color:#66d9ef">module</span> Pages
-    <span style="color:#66d9ef">module_function</span>
+<pre><code class="language-ruby"># features/step_definitions/pondo_specs/pages.rb
+module PondoSpecs
+  module Pages
+    module_function
 
     {
-      <span style="color:#e6db74">home</span>: {
-        <span style="color:#e6db74">path</span>: <span style="color:#e6db74">&#39;/&#39;</span>
+      home: {
+        path: '/'
       },
 
-      <span style="color:#e6db74">welcome</span>: {
-        <span style="color:#e6db74">path</span>: <span style="color:#e6db74">&#39;/welcome&#39;</span>
+      welcome: {
+        path: '/welcome'
       },
 
-      <span style="color:#75715e"># NITROLINKS WAS HERE</span>
+      # NITROLINKS WAS HERE
 
-    }<span style="color:#f92672">.</span>each <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>page_name, data<span style="color:#f92672">|</span>
-      define_method <span style="color:#e6db74">:&#34;</span><span style="color:#e6db74">#{</span>page_name<span style="color:#e6db74">}</span><span style="color:#e6db74">_page&#34;</span> <span style="color:#66d9ef">do</span>
-        data<span style="color:#f92672">[</span><span style="color:#e6db74">:path</span><span style="color:#f92672">]</span>
-      <span style="color:#66d9ef">end</span>
+    }.each do |page_name, data|
+      define_method :&quot;#{page_name}_page&quot; do
+        data[:path]
+      end
 
-      define_method <span style="color:#e6db74">:&#34;</span><span style="color:#e6db74">#{</span>page_name<span style="color:#e6db74">}</span><span style="color:#e6db74">_page_content&#34;</span> <span style="color:#66d9ef">do</span>
-        data<span style="color:#f92672">[</span><span style="color:#e6db74">:content</span><span style="color:#f92672">]</span>
-      <span style="color:#66d9ef">end</span>
-    <span style="color:#66d9ef">end</span>
+      define_method :&quot;#{page_name}_page_content&quot; do
+        data[:content]
+      end
+    end
 
-  <span style="color:#66d9ef">end</span>
-<span style="color:#66d9ef">end</span>
+  end
+end
 
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># features/support/pondo_testing_utils.rb</span>
-<span style="color:#66d9ef">module</span> PondoTestingUtils
-  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">jscript</span>(code)
-    page<span style="color:#f92672">.</span>evaluate_script(code)
-  <span style="color:#66d9ef">end</span>
+</code></pre>
+<pre><code class="language-ruby"># features/support/pondo_testing_utils.rb
+module PondoTestingUtils
+  def jscript(code)
+    page.evaluate_script(code)
+  end
 
-  <span style="color:#75715e"># NITROLINKS WAS HERE</span>
+  # NITROLINKS WAS HERE
 
-  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">pondo_page</span>(name)
-    <span style="color:#66d9ef">PondoSpecs</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Pages</span><span style="color:#f92672">.</span>send(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#{</span> name <span style="color:#e6db74">}</span><span style="color:#e6db74">_page&#34;</span>)
-  <span style="color:#66d9ef">end</span>
+  def pondo_page(name)
+    PondoSpecs::Pages.send(&quot;#{ name }_page&quot;)
+  end
 
-  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">pondo_page_content</span>(name)
-    <span style="color:#66d9ef">PondoSpecs</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Pages</span><span style="color:#f92672">.</span>send(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#{</span> name <span style="color:#e6db74">}</span><span style="color:#e6db74">_page_content&#34;</span>)
-  <span style="color:#66d9ef">end</span>
+  def pondo_page_content(name)
+    PondoSpecs::Pages.send(&quot;#{ name }_page_content&quot;)
+  end
 
-  <span style="color:#75715e"># ...AND HERE</span>
+  # ...AND HERE
 
-  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">safe_date_fill_in</span>(finder, date)
-    field <span style="color:#f92672">=</span> find_field(finder)
-    date_formatted <span style="color:#f92672">=</span> date<span style="color:#f92672">.</span>strftime(<span style="color:#e6db74">&#34;%Y-%m-%d&#34;</span>)
-    jscript(<span style="color:#e6db74">&#34;document.evaluate(&#39;</span><span style="color:#e6db74">#{</span>field<span style="color:#f92672">.</span>path<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.value=&#39;</span><span style="color:#e6db74">#{</span>date_formatted<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;&#34;</span>)
-  <span style="color:#66d9ef">end</span>
+  def safe_date_fill_in(finder, date)
+    field = find_field(finder)
+    date_formatted = date.strftime(&quot;%Y-%m-%d&quot;)
+    jscript(&quot;document.evaluate('#{field.path}', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.value='#{date_formatted}'&quot;)
+  end
 
-  <span style="color:#75715e"># ...AND HERE</span>
-<span style="color:#66d9ef">end</span>
+  # ...AND HERE
+end
 
-<span style="color:#66d9ef">World</span>(<span style="color:#66d9ef">PondoTestingUtils</span>)
-<span style="color:#66d9ef">World</span>(<span style="color:#66d9ef">ActiveJob</span><span style="color:#f92672">::</span><span style="color:#66d9ef">TestHelper</span>)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cucumber
+World(PondoTestingUtils)
+World(ActiveJob::TestHelper)
+</code></pre>
+<pre><code class="language-bash">$ cucumber
 
-<span style="color:#75715e"># Bunch of spec output</span>
+# Bunch of spec output
 
-<span style="color:#ae81ff">15</span> scenarios <span style="color:#f92672">(</span><span style="color:#ae81ff">15</span> passed<span style="color:#f92672">)</span>
-<span style="color:#ae81ff">93</span> steps <span style="color:#f92672">(</span><span style="color:#ae81ff">93</span> passed<span style="color:#f92672">)</span>
+15 scenarios (15 passed)
+93 steps (93 passed)
 0m21.421s
-</code></pre></div><p>We&rsquo;re still green! This is getting a little repetetive so we&rsquo;ll finish up with
+</code></pre>
+<p>We&rsquo;re still green! This is getting a little repetetive so we&rsquo;ll finish up with
 some more code cleanups by removing any unnecessary references to nitrolinks.
 That includes routes, controllers, and views related to just nitrolinks testing.</p>
 <p>After all that, you know what&rsquo;s coming&hellip;</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cucumber
+<pre><code class="language-bash">$ cucumber
 
-<span style="color:#75715e"># Bunch of spec output</span>
+# Bunch of spec output
 
-<span style="color:#ae81ff">15</span> scenarios <span style="color:#f92672">(</span><span style="color:#ae81ff">15</span> passed<span style="color:#f92672">)</span>
-<span style="color:#ae81ff">93</span> steps <span style="color:#f92672">(</span><span style="color:#ae81ff">93</span> passed<span style="color:#f92672">)</span>
+15 scenarios (15 passed)
+93 steps (93 passed)
 0m26.659s
-</code></pre></div><p>We&rsquo;re in a good place right now so let&rsquo;s commit our code first. Here&rsquo;s
+</code></pre>
+<p>We&rsquo;re in a good place right now so let&rsquo;s commit our code first. Here&rsquo;s
 <a href="https://github.com/asartalo/pondo/commit/a6a62e20948f9a6662c0d641c067b8f82f0aa9bf">everything we&rsquo;ve done so far</a>.</p>
 <h2 id="fearless-refactoring">Fearless Refactoring</h2>
 <p>You&rsquo;ll notice that for every significant change we do, we always run the specs
@@ -258,48 +269,50 @@ enough to encourage us to run them frequently.</p>
 <h2 id="constraints-in-testing-nitro-apps">Constraints in Testing Nitro Apps</h2>
 <p>There is still some nitro-specific thing we&rsquo;re doing in Pondo and it starts
 here:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-coffeescript" data-lang="coffeescript"><span style="color:#75715e"># app/assets/javascripts/testing.coffee
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PondoTesting</span>
+<pre><code class="language-coffeescript"># app/assets/javascripts/testing.coffee
+class PondoTesting
 
-  <span style="color:#75715e"># Bunch of code...
-</span><span style="color:#75715e"></span>
-  markAsLoading: <span style="color:#a6e22e">(from)-&gt;</span>
-    @active = <span style="color:#66d9ef">true</span>
-    <span style="color:#a6e22e">@body</span>.<span style="color:#a6e22e">addClass</span>(<span style="color:#e6db74">&#39;testing-visiting&#39;</span>)
+  # Bunch of code...
 
-  markAsDoneLoading: <span style="color:#a6e22e">-&gt;</span>
-    @active = <span style="color:#66d9ef">false</span>
-    <span style="color:#a6e22e">@body</span>.<span style="color:#a6e22e">removeClass</span>(<span style="color:#e6db74">&#39;testing-visiting&#39;</span>)
+  markAsLoading: (from)-&gt;
+    @active = true
+    @body.addClass('testing-visiting')
 
-  listen: <span style="color:#a6e22e">-&gt;</span>
-    <span style="color:#a6e22e">@</span>document.<span style="color:#a6e22e">on</span> <span style="color:#e6db74">&#39;nitrolinks:visit&#39;</span>, <span style="color:#a6e22e">=&gt;</span>
-      <span style="color:#a6e22e">@markAsLoading</span>(<span style="color:#e6db74">&#39;nitrolinks:visit&#39;</span>)
+  markAsDoneLoading: -&gt;
+    @active = false
+    @body.removeClass('testing-visiting')
 
-    <span style="color:#a6e22e">@</span>document.<span style="color:#a6e22e">on</span> <span style="color:#e6db74">&#39;nitrolinks:load nitrolinks:load-blank&#39;</span>, <span style="color:#a6e22e">(e) =&gt;</span>
-      <span style="color:#a6e22e">@markAsDoneLoading</span>()
+  listen: -&gt;
+    @document.on 'nitrolinks:visit', =&gt;
+      @markAsLoading('nitrolinks:visit')
 
-  <span style="color:#75715e"># etc....
-</span></code></pre></div><p>&hellip;and used here:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># features/support/wait_for_things.rb</span>
-<span style="color:#66d9ef">module</span> WaitForThings
-  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">wait_for_page_load</span>
-    <span style="color:#66d9ef">Timeout</span><span style="color:#f92672">.</span>timeout(<span style="color:#66d9ef">Capybara</span><span style="color:#f92672">.</span>default_max_wait_time) <span style="color:#66d9ef">do</span>
-      <span style="color:#66d9ef">loop</span> <span style="color:#66d9ef">until</span> finished_loading?
-    <span style="color:#66d9ef">end</span>
-  <span style="color:#66d9ef">end</span>
+    @document.on 'nitrolinks:load nitrolinks:load-blank', (e) =&gt;
+      @markAsDoneLoading()
 
-  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">finished_loading?</span>
-    jscript(<span style="color:#e6db74">&#39;document.getElementsByClassName(&#34;testing-visiting&#34;).length&#39;</span>)<span style="color:#f92672">.</span>zero?
-  <span style="color:#66d9ef">end</span>
+  # etc....
+</code></pre>
+<p>&hellip;and used here:</p>
+<pre><code class="language-ruby"># features/support/wait_for_things.rb
+module WaitForThings
+  def wait_for_page_load
+    Timeout.timeout(Capybara.default_max_wait_time) do
+      loop until finished_loading?
+    end
+  end
 
-  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">wait_for_remote_request</span>
+  def finished_loading?
+    jscript('document.getElementsByClassName(&quot;testing-visiting&quot;).length').zero?
+  end
+
+  def wait_for_remote_request
     wait_for_page_load
-  <span style="color:#66d9ef">end</span>
+  end
 
-  <span style="color:#75715e"># ...</span>
-<span style="color:#66d9ef">end</span>
+  # ...
+end
 
-</code></pre></div><p>Because nitrolinks overrides the navigation behavior by fetching the page
+</code></pre>
+<p>Because nitrolinks overrides the navigation behavior by fetching the page
 through xhr, there&rsquo;s no way for Capybara to know to wait for a new page load.
 This code allows us to tell Capybara to wait until the page has been loaded.
 It&rsquo;s a clunky hack but it serves us for now.</p>
@@ -308,136 +321,141 @@ nitrolinks handle this and provide a way for clients of the gem to use this
 feature in their tests.</p>
 <p>We&rsquo;ve duplicated this code on Nitrolinks. Let&rsquo;s move it to the <code>lib</code> so we can
 requrie it from Pondo.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># lib/nitrolinks/capybara/wait_for_things.rb</span>
-<span style="color:#66d9ef">module</span> Nitrolinks
-  <span style="color:#66d9ef">module</span> Capybara
-    <span style="color:#66d9ef">module</span> WaitForThings
-      <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">wait_for_page_load</span>
-        <span style="color:#66d9ef">Timeout</span><span style="color:#f92672">.</span>timeout(<span style="color:#f92672">::</span><span style="color:#66d9ef">Capybara</span><span style="color:#f92672">.</span>default_max_wait_time) <span style="color:#66d9ef">do</span>
-          <span style="color:#66d9ef">loop</span> <span style="color:#66d9ef">until</span> finished_loading?
-        <span style="color:#66d9ef">end</span>
-      <span style="color:#66d9ef">end</span>
+<pre><code class="language-ruby"># lib/nitrolinks/capybara/wait_for_things.rb
+module Nitrolinks
+  module Capybara
+    module WaitForThings
+      def wait_for_page_load
+        Timeout.timeout(::Capybara.default_max_wait_time) do
+          loop until finished_loading?
+        end
+      end
 
-      <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">finished_loading?</span>
-        jscript(<span style="color:#e6db74">&#39;document.getElementsByClassName(&#34;testing-visiting&#34;).length&#39;</span>)<span style="color:#f92672">.</span>zero?
-      <span style="color:#66d9ef">end</span>
+      def finished_loading?
+        jscript('document.getElementsByClassName(&quot;testing-visiting&quot;).length').zero?
+      end
 
-      <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">finished_all_ajax_requests?</span>
-        page<span style="color:#f92672">.</span>evaluate_script(<span style="color:#e6db74">&#39;jQuery.active&#39;</span>)<span style="color:#f92672">.</span>zero?
-      <span style="color:#66d9ef">end</span>
+      def finished_all_ajax_requests?
+        page.evaluate_script('jQuery.active').zero?
+      end
 
-      <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">pause_pls</span>
-        $stderr<span style="color:#f92672">.</span>write <span style="color:#e6db74">&#39;Press enter to continue&#39;</span>
-        $stdin<span style="color:#f92672">.</span>gets
-      <span style="color:#66d9ef">end</span>
-    <span style="color:#66d9ef">end</span>
-  <span style="color:#66d9ef">end</span>
-<span style="color:#66d9ef">end</span>
-</code></pre></div><p>Let&rsquo;s also move that jscript method into another module:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># lib/nitrolinks/capybara/jscript.rb</span>
-<span style="color:#66d9ef">module</span> Nitrolinks
-  <span style="color:#66d9ef">module</span> Capybara
-    <span style="color:#66d9ef">module</span> Jscript
-      <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">jscript</span>(code)
-        page<span style="color:#f92672">.</span>evaluate_script(code)
-      <span style="color:#66d9ef">end</span>
+      def pause_pls
+        $stderr.write 'Press enter to continue'
+        $stdin.gets
+      end
+    end
+  end
+end
+</code></pre>
+<p>Let&rsquo;s also move that jscript method into another module:</p>
+<pre><code class="language-ruby"># lib/nitrolinks/capybara/jscript.rb
+module Nitrolinks
+  module Capybara
+    module Jscript
+      def jscript(code)
+        page.evaluate_script(code)
+      end
 
-      <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">expect_script</span>(code, filter <span style="color:#f92672">=</span> <span style="color:#66d9ef">nil</span>)
-        result <span style="color:#f92672">=</span> jscript(code)
-        <span style="color:#66d9ef">if</span> filter
-          result <span style="color:#f92672">=</span> result<span style="color:#f92672">.</span>send(filter)
-        <span style="color:#66d9ef">end</span>
+      def expect_script(code, filter = nil)
+        result = jscript(code)
+        if filter
+          result = result.send(filter)
+        end
         expect(result)
-      <span style="color:#66d9ef">end</span>
-    <span style="color:#66d9ef">end</span>
-  <span style="color:#66d9ef">end</span>
-<span style="color:#66d9ef">end</span>
+      end
+    end
+  end
+end
 
-</code></pre></div><p>To use, we&rsquo;ll only need to add this on pondo:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># features/support/wait_for_things.rb</span>
-require <span style="color:#e6db74">&#39;nitrolinks/capybara/jscript&#39;</span>
-require <span style="color:#e6db74">&#39;nitrolinks/capybara/wait_for_things&#39;</span>
+</code></pre>
+<p>To use, we&rsquo;ll only need to add this on pondo:</p>
+<pre><code class="language-ruby"># features/support/wait_for_things.rb
+require 'nitrolinks/capybara/jscript'
+require 'nitrolinks/capybara/wait_for_things'
 
-<span style="color:#66d9ef">World</span>(<span style="color:#66d9ef">Nitrolinks</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Capybara</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Jscript</span>)
-<span style="color:#66d9ef">World</span>(<span style="color:#66d9ef">Nitrolinks</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Capybara</span><span style="color:#f92672">::</span><span style="color:#66d9ef">WaitForThings</span>)
-</code></pre></div><p>We&rsquo;ll also refactor out the loading-related code into a separate script:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-coffeescript" data-lang="coffeescript"><span style="color:#75715e"># app/assets/javascripts/nitrolinks/load-helper.coffee
-</span><span style="color:#75715e"></span>whenReady = <span style="color:#a6e22e">(fn) -&gt;</span>
-  <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">if</span> document.<span style="color:#a6e22e">attachEvent</span> <span style="color:#66d9ef">then</span> document.<span style="color:#a6e22e">readyState</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;complete&#39;</span> <span style="color:#66d9ef">else</span> document.<span style="color:#a6e22e">readyState</span> <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#39;loading&#39;</span>)
-    <span style="color:#a6e22e">fn</span>()
-  <span style="color:#66d9ef">else</span>
-    document.<span style="color:#a6e22e">addEventListener</span> <span style="color:#e6db74">&#34;DOMContentLoaded&#34;</span>, <span style="color:#a6e22e">-&gt;</span>
-      <span style="color:#a6e22e">fn</span>()
+World(Nitrolinks::Capybara::Jscript)
+World(Nitrolinks::Capybara::WaitForThings)
+</code></pre>
+<p>We&rsquo;ll also refactor out the loading-related code into a separate script:</p>
+<pre><code class="language-coffeescript"># app/assets/javascripts/nitrolinks/load-helper.coffee
+whenReady = (fn) -&gt;
+  if (if document.attachEvent then document.readyState == 'complete' else document.readyState != 'loading')
+    fn()
+  else
+    document.addEventListener &quot;DOMContentLoaded&quot;, -&gt;
+      fn()
 
-eventListen = <span style="color:#a6e22e">(event, handler) -&gt;</span>
-  document.<span style="color:#a6e22e">addEventListener</span> <span style="color:#a6e22e">event</span>, <span style="color:#a6e22e">(e) -&gt;</span>
-    <span style="color:#a6e22e">handler</span>.<span style="color:#a6e22e">call</span> document, <span style="color:#a6e22e">e</span>
+eventListen = (event, handler) -&gt;
+  document.addEventListener event, (e) -&gt;
+    handler.call document, e
 
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NitrolinksLoadHelper</span>
-  constructor: <span style="color:#a6e22e">(@window, @document) -&gt;</span>
-    @active = <span style="color:#66d9ef">false</span>
+class NitrolinksLoadHelper
+  constructor: (@window, @document) -&gt;
+    @active = false
 
-  body: <span style="color:#a6e22e">-&gt;</span>
-    document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;body&#39;</span>)
+  body: -&gt;
+    document.querySelector('body')
 
-  markAsLoading: <span style="color:#a6e22e">(from)-&gt;</span>
-    @active = <span style="color:#66d9ef">true</span>
-    <span style="color:#a6e22e">@body</span>().<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;testing-visiting&#39;</span>)
+  markAsLoading: (from)-&gt;
+    @active = true
+    @body().classList.add('testing-visiting')
 
-  markAsDoneLoading: <span style="color:#a6e22e">-&gt;</span>
-    @active = <span style="color:#66d9ef">false</span>
-    <span style="color:#a6e22e">@body</span>().<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">remove</span>(<span style="color:#e6db74">&#39;testing-visiting&#39;</span>)
+  markAsDoneLoading: -&gt;
+    @active = false
+    @body().classList.remove('testing-visiting')
 
-  listen: <span style="color:#a6e22e">-&gt;</span>
-    <span style="color:#a6e22e">eventListen</span> <span style="color:#e6db74">&#39;nitrolinks:visit&#39;</span>, <span style="color:#a6e22e">=&gt;</span>
-      <span style="color:#a6e22e">@markAsLoading</span>(<span style="color:#e6db74">&#39;nitrolinks:visit&#39;</span>)
+  listen: -&gt;
+    eventListen 'nitrolinks:visit', =&gt;
+      @markAsLoading('nitrolinks:visit')
 
-    loads = <span style="color:#a6e22e">(e) =&gt;</span>
-      <span style="color:#a6e22e">@markAsDoneLoading</span>()
+    loads = (e) =&gt;
+      @markAsDoneLoading()
 
-    <span style="color:#a6e22e">eventListen</span> <span style="color:#e6db74">&#39;nitrolinks:load&#39;</span>, <span style="color:#a6e22e">loads</span>
-    <span style="color:#a6e22e">eventListen</span> <span style="color:#e6db74">&#39;nitrolinks:load-blank&#39;</span>, <span style="color:#a6e22e">loads</span>
+    eventListen 'nitrolinks:load', loads
+    eventListen 'nitrolinks:load-blank', loads
 
-<span style="color:#a6e22e">whenReady</span> <span style="color:#a6e22e">=&gt;</span>
-  @nitroLoadHelper = <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">NitrolinksLoadHelper</span>(window, document)
-  <span style="color:#a6e22e">@nitroLoadHelper</span>.<span style="color:#a6e22e">listen</span>()
-  <span style="color:#a6e22e">@nitroLoadHelper</span>.<span style="color:#a6e22e">markAsDoneLoading</span>()
+whenReady =&gt;
+  @nitroLoadHelper = new NitrolinksLoadHelper(window, document)
+  @nitroLoadHelper.listen()
+  @nitroLoadHelper.markAsDoneLoading()
 
-</code></pre></div><p>On the pondo side, we&rsquo;ll just require it on our testing javascript:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-coffeescript" data-lang="coffeescript"><span style="color:#75715e"># app/assets/javascripts/nitrolinks/load-helper.coffee
-</span><span style="color:#75715e">#= require nitrolinks/load-helper
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PondoTesting</span>
-  constructor: <span style="color:#a6e22e">(@window) -&gt;</span>
+</code></pre>
+<p>On the pondo side, we&rsquo;ll just require it on our testing javascript:</p>
+<pre><code class="language-coffeescript"># app/assets/javascripts/nitrolinks/load-helper.coffee
+#= require nitrolinks/load-helper
+
+class PondoTesting
+  constructor: (@window) -&gt;
     @errors = []
 
-  listen: <span style="color:#a6e22e">-&gt;</span>
-    <span style="color:#a6e22e">@</span>window.<span style="color:#a6e22e">addEventListener</span> <span style="color:#e6db74">&#39;error&#39;</span>, <span style="color:#a6e22e">(e) =&gt;</span>
-      <span style="color:#a6e22e">@addToErrors</span>(<span style="color:#a6e22e">e</span>)
+  listen: -&gt;
+    @window.addEventListener 'error', (e) =&gt;
+      @addToErrors(e)
 
-  addToErrors: <span style="color:#a6e22e">(e) -&gt;</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">error</span>
-      <span style="color:#a6e22e">@errors</span>.<span style="color:#a6e22e">push</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">error</span>.<span style="color:#a6e22e">message</span>
-    <span style="color:#66d9ef">else</span>
-      <span style="color:#a6e22e">@errors</span>.<span style="color:#a6e22e">push</span> <span style="color:#a6e22e">e</span>
-    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span> <span style="color:#a6e22e">e</span>
+  addToErrors: (e) -&gt;
+    if e.error
+      @errors.push e.error.message
+    else
+      @errors.push e
+    console.log e
 
-  hasJavascriptErrors: <span style="color:#a6e22e">-&gt;</span>
-    <span style="color:#a6e22e">@error</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>
+  hasJavascriptErrors: -&gt;
+    @error.length &gt; 0
 
-<span style="color:#a6e22e">$</span> <span style="color:#a6e22e">=&gt;</span>
-  @pondoTesting = <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PondoTesting</span>(window)
-  <span style="color:#a6e22e">@pondoTesting</span>.<span style="color:#a6e22e">listen</span>()
-</code></pre></div><p>Bumping our nitrolinks-rails gem version and including it in Pondo, everything
+$ =&gt;
+  @pondoTesting = new PondoTesting(window)
+  @pondoTesting.listen()
+</code></pre>
+<p>Bumping our nitrolinks-rails gem version and including it in Pondo, everything
 works as expected. Here are links to commits in <a href="https://github.com/asartalo/nitrolinks-rails/commit/7f1566f52a24eebf4704628629ea9b5ae86345b4">Nitrolinks</a> and <a href="https://github.com/asartalo/pondo/commit/a6a62e20948f9a6662c0d641c067b8f82f0aa9bf">Pondo</a> <a href="https://github.com/asartalo/pondo/commit/1445e6109fa4fb364078ab2a39aba31bfd807c8b">2</a>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cucumber
+<pre><code class="language-bash">$ cucumber
 
-<span style="color:#75715e"># Bunch of spec output</span>
+# Bunch of spec output
 
-<span style="color:#ae81ff">15</span> scenarios <span style="color:#f92672">(</span><span style="color:#ae81ff">15</span> passed<span style="color:#f92672">)</span>
-<span style="color:#ae81ff">93</span> steps <span style="color:#f92672">(</span><span style="color:#ae81ff">93</span> passed<span style="color:#f92672">)</span>
+15 scenarios (15 passed)
+93 steps (93 passed)
 0m20.662s
-</code></pre></div>
+</code></pre>
     </section>
     <footer>
       <div class="tags">

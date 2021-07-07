@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.js": "/sites/printables/static/js/main.39770022.chunk.js",
+    "main.js.map": "/sites/printables/static/js/main.39770022.chunk.js.map",
+    "runtime-main.js": "/sites/printables/static/js/runtime-main.382333f9.js",
+    "runtime-main.js.map": "/sites/printables/static/js/runtime-main.382333f9.js.map",
+    "static/js/2.1c64af23.chunk.js": "/sites/printables/static/js/2.1c64af23.chunk.js",
+    "static/js/2.1c64af23.chunk.js.map": "/sites/printables/static/js/2.1c64af23.chunk.js.map",
+    "static/js/3.23d60cba.chunk.js": "/sites/printables/static/js/3.23d60cba.chunk.js",
+    "static/js/3.23d60cba.chunk.js.map": "/sites/printables/static/js/3.23d60cba.chunk.js.map",
+    "index.html": "/sites/printables/index.html",
+    "service-worker.js": "/sites/printables/service-worker.js",
+    "service-worker.js.map": "/sites/printables/service-worker.js.map",
+    "static/js/2.1c64af23.chunk.js.LICENSE.txt": "/sites/printables/static/js/2.1c64af23.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.382333f9.js",
+    "static/js/2.1c64af23.chunk.js",
+    "static/js/main.39770022.chunk.js"
+  ]
+}

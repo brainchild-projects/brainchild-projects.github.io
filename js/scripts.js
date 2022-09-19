@@ -96,9 +96,7 @@ function findElement(selector) {
 
 function ready(fn) {
   if (
-    document.attachEvent
-      ? document.readyState === "complete"
-      : document.readyState !== "loading"
+    document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"
   ) {
     fn();
   } else {
@@ -107,24 +105,11 @@ function ready(fn) {
 }
 
 function onKeypress(key, fn) {
-  document.addEventListener("keypress", function(e) {
-    console.log(e);
+  document.addEventListener("keypress", function (e) {
     if (e.isTrusted && key.key === e.key && e.ctrlKey === e.ctrlKey) {
       fn(e);
     }
   });
-}
-
-function dasherize(string) {
-  return string.replace(/([A-Z])/g, g => `-${g[0].toLowerCase()}`);
-}
-
-function style(element, styles) {
-  element.style.cssText = Object.entries(styles)
-    .map(([prop, value]) => {
-      return `${dasherize(prop)}:${value}`;
-    })
-    .join(";");
 }
 
 class OverlayElement {
@@ -193,7 +178,7 @@ class OverlayElement {
 /* 3 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: Node Sass does not yet support your current environment: Linux 64-bit with Unsupported runtime (93)\nFor more information on which environments are supported please see:\nhttps://github.com/sass/node-sass/releases/tag/v4.14.1\n    at module.exports (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/node-sass/lib/binding.js:13:13)\n    at Object.<anonymous> (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/node-sass/lib/index.js:14:35)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load (node:internal/modules/cjs/loader:822:12)\n    at Module.require (node:internal/modules/cjs/loader:1005:19)\n    at require (node:internal/modules/cjs/helpers:102:18)\n    at Object.<anonymous> (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/sass-loader/lib/loader.js:3:14)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load (node:internal/modules/cjs/loader:822:12)\n    at Module.require (node:internal/modules/cjs/loader:1005:19)\n    at require (node:internal/modules/cjs/helpers:102:18)\n    at loadLoader (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/loader-runner/lib/loadLoader.js:18:17)\n    at iteratePitchingLoaders (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/loader-runner/lib/LoaderRunner.js:176:18\n    at loadLoader (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/loader-runner/lib/loadLoader.js:47:3)\n    at iteratePitchingLoaders (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at runLoaders (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/loader-runner/lib/LoaderRunner.js:365:2)\n    at NormalModule.doBuild (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/webpack/lib/NormalModule.js:182:3)\n    at NormalModule.build (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/webpack/lib/NormalModule.js:275:15)\n    at Compilation.buildModule (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/webpack/lib/Compilation.js:157:10)\n    at /home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/webpack/lib/Compilation.js:460:10\n    at /home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/webpack/lib/NormalModuleFactory.js:243:5\n    at /home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/webpack/lib/NormalModuleFactory.js:94:13\n    at /home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/tapable/lib/Tapable.js:268:11\n    at NormalModuleFactory.<anonymous> (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/webpack/lib/CompatibilityPlugin.js:52:5)\n    at /home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/webpack/lib/NormalModule.js:195:19\n    at /home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/loader-runner/lib/LoaderRunner.js:172:11\n    at loadLoader (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/loader-runner/lib/loadLoader.js:32:11)\n    at iteratePitchingLoaders (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/loader-runner/lib/LoaderRunner.js:176:18\n    at loadLoader (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/loader-runner/lib/loadLoader.js:47:3)\n    at iteratePitchingLoaders (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at runLoaders (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/loader-runner/lib/LoaderRunner.js:365:2)\n    at NormalModule.doBuild (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/webpack/lib/NormalModule.js:182:3)\n    at NormalModule.build (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/webpack/lib/NormalModule.js:275:15)\n    at Compilation.buildModule (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/webpack/lib/Compilation.js:157:10)\n    at /home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/webpack/lib/Compilation.js:460:10\n    at /home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/webpack/lib/NormalModuleFactory.js:243:5\n    at /home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/webpack/lib/NormalModuleFactory.js:94:13\n    at /home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/tapable/lib/Tapable.js:268:11\n    at NormalModuleFactory.<anonymous> (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/webpack/lib/CompatibilityPlugin.js:52:5)\n    at NormalModuleFactory.applyPluginsAsyncWaterfall (/home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/tapable/lib/Tapable.js:272:13)\n    at /home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/webpack/lib/NormalModuleFactory.js:69:10\n    at /home/wayne/Projects/BrainchildProjects/brainchild-projects/node_modules/webpack/lib/NormalModuleFactory.js:196:7\n    at processTicksAndRejections (node:internal/process/task_queues:78:11)");
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

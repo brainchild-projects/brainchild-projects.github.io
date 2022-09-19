@@ -6,7 +6,16 @@
     <description>Recent content on Brainchild Projects</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 09 Apr 2019 00:33:48 +0800</lastBuildDate><atom:link href="https://brainchild-projects.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Jul 2022 23:34:58 +0800</lastBuildDate><atom:link href="https://brainchild-projects.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introducing: Printables</title>
+      <link>https://brainchild-projects.github.io/posts/introducing-printables/</link>
+      <pubDate>Thu, 07 Jul 2022 23:34:58 +0800</pubDate>
+      
+      <guid>https://brainchild-projects.github.io/posts/introducing-printables/</guid>
+      <description>&lt;p&gt;Today, I&amp;rsquo;m finally ready to introduce Printables to the world.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Happy Birthday, Dinosaur</title>
       <link>https://brainchild-projects.github.io/posts/happy-birthday-dinosaur/</link>
@@ -77,6 +86,15 @@ have a lot of them. Executing on them is harder.&lt;/p&gt;</description>
       
       <guid>https://brainchild-projects.github.io/style-guide/</guid>
       <description>Style Guide</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://brainchild-projects.github.io/resume/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://brainchild-projects.github.io/resume/</guid>
+      <description>Ronald Wayne Duran </description>
     </item>
     
   </channel>

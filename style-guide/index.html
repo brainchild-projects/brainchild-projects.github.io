@@ -1,248 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  
-  
+  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2">
+  <meta name="description" content="A Filipino developer's projects, thoughts, and experiments">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,300i,400" rel="stylesheet">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="https://brainchild-projects.github.io/atom.xml">
   <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
-  
-  
-  <meta name="generator" content="Hugo 0.103.1" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
+  <script src="/js/prism.js"></script>
+  <script src="/js/scripts.js" type="module"></script>
   <link type="text/plain" rel="author" href="/humans.txt">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-  
-  <link rel="apple-touch-icon" sizes="57x57" href="/images/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="/images/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="/images/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="/images/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="/images/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="/images/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="/images/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  <script type="text/javascript" src="/js/prism.js"></script>
-  <script type="text/javascript" src="/js/scripts.js"></script>
-  
-  <title>Style Guide</title>
+  <title>Brainchild Projects</title>
 </head>
-
 <body>
   <div class="container">
     <header class="page-header">
-  <h1 class="branding">
-    <a href="/">
+      <h1 class="branding"><a href="/">
       <div class="logo">
         <object data="/images/logo_red.svg" type="image/svg+xml">
-          <img src="/images/logo_blue.png">
-        </object>
-        <noscript><span>Brainchild Projects</span></noscript>
-      </div>
-    </a>
-  </h1>
-  <p>
-    Projects + Thoughts + Experiments
-  </p>
-</header>
-
-    <main>
-      
-  
-  <article class="article-full">
-    <header>
-      <h1>Style Guide</h1>
-      <div class="meta">
-        <div class="time">
-          Posted on 
-          <time datetime="2017-08-30T21:47:01&#43;08:00">
-            Aug 30, 2017
-          </time>
-        </div>
-      </div>
+          <img src="/images/logo_blue.png" alt="Brainchild Projects Logo">
+        </object> <noscript><span>Brainchild Projects</span></noscript>
+      </div></a></h1>
+      <p>Projects + Thoughts + Experiments</p>
     </header>
-
-    <section class="article-body">
-      <h1 id="headings-with-paragraphs">Headings with paragraphs</h1>
-<h1 id="h1-heading">h1. Heading</h1>
-<p>The home page, or landing page, is the first page that many visitors to a site see. It is the index.html file in the root directory of the web site. Since Hugo writes files to the public/ directory, our home page is public/index.html.</p>
-<h2 id="h2-heading">h2. Heading</h2>
-<p>When Hugo runs, it looks for a configuration file that contains settings that override default values for the entire site. The file can use TOML, YAML, or JSON. I prefer to use TOML for my configuration files. If you prefer to use JSON or YAML, you’ll need to translate my examples. You’ll also need to change the name of the file since Hugo uses the extension to determine how to process it.</p>
-<h3 id="h3-heading">h3. Heading</h3>
-<p>Hugo translates Markdown files into HTML. By default, Hugo expects to find Markdown files in your content/ directory and template files in your themes/ directory. It will create HTML files in your public/ directory. You can change this by specifying alternate locations in the configuration file.</p>
-<h4 id="h4-heading">h4. Heading</h4>
-<p>Content is stored in text files that contain two sections. The first section is the “front matter,” which is the meta-information on the content. The second section contains Markdown that will be converted to HTML.</p>
-<h5 id="h5-heading">h5. Heading</h5>
-<p>The information in the front matter is passed into the template before the content is rendered into HTML.</p>
-<h6 id="h6-heading">h6. Heading</h6>
-<p>Content is written in Markdown which makes it easier to create the content. Hugo runs the content through a Markdown engine to create the HTML which will be written to the output file.</p>
-<hr>
-<h1 id="headings">Headings</h1>
-<h1 id="h1-heading-1">h1. Heading</h1>
-<h2 id="h2-heading-1">h2. Heading</h2>
-<h3 id="h3-heading-1">h3. Heading</h3>
-<h4 id="h4-heading-1">h4. Heading</h4>
-<h5 id="h5-heading-1">h5. Heading</h5>
-<h6 id="h6-heading-1">h6. Heading</h6>
-<hr>
-<h1 id="multi-line-headings">Multi-line Headings</h1>
-<h1 id="h1-when-the-pawn-hits-the-conflicts-he-thinks-like-a">h1. When the Pawn Hits the Conflicts He Thinks like a</h1>
-<h2 id="h2-king-what-he-knows-throws-the-blows-when-he-goes-to-the-fight-and-hell-win">h2. King What He Knows Throws the Blows When He Goes to the Fight and He’ll Win</h2>
-<h3 id="h3-the-whole-thing-he-enters-the-ring-theres-no-body-to-batter">h3. The Whole Thing He Enters the Ring There’s No Body to Batter</h3>
-<h4 id="h4-when-your-mind-is-your-might-so-when-you-go-solo-you-hold-your-own-hand-and">h4. When Your Mind Is Your Might so When You Go Solo You Hold Your Own Hand and</h4>
-<h5 id="h5-remember-that-depth-is-the-greatest-of-heights-and-if-you-know-where-you-stand-then-you-know-where">h5. Remember That Depth Is the Greatest of Heights and If You Know Where You Stand, Then You Know Where</h5>
-<h6 id="h6-to-land-and-if-you-fall-it-wont-matter-cuz-youll-know-that-youre-right-fiona-apple">h6. To Land and If You Fall It Won’t Matter, Cuz You’ll Know That You’re Right Fiona Apple</h6>
-<hr>
-<h1 id="paragraph">Paragraph</h1>
-<p>Lorem ipsum dolor sit amet, <a href="#" title="test link">test link</a> adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</p>
-<p>Skins are the files responsible for the look and feel of your site. It’s the CSS that controls colors and fonts, it’s the Javascript that determines actions and reactions. It’s also the rules that Hugo uses to transform your content into the HTML that the site will serve to visitors.</p>
-<p>You have two ways to create a skin. The simplest way is to create it in the layouts/ directory. If you do, then you don’t have to worry about configuring Hugo to recognize it. The first place that Hugo will look for rules and files is in the layouts/ directory so it will always find the skin.</p>
-<p>Your second choice is to create it in a sub-directory of the themes/ directory. If you do, then you must always tell Hugo where to search for the skin. It’s extra work, though, so why bother with it?</p>
-<p>The difference between creating a skin in layouts/ and creating it in themes/ is very subtle. A skin in layouts/ can’t be customized without updating the templates and static files that it is built from. A skin created in themes/, on the other hand, can be and that makes it easier for other people to use it.</p>
-<p>The rest of this tutorial will call a skin created in the themes/ directory a theme.</p>
-<p>Note that you can use this tutorial to create a skin in the layouts/ directory if you wish to. The main difference will be that you won’t need to update the site’s configuration file to use a theme.</p>
-<hr>
-<h1 id="list-types">List Types</h1>
-<h3 id="definition-list">Definition List</h3>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h3 id="ordered-list">Ordered List</h3>
-<ol>
-<li>List Item 1</li>
-<li>List Item 2</li>
-<li>List Item 3</li>
-</ol>
-<h3 id="unordered-list">Unordered List</h3>
-<ul>
-<li>List Item 1</li>
-<li>List Item 2</li>
-<li>List Item 3</li>
-</ul>
-<h3 id="default-ol-ordered-list">%default-ol Ordered List</h3>
-<ol>
-<li>List Item 1</li>
-<li>List Item 2</li>
-<li>List Item 3</li>
-</ol>
-<h3 id="default-ul-unordered-list">%default-ul Unordered List</h3>
-<ul>
-<li>List Item 1</li>
-<li>List Item 2</li>
-<li>List Item 3</li>
-</ul>
-<hr>
-<h1 id="code">Code</h1>
-<pre><code class="language-bash">## this is a comment
+    <main>
+      <article class="article-full">
+        <header>
+          <h1>Style Guide</h1>
+          <div class="meta">
+            <div class="time">
+              Posted on <time datetime="2017-08-30T21:47:01+08:00">Aug. 30, 2017</time>
+            </div>
+          </div>
+        </header>
+        <section class="article-body">
+          <h1 id="headings-with-paragraphs">Headings with paragraphs</h1>
+          <h1 id="h1-heading">h1. Heading</h1>
+          <p>The home page, or landing page, is the first page that many visitors to a site see. It is the index.html file in the root directory of the web
+          site. Since Hugo writes files to the public/ directory, our home page is public/index.html.</p>
+          <h2 id="h2-heading">h2. Heading</h2>
+          <p>When Hugo runs, it looks for a configuration file that contains settings that override default values for the entire site. The file can use TOML,
+          YAML, or JSON. I prefer to use TOML for my configuration files. If you prefer to use JSON or YAML, you’ll need to translate my examples. You’ll also
+          need to change the name of the file since Hugo uses the extension to determine how to process it.</p>
+          <h3 id="h3-heading">h3. Heading</h3>
+          <p>Hugo translates Markdown files into HTML. By default, Hugo expects to find Markdown files in your content/ directory and template files in your
+          themes/ directory. It will create HTML files in your public/ directory. You can change this by specifying alternate locations in the configuration
+          file.</p>
+          <h4 id="h4-heading">h4. Heading</h4>
+          <p>Content is stored in text files that contain two sections. The first section is the “front matter,” which is the meta-information on the content.
+          The second section contains Markdown that will be converted to HTML.</p>
+          <h5 id="h5-heading">h5. Heading</h5>
+          <p>The information in the front matter is passed into the template before the content is rendered into HTML.</p>
+          <h6 id="h6-heading">h6. Heading</h6>
+          <p>Content is written in Markdown which makes it easier to create the content. Hugo runs the content through a Markdown engine to create the HTML
+          which will be written to the output file.</p>
+          <hr>
+          <h1 id="headings">Headings</h1>
+          <h1 id="h1-heading-1">h1. Heading</h1>
+          <h2 id="h2-heading-1">h2. Heading</h2>
+          <h3 id="h3-heading-1">h3. Heading</h3>
+          <h4 id="h4-heading-1">h4. Heading</h4>
+          <h5 id="h5-heading-1">h5. Heading</h5>
+          <h6 id="h6-heading-1">h6. Heading</h6>
+          <hr>
+          <h1 id="multi-line-headings">Multi-line Headings</h1>
+          <h1 id="h1-when-the-pawn-hits-the-conflicts-he-thinks-like-a">h1. When the Pawn Hits the Conflicts He Thinks like a</h1>
+          <h2 id="h2-king-what-he-knows-throws-the-blows-when-he-goes-to-the-fight-and-he-ll-win">h2. King What He Knows Throws the Blows When He Goes to the
+          Fight and He’ll Win</h2>
+          <h3 id="h3-the-whole-thing-he-enters-the-ring-there-s-no-body-to-batter">h3. The Whole Thing He Enters the Ring There’s No Body to Batter</h3>
+          <h4 id="h4-when-your-mind-is-your-might-so-when-you-go-solo-you-hold-your-own-hand-and">h4. When Your Mind Is Your Might so When You Go Solo You Hold
+          Your Own Hand and</h4>
+          <h5 id="h5-remember-that-depth-is-the-greatest-of-heights-and-if-you-know-where-you-stand-then-you-know-where">h5. Remember That Depth Is the
+          Greatest of Heights and If You Know Where You Stand, Then You Know Where</h5>
+          <h6 id="h6-to-land-and-if-you-fall-it-won-t-matter-cuz-you-ll-know-that-you-re-right-fiona-apple">h6. To Land and If You Fall It Won’t Matter, Cuz
+          You’ll Know That You’re Right Fiona Apple</h6>
+          <hr>
+          <h1 id="paragraph">Paragraph</h1>
+          <p>Lorem ipsum dolor sit amet, <a href="#" title="test link">test link</a> adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec
+          faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis,
+          massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien
+          fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</p>
+          <p>Skins are the files responsible for the look and feel of your site. It’s the CSS that controls colors and fonts, it’s the Javascript that
+          determines actions and reactions. It’s also the rules that Hugo uses to transform your content into the HTML that the site will serve to
+          visitors.</p>
+          <p>You have two ways to create a skin. The simplest way is to create it in the layouts/ directory. If you do, then you don’t have to worry about
+          configuring Hugo to recognize it. The first place that Hugo will look for rules and files is in the layouts/ directory so it will always find the
+          skin.</p>
+          <p>Your second choice is to create it in a sub-directory of the themes/ directory. If you do, then you must always tell Hugo where to search for the
+          skin. It’s extra work, though, so why bother with it?</p>
+          <p>The difference between creating a skin in layouts/ and creating it in themes/ is very subtle. A skin in layouts/ can’t be customized without
+          updating the templates and static files that it is built from. A skin created in themes/, on the other hand, can be and that makes it easier for
+          other people to use it.</p>
+          <p>The rest of this tutorial will call a skin created in the themes/ directory a theme.</p>
+          <p>Note that you can use this tutorial to create a skin in the layouts/ directory if you wish to. The main difference will be that you won’t need to
+          update the site’s configuration file to use a theme.</p>
+          <hr>
+          <h1 id="list-types">List Types</h1>
+          <h3 id="definition-list">Definition List</h3>
+          <dl>
+            <dt>Definition List Title</dt>
+            <dd>This is a definition list division.</dd>
+          </dl>
+          <h3 id="ordered-list">Ordered List</h3>
+          <ol>
+            <li>List Item 1</li>
+            <li>List Item 2</li>
+            <li>List Item 3</li>
+          </ol>
+          <h3 id="unordered-list">Unordered List</h3>
+          <ul>
+            <li>List Item 1</li>
+            <li>List Item 2</li>
+            <li>List Item 3</li>
+          </ul>
+          <h3 id="default-ol-ordered-list">%default-ol Ordered List</h3>
+          <ol>
+            <li>List Item 1</li>
+            <li>List Item 2</li>
+            <li>List Item 3</li>
+          </ol>
+          <h3 id="default-ul-unordered-list">%default-ul Unordered List</h3>
+          <ul>
+            <li>List Item 1</li>
+            <li>List Item 2</li>
+            <li>List Item 3</li>
+          </ul>
+          <hr>
+          <h1 id="code">Code</h1>
+          <pre data-lang="bash" class="language-bash"><code class="language-bash" data-lang="bash">## this is a comment
 $ echo this is a command
 this is a command
 
 ## edit the file
 $vi foo.md
 </code></pre>
-<pre><code>+++
-date = &quot;2014-09-28&quot;
-title = &quot;creating a new theme&quot;
+          <pre><code>+++
+date = "2014-09-28"
+title = "creating a new theme"
 +++
 
 bah and humbug
 :wq
 </code></pre>
-<pre><code class="language-html">&lt;h1&gt;Hello World&lt;/h1&gt;
+          <pre data-lang="html" class="language-html"><code class="language-html" data-lang="html">&lt;h1&gt;Hello World&lt;/h1&gt;
 </code></pre>
-<pre><code class="language-go">func main() {
+          <pre data-lang="go" class="language-go"><code class="language-go" data-lang="go">func main() {
   fmt.Println('hello world');
 }
 </code></pre>
-<pre><code class="language-bash">## show it
+          <pre data-lang="bash" class="language-bash"><code class="language-bash" data-lang="bash">## show it
 $ cat foo.md
 +++
-date = &quot;2014-09-28&quot;
-title = &quot;creating a new theme&quot;
+date = "2014-09-28"
+title = "creating a new theme"
 +++
 
 bah and humbug
 </code></pre>
-<h1 id="fieldsets-and-form-elements">Fieldsets and Form Elements</h1>
-<!-- raw HTML omitted -->
-<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h2 id="form-element">Form Element</h2>
-<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui.</p>
-<p><!-- raw HTML omitted -->Text Field:<!-- raw HTML omitted --> <!-- raw HTML omitted --></p>
-<p><!-- raw HTML omitted -->Text Area:<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<p><!-- raw HTML omitted -->Select Element:<!-- raw HTML omitted --> <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->Option 1<!-- raw HTML omitted --> <!-- raw HTML omitted -->Option 2<!-- raw HTML omitted --> <!-- raw HTML omitted -->Option 3<!-- raw HTML omitted --><!-- raw HTML omitted --> <!-- raw HTML omitted --><!-- raw HTML omitted -->Option 1<!-- raw HTML omitted --> <!-- raw HTML omitted -->Option 2<!-- raw HTML omitted --> <!-- raw HTML omitted -->Option 3<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<p><!-- raw HTML omitted -->Radio Buttons:<!-- raw HTML omitted --> <!-- raw HTML omitted --><!-- raw HTML omitted --> Radio 1 <!-- raw HTML omitted --> <!-- raw HTML omitted --> <!-- raw HTML omitted --> Radio 2 <!-- raw HTML omitted --> <!-- raw HTML omitted --><!-- raw HTML omitted --> Radio 3<!-- raw HTML omitted --></p>
-<p><!-- raw HTML omitted -->Checkboxes:<!-- raw HTML omitted --> <!-- raw HTML omitted --><!-- raw HTML omitted --> Checkbox 1 <!-- raw HTML omitted --> <!-- raw HTML omitted --> <!-- raw HTML omitted --> Checkbox 2 <!-- raw HTML omitted --> <!-- raw HTML omitted --><!-- raw HTML omitted --> Checkbox 3<!-- raw HTML omitted --></p>
-<p><!-- raw HTML omitted -->Password:<!-- raw HTML omitted --> <!-- raw HTML omitted --></p>
-<p><!-- raw HTML omitted -->File Input:<!-- raw HTML omitted --> <!-- raw HTML omitted --></p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<hr>
-<h1 id="tables">Tables</h1>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-
-    </section>
-    <footer>
-      <div class="tags">
-        
-      </div>
-      
-      <nav class="p-pagination c-pagination">
-        <div class="c-pagination__ctrl">
-          <div class="c-pagination__older">
-            
-              <a href="https://brainchild-projects.github.io/resume/">Older</a>
-            
-          </div>
-          <div class="c-pagination__newer">
-            
-              <a href="https://brainchild-projects.github.io/posts/ideas-execution/">Newer</a>
-            
-          </div>
-        </div>
-      </nav>
-    </footer>
-  </article>
-
+          <h1 id="fieldsets-and-form-elements">Fieldsets and Form Elements</h1>
+          <p>TODO: Add fieldsets here</p>
+          <form>
+            <h2 id="form-element">Form Element</h2>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit
+            dui.</p>
+            <p><label for="text_field">Text Field:</label> <input type="text" id="text_field"></p>
+            <p><label for="text_area">Text Area:</label>
+            <textarea id="text_area"></textarea></p>
+            <p><label for="select_element">Select Element:</label> <select name="select_element">
+              <optgroup label="Option Group 1">
+                <option value="1">
+                  Option 1
+                </option>
+                <option value="2">
+                  Option 2
+                </option>
+                <option value="3">
+                  Option 3
+                </option>
+              </optgroup>
+              <optgroup label="Option Group 2">
+                <option value="1">
+                  Option 1
+                </option>
+                <option value="2">
+                  Option 2
+                </option>
+                <option value="3">
+                  Option 3
+                </option>
+              </optgroup>
+            </select></p>
+            <p><label for="radio_buttons">Radio Buttons:</label> <label><input type="radio" class="radio" name="radio_button" value="radio_1"> Radio 1</label>
+            <label><input type="radio" class="radio" name="radio_button" value="radio_2"> Radio 2</label> <label><input type="radio" class="radio" name=
+            "radio_button" value="radio_3"> Radio 3</label></p>
+            <p><label for="checkboxes">Checkboxes:</label> <label><input type="checkbox" class="checkbox" name="checkboxes" value="check_1"> Checkbox 1</label>
+            <label><input type="checkbox" class="checkbox" name="checkboxes" value="check_2"> Checkbox 2</label> <label><input type="checkbox" class="checkbox"
+            name="checkboxes" value="check_3"> Checkbox 3</label></p>
+            <p><label for="password">Password:</label> <input type="password" class="password" name="password"></p>
+            <p><label for="file">File Input:</label> <input type="file" class="file" name="file"></p><input type="submit" value="Submit">
+          </form>
+          <hr>
+          <h1 id="tables">Tables</h1>
+          <table>
+            <tbody>
+              <tr>
+                <th>Table Header 1</th>
+                <th>Table Header 2</th>
+                <th>Table Header 3</th>
+              </tr>
+              <tr>
+                <td>Division 1</td>
+                <td>Division 2</td>
+                <td>Division 3</td>
+              </tr>
+              <tr class="even">
+                <td>Division 1</td>
+                <td>Division 2</td>
+                <td>Division 3</td>
+              </tr>
+              <tr>
+                <td>Division 1</td>
+                <td>Division 2</td>
+                <td>Division 3</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <footer>
+          <div class="tags"></div>
+        </footer>
+      </article>
     </main>
     <footer class="page-footer">
-    <p>&copy; 2022 Wayne Duran</p>
-</footer>
-
+      <p>© 2017-2023 Wayne Duran</p>
+    </footer>
   </div>
 </body>
+</html>

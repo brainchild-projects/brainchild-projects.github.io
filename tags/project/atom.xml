@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Brainchild Projects - project</title>
+	<subtitle>A Filipino developer&#x27;s projects, thoughts, and experiments</subtitle>
+	<link href="https://brainchild-projects.github.io/tags/project/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://brainchild-projects.github.io"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2017-10-12T00:08:01+08:00</updated>
+	<id>https://brainchild-projects.github.io/tags/project/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Refactoring Nitrolinks Part 3: Pondo Cleanup</title>
+		<published>2017-10-12T00:08:01+08:00</published>
+		<updated>2017-10-12T00:08:01+08:00</updated>
+		<link rel="alternate" href="https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-3-pondo-cleanup/" type="text/html"/>
+		<id>https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-3-pondo-cleanup/</id>
+		<content type="html">&lt;p&gt;This is Part 3 of a series of posts about refactoring
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;pondo&quot;&gt;Nitrolinks&lt;&#x2F;a&gt;
+out of &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;pondo&quot;&gt;Pondo&lt;&#x2F;a&gt;. Last time we’ve
+&lt;a href=&quot;https:&#x2F;&#x2F;brainchild-projects.github.io&#x2F;posts&#x2F;refactoring-nitrolinks-part-2-tests-for-a-rails-engine&#x2F;&quot;&gt;successfully copied the Nitrolinks tests from Pondo&lt;&#x2F;a&gt;
+but left the original tests on Pondo. This time we’ll move them out of Pondo for
+good.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h2 id=&quot;the-plan&quot;&gt;The Plan&lt;&#x2F;h2&gt;
+&lt;p&gt;Just to recap, here is the plan:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Move Nitrolinks out into its own gem ✔&lt;&#x2F;li&gt;
+&lt;li&gt;Create tests within Nitrolinks that mirror tests in Pondo ✔&lt;&#x2F;li&gt;
+&lt;li&gt;Remove Nitrolinks-specific tests out of Pondo&lt;&#x2F;li&gt;
+&lt;li&gt;Rewrite Nitrolinks in ES6&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;We are going to do Step 3.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;nitrolinks-bump&quot;&gt;Nitrolinks Bump&lt;&#x2F;h2&gt;
+&lt;p&gt;Since last time we bumped nitrolinks-rails gem’s version number. Let’s use that
+in pondo.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;ruby&quot; class=&quot;language-ruby &quot;&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;# Gemfile
+gem &amp;quot;nitrolinks-rails&amp;quot;, &amp;quot;&amp;gt;= 0.2.0&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Let’s do a test run to make sure everything is green.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;$ cucumber
+
+# Bunch of spec output
+
+29 scenarios (29 passed)
+148 steps (148 passed)
+0m27.379s
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Great! We’re in a good place now.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;cleanup&quot;&gt;Cleanup&lt;&#x2F;h2&gt;
+&lt;p&gt;Next we’ll remove nitrolinks feature specs.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;$ tree -l features
+features
+├── adding_income.feature
+├── deducting_expense.feature
+├── first_time.feature
+├── inviting_subscribers.feature
+├── login.feature
+├── nitrolinks # DELETED
+│   ├── errors.feature # DELETED
+│   ├── get.feature # DELETED
+│   ├── hash.feature # DELETED
+│   └── loading.feature # DELETED
+├── step_definitions
+│   ├── authentication_steps.rb
+│   ├── common_steps.rb
+│   ├── first_time_steps.rb
+│   ├── money_steps.rb
+│   ├── nitrolinks_steps.rb
+│   ├── pondo_specs
+│   │   └── pages.rb
+│   └── subscription_steps.rb
+├── subscribing.feature
+└── support
+    ├── env.rb
+    ├── pondo_testing_utils.rb
+    └── wait_for_things.rb
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;How are we on the specs?&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;$ cucumber
+
+# Bunch of spec output
+
+15 scenarios (15 passed)
+93 steps (93 passed)
+0m21.142s
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;That reduced our scenario count from 29 to 15 and our steps from 148 to 93. Next
+let’s remove the nitrolinks step definitions and check our specs again.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;tree -l features
+features
+├── adding_income.feature
+├── deducting_expense.feature
+├── first_time.feature
+├── inviting_subscribers.feature
+├── login.feature
+├── step_definitions
+│   ├── authentication_steps.rb
+│   ├── common_steps.rb
+│   ├── first_time_steps.rb
+│   ├── money_steps.rb
+│   ├── nitrolinks_steps.rb # DELETED
+│   ├── pondo_specs
+│   │   └── pages.rb
+│   └── subscription_steps.rb
+├── subscribing.feature
+└── support
+    ├── env.rb
+    ├── pondo_testing_utils.rb
+    └── wait_for_things.rb
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;$ cucumber
+
+# Bunch of spec output
+
+15 scenarios (15 passed)
+93 steps (93 passed)
+0m26.099s
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Good we’re still green. Next we’ll edit our pages helper and step definitions to
+remove any trace of nitrolinks.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;ruby&quot; class=&quot;language-ruby &quot;&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;# features&amp;#x2F;step_definitions&amp;#x2F;pondo_specs&amp;#x2F;pages.rb
+module PondoSpecs
+  module Pages
+    module_function
+
+    {
+      home: {
+        path: &amp;#x27;&amp;#x2F;&amp;#x27;
+      },
+
+      welcome: {
+        path: &amp;#x27;&amp;#x2F;welcome&amp;#x27;
+      },
+
+      # NITROLINKS WAS HERE
+
+    }.each do |page_name, data|
+      define_method :&amp;quot;#{page_name}_page&amp;quot; do
+        data[:path]
+      end
+
+      define_method :&amp;quot;#{page_name}_page_content&amp;quot; do
+        data[:content]
+      end
+    end
+
+  end
+end
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;ruby&quot; class=&quot;language-ruby &quot;&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;# features&amp;#x2F;support&amp;#x2F;pondo_testing_utils.rb
+module PondoTestingUtils
+  def jscript(code)
+    page.evaluate_script(code)
+  end
+
+  # NITROLINKS WAS HERE
+
+  def pondo_page(name)
+    PondoSpecs::Pages.send(&amp;quot;#{ name }_page&amp;quot;)
+  end
+
+  def pondo_page_content(name)
+    PondoSpecs::Pages.send(&amp;quot;#{ name }_page_content&amp;quot;)
+  end
+
+  # ...AND HERE
+
+  def safe_date_fill_in(finder, date)
+    field = find_field(finder)
+    date_formatted = date.strftime(&amp;quot;%Y-%m-%d&amp;quot;)
+    jscript(&amp;quot;document.evaluate(&amp;#x27;#{field.path}&amp;#x27;, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.value=&amp;#x27;#{date_formatted}&amp;#x27;&amp;quot;)
+  end
+
+  # ...AND HERE
+end
+
+World(PondoTestingUtils)
+World(ActiveJob::TestHelper)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;$ cucumber
+
+# Bunch of spec output
+
+15 scenarios (15 passed)
+93 steps (93 passed)
+0m21.421s
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We’re still green! This is getting a little repetetive so we’ll finish up with
+some more code cleanups by removing any unnecessary references to nitrolinks.
+That includes routes, controllers, and views related to just nitrolinks testing.&lt;&#x2F;p&gt;
+&lt;p&gt;After all that, you know what’s coming…&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;$ cucumber
+
+# Bunch of spec output
+
+15 scenarios (15 passed)
+93 steps (93 passed)
+0m26.659s
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We’re in a good place right now so let’s commit our code first. Here’s
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;pondo&#x2F;commit&#x2F;a6a62e20948f9a6662c0d641c067b8f82f0aa9bf&quot;&gt;everything we’ve done so far&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;fearless-refactoring&quot;&gt;Fearless Refactoring&lt;&#x2F;h2&gt;
+&lt;p&gt;You’ll notice that for every significant change we do, we always run the specs
+to ensure we haven’t introduced regressions. This is what great test coverage
+enables. We can remove code and refactor without fear. If we make a mistake,
+we get feedback on where it happened and what went wrong.&lt;&#x2F;p&gt;
+&lt;p&gt;Introducing tests adds a lot of upfront cost to a project but it is all worth
+it. That upfront cost will payoff sooner than you think.&lt;&#x2F;p&gt;
+&lt;p&gt;It’s important to note that great test coverage alone is not enough. We also
+need to make sure that we are testing correctly and that our tests are fast
+enough to encourage us to run them frequently.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;constraints-in-testing-nitro-apps&quot;&gt;Constraints in Testing Nitro Apps&lt;&#x2F;h2&gt;
+&lt;p&gt;There is still some nitro-specific thing we’re doing in Pondo and it starts
+here:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;coffeescript&quot; class=&quot;language-coffeescript &quot;&gt;&lt;code class=&quot;language-coffeescript&quot; data-lang=&quot;coffeescript&quot;&gt;# app&amp;#x2F;assets&amp;#x2F;javascripts&amp;#x2F;testing.coffee
+class PondoTesting
+
+  # Bunch of code...
+
+  markAsLoading: (from)-&amp;gt;
+    @active = true
+    @body.addClass(&amp;#x27;testing-visiting&amp;#x27;)
+
+  markAsDoneLoading: -&amp;gt;
+    @active = false
+    @body.removeClass(&amp;#x27;testing-visiting&amp;#x27;)
+
+  listen: -&amp;gt;
+    @document.on &amp;#x27;nitrolinks:visit&amp;#x27;, =&amp;gt;
+      @markAsLoading(&amp;#x27;nitrolinks:visit&amp;#x27;)
+
+    @document.on &amp;#x27;nitrolinks:load nitrolinks:load-blank&amp;#x27;, (e) =&amp;gt;
+      @markAsDoneLoading()
+
+  # etc....
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;…and used here:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;ruby&quot; class=&quot;language-ruby &quot;&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;# features&amp;#x2F;support&amp;#x2F;wait_for_things.rb
+module WaitForThings
+  def wait_for_page_load
+    Timeout.timeout(Capybara.default_max_wait_time) do
+      loop until finished_loading?
+    end
+  end
+
+  def finished_loading?
+    jscript(&amp;#x27;document.getElementsByClassName(&amp;quot;testing-visiting&amp;quot;).length&amp;#x27;).zero?
+  end
+
+  def wait_for_remote_request
+    wait_for_page_load
+  end
+
+  # ...
+end
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Because nitrolinks overrides the navigation behavior by fetching the page
+through xhr, there’s no way for Capybara to know to wait for a new page load.
+This code allows us to tell Capybara to wait until the page has been loaded.
+It’s a clunky hack but it serves us for now.&lt;&#x2F;p&gt;
+&lt;p&gt;The problem is that this really ought to be in Nitrolinks. We have to let
+nitrolinks handle this and provide a way for clients of the gem to use this
+feature in their tests.&lt;&#x2F;p&gt;
+&lt;p&gt;We’ve duplicated this code on Nitrolinks. Let’s move it to the &lt;code&gt;lib&lt;&#x2F;code&gt; so we can
+requrie it from Pondo.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;ruby&quot; class=&quot;language-ruby &quot;&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;# lib&amp;#x2F;nitrolinks&amp;#x2F;capybara&amp;#x2F;wait_for_things.rb
+module Nitrolinks
+  module Capybara
+    module WaitForThings
+      def wait_for_page_load
+        Timeout.timeout(::Capybara.default_max_wait_time) do
+          loop until finished_loading?
+        end
+      end
+
+      def finished_loading?
+        jscript(&amp;#x27;document.getElementsByClassName(&amp;quot;testing-visiting&amp;quot;).length&amp;#x27;).zero?
+      end
+
+      def finished_all_ajax_requests?
+        page.evaluate_script(&amp;#x27;jQuery.active&amp;#x27;).zero?
+      end
+
+      def pause_pls
+        $stderr.write &amp;#x27;Press enter to continue&amp;#x27;
+        $stdin.gets
+      end
+    end
+  end
+end
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Let’s also move that jscript method into another module:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;ruby&quot; class=&quot;language-ruby &quot;&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;# lib&amp;#x2F;nitrolinks&amp;#x2F;capybara&amp;#x2F;jscript.rb
+module Nitrolinks
+  module Capybara
+    module Jscript
+      def jscript(code)
+        page.evaluate_script(code)
+      end
+
+      def expect_script(code, filter = nil)
+        result = jscript(code)
+        if filter
+          result = result.send(filter)
+        end
+        expect(result)
+      end
+    end
+  end
+end
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;To use, we’ll only need to add this on pondo:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;ruby&quot; class=&quot;language-ruby &quot;&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;# features&amp;#x2F;support&amp;#x2F;wait_for_things.rb
+require &amp;#x27;nitrolinks&amp;#x2F;capybara&amp;#x2F;jscript&amp;#x27;
+require &amp;#x27;nitrolinks&amp;#x2F;capybara&amp;#x2F;wait_for_things&amp;#x27;
+
+World(Nitrolinks::Capybara::Jscript)
+World(Nitrolinks::Capybara::WaitForThings)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We’ll also refactor out the loading-related code into a separate script:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;coffeescript&quot; class=&quot;language-coffeescript &quot;&gt;&lt;code class=&quot;language-coffeescript&quot; data-lang=&quot;coffeescript&quot;&gt;# app&amp;#x2F;assets&amp;#x2F;javascripts&amp;#x2F;nitrolinks&amp;#x2F;load-helper.coffee
+whenReady = (fn) -&amp;gt;
+  if (if document.attachEvent then document.readyState == &amp;#x27;complete&amp;#x27; else document.readyState != &amp;#x27;loading&amp;#x27;)
+    fn()
+  else
+    document.addEventListener &amp;quot;DOMContentLoaded&amp;quot;, -&amp;gt;
+      fn()
+
+eventListen = (event, handler) -&amp;gt;
+  document.addEventListener event, (e) -&amp;gt;
+    handler.call document, e
+
+class NitrolinksLoadHelper
+  constructor: (@window, @document) -&amp;gt;
+    @active = false
+
+  body: -&amp;gt;
+    document.querySelector(&amp;#x27;body&amp;#x27;)
+
+  markAsLoading: (from)-&amp;gt;
+    @active = true
+    @body().classList.add(&amp;#x27;testing-visiting&amp;#x27;)
+
+  markAsDoneLoading: -&amp;gt;
+    @active = false
+    @body().classList.remove(&amp;#x27;testing-visiting&amp;#x27;)
+
+  listen: -&amp;gt;
+    eventListen &amp;#x27;nitrolinks:visit&amp;#x27;, =&amp;gt;
+      @markAsLoading(&amp;#x27;nitrolinks:visit&amp;#x27;)
+
+    loads = (e) =&amp;gt;
+      @markAsDoneLoading()
+
+    eventListen &amp;#x27;nitrolinks:load&amp;#x27;, loads
+    eventListen &amp;#x27;nitrolinks:load-blank&amp;#x27;, loads
+
+whenReady =&amp;gt;
+  @nitroLoadHelper = new NitrolinksLoadHelper(window, document)
+  @nitroLoadHelper.listen()
+  @nitroLoadHelper.markAsDoneLoading()
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;On the pondo side, we’ll just require it on our testing javascript:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;coffeescript&quot; class=&quot;language-coffeescript &quot;&gt;&lt;code class=&quot;language-coffeescript&quot; data-lang=&quot;coffeescript&quot;&gt;# app&amp;#x2F;assets&amp;#x2F;javascripts&amp;#x2F;nitrolinks&amp;#x2F;load-helper.coffee
+#= require nitrolinks&amp;#x2F;load-helper
+
+class PondoTesting
+  constructor: (@window) -&amp;gt;
+    @errors = []
+
+  listen: -&amp;gt;
+    @window.addEventListener &amp;#x27;error&amp;#x27;, (e) =&amp;gt;
+      @addToErrors(e)
+
+  addToErrors: (e) -&amp;gt;
+    if e.error
+      @errors.push e.error.message
+    else
+      @errors.push e
+    console.log e
+
+  hasJavascriptErrors: -&amp;gt;
+    @error.length &amp;gt; 0
+
+$ =&amp;gt;
+  @pondoTesting = new PondoTesting(window)
+  @pondoTesting.listen()
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Bumping our nitrolinks-rails gem version and including it in Pondo, everything
+works as expected. Here are links to commits in &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;nitrolinks-rails&#x2F;commit&#x2F;7f1566f52a24eebf4704628629ea9b5ae86345b4&quot;&gt;Nitrolinks&lt;&#x2F;a&gt; and &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;pondo&#x2F;commit&#x2F;a6a62e20948f9a6662c0d641c067b8f82f0aa9bf&quot;&gt;Pondo&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;pondo&#x2F;commit&#x2F;1445e6109fa4fb364078ab2a39aba31bfd807c8b&quot;&gt;2&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;$ cucumber
+
+# Bunch of spec output
+
+15 scenarios (15 passed)
+93 steps (93 passed)
+0m20.662s
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Refactoring Nitrolinks, Part 2: Tests for a Rails Engine</title>
+		<published>2017-10-11T18:00:33+08:00</published>
+		<updated>2017-10-11T18:00:33+08:00</updated>
+		<link rel="alternate" href="https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-2-tests-for-a-rails-engine/" type="text/html"/>
+		<id>https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-2-tests-for-a-rails-engine/</id>
+		<content type="html">&lt;p&gt;This is Part 2 of a series of posts about refactoring
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;pondo&quot;&gt;Nitrolinks&lt;&#x2F;a&gt;
+out of &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;pondo&quot;&gt;Pondo&lt;&#x2F;a&gt;. Last time we’ve
+&lt;a href=&quot;https:&#x2F;&#x2F;brainchild-projects.github.io&#x2F;posts&#x2F;refactoring-nitrolinks-part-1-creating-a-gem&#x2F;&quot;&gt;successfully moved Nitrolinks out of Pondo&lt;&#x2F;a&gt;
+but we left most of the Nitrolinks-specific tests on the Pondo source code
+itself. This time we’ll move the tests to Nitrolinks so we can narrow Pondo’s
+test concerns.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h2 id=&quot;the-plan&quot;&gt;The Plan&lt;&#x2F;h2&gt;
+&lt;p&gt;Just to recap, here is the plan:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Move Nitrolinks out into its own gem ✔&lt;&#x2F;li&gt;
+&lt;li&gt;Create tests within Nitrolinks that mirror tests in Pondo&lt;&#x2F;li&gt;
+&lt;li&gt;Remove Nitrolinks-specific tests out of Pondo&lt;&#x2F;li&gt;
+&lt;li&gt;Rewrite Nitrolinks in ES6&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;We are going to do Step 2.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;prepping&quot;&gt;Prepping&lt;&#x2F;h2&gt;
+&lt;p&gt;First we need to make sure that we can run tests on the nitrolinks rails engine.
+Because I manually built the gem using Bundler’s tutorial, I ended up with some
+pretty bare-bones rails engine code. That’s a good thing. In practice, we don’t
+want to burden ourselves with extra code we might need in the future but is
+useless now.&lt;&#x2F;p&gt;
+&lt;p&gt;Yet we do need some other things now that we want to make our engine testable.
+What we need specifically is a dummy app we can use to plug our engine into so
+we can run the test scenarios. Luckily, rails already provides a tool for this
+with the &lt;code&gt;rails plugin new&lt;&#x2F;code&gt; generator.&lt;&#x2F;p&gt;
+&lt;p&gt;Running the command on the parent of our root directory:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;$ rails plugin new --skip-turbolinks --skip-yarn -TMPOC --mountable nitrolinks-rails
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;…will add new files and folders to the engine directory. Some of them we need
+while others we’ll have to clean up.&lt;&#x2F;p&gt;
+&lt;p&gt;Here’s what it looks like now after cleaning things up:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;├── Gemfile
+├── Gemfile.lock
+├── MIT-LICENSE
+├── README.md
+├── Rakefile
+├── app
+│   └── assets
+│       └── javascripts
+│           ├── nitrolinks
+│           │   ├── rails
+│           │   │   └── application.js
+│           │   └── utilities.coffee
+│           └── nitrolinks.coffee
+├── lib
+│   ├── nitrolinks
+│   │   ├── rails
+│   │   │   ├── controller.rb
+│   │   │   ├── engine.rb
+│   │   │   └── version.rb
+│   │   └── rails.rb
+│   └── tasks
+│       └── nitrolinks
+│           └── rails_tasks.rake
+├── nitrolinks-rails.gemspec
+├── features # renamed from spec
+│   └── dummy # Dummy rails app
+└── vendor
+    └── assets
+        └── javascripts
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;moving-tests&quot;&gt;Moving Tests&lt;&#x2F;h2&gt;
+&lt;p&gt;These were written as cucumber specs and they work quite well for testing the
+end-user features. They do make it slow to run the tests. In the future, we’ll
+figure out a way to use mainly javascript tests for these and concern ourselves
+with engine-related specs for this engine.&lt;&#x2F;p&gt;
+&lt;p&gt;First, we’ll need to copy all of the pondo specs related to nitrolinks  to the
+engine. This is a significant undertaking that it’ll probably fill this whole
+post with just to describe everything. I’ll just point out the most important
+changes I did.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;gemfile&quot;&gt;Gemfile&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;ruby&quot; class=&quot;language-ruby &quot;&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;source &amp;#x27;https:&amp;#x2F;&amp;#x2F;rubygems.org&amp;#x27;
+
+gemspec
+
+group :test do
+  gem &amp;quot;cucumber-rails&amp;quot;, &amp;quot;&amp;gt;= 1.5.0&amp;quot;, require: false
+  gem &amp;#x27;selenium-webdriver&amp;#x27;
+  gem &amp;#x27;chromedriver-helper&amp;#x27;, &amp;#x27;&amp;gt;= 1.1.0&amp;#x27;
+end
+
+group :test, :development do
+  gem &amp;quot;slim-rails&amp;quot;, &amp;quot;~&amp;gt; 3.1&amp;quot;
+  gem &amp;#x27;sass-rails&amp;#x27;, &amp;#x27;~&amp;gt; 5.0&amp;#x27;
+  gem &amp;#x27;coffee-rails&amp;#x27;, &amp;#x27;~&amp;gt; 4.2&amp;#x27;
+end
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;To use cucumber, I had to add &lt;code&gt;cucumber-rails&lt;&#x2F;code&gt; and other test dependencies to
+the Gemfile itself. I wish I didn’t have to but just adding this on the gemspec
+as a development dependency doesn’t work. We also probably don’t need the
+&lt;code&gt;:development&lt;&#x2F;code&gt; group here and just leave all of them to the &lt;code&gt;:test&lt;&#x2F;code&gt; group. I’ll
+remove that in the future.&lt;&#x2F;p&gt;
+&lt;p&gt;In hindsight, it might have been better if I just used rspec with capybara and
+that would have solved a lot of these problems. But I haven’t tried it on a
+rails engine and the feature specs have already been written anyway so we’ll
+use cucumber for now.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;bin-rails&quot;&gt;bin&#x2F;rails&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;ruby&quot; class=&quot;language-ruby &quot;&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;#!&amp;#x2F;usr&amp;#x2F;bin&amp;#x2F;env ruby
+# This command will automatically be run when you run &amp;quot;rails&amp;quot; with Rails gems
+# installed from the root of your application.
+
+ENGINE_ROOT = File.expand_path(&amp;#x27;..&amp;#x2F;..&amp;#x27;, __FILE__)
+ENGINE_PATH = File.expand_path(&amp;#x27;..&amp;#x2F;..&amp;#x2F;lib&amp;#x2F;nitrolinks&amp;#x2F;rails&amp;#x2F;engine&amp;#x27;, __FILE__)
+APP_PATH = File.expand_path(&amp;#x27;..&amp;#x2F;..&amp;#x2F;features&amp;#x2F;dummy&amp;#x2F;config&amp;#x2F;application&amp;#x27;, __FILE__)
+
+# Set up gems listed in the Gemfile.
+ENV[&amp;#x27;BUNDLE_GEMFILE&amp;#x27;] ||= File.expand_path(&amp;#x27;..&amp;#x2F;..&amp;#x2F;Gemfile&amp;#x27;, __FILE__)
+require &amp;#x27;bundler&amp;#x2F;setup&amp;#x27; if File.exist?(ENV[&amp;#x27;BUNDLE_GEMFILE&amp;#x27;])
+
+# Pick the frameworks you want:
+require &amp;quot;action_controller&amp;#x2F;railtie&amp;quot;
+require &amp;quot;action_view&amp;#x2F;railtie&amp;quot;
+require &amp;quot;sprockets&amp;#x2F;railtie&amp;quot;
+
+require &amp;#x27;rails&amp;#x2F;engine&amp;#x2F;commands&amp;#x27;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I had to add a &lt;code&gt;bin&#x2F;rails&lt;&#x2F;code&gt; script file so that cucumber will know where the
+dummy application is. After that, I run the cucumber install task for cucumber.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;$ rails generate cucumber:install
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;feature-specs&quot;&gt;Feature Specs&lt;&#x2F;h3&gt;
+&lt;p&gt;The rest of what I did was just making sure the feature specs copied from pondo
+would run and removing traces of pondo from the code. That meant a lot of
+renames and clean up. I’ll have to do a thorough sweep next time in case I
+missed anything.&lt;&#x2F;p&gt;
+&lt;p&gt;Here is the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;nitrolinks-rails&#x2F;commit&#x2F;abdae8083e0e472b4ef4c282660b50cc6bd9d47a&quot;&gt;change commit&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;What does our specs look now?&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;$ cucumber
+
+# ... bunch of tests
+
+14 scenarios (14 passed)
+55 steps (55 passed)
+0m8.182s
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And that’s it. We now have a well-tested rails engine. That took more effort
+than I anticipated but it’s well worth it.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Refactoring Nitrolinks, Part 1: Creating a Gem</title>
+		<published>2017-09-20T06:33:29+08:00</published>
+		<updated>2017-09-20T06:33:29+08:00</updated>
+		<link rel="alternate" href="https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-1-creating-a-gem/" type="text/html"/>
+		<id>https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-1-creating-a-gem/</id>
+		<content type="html">&lt;p&gt;I am building &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;pondo&quot;&gt;Pondo&lt;&#x2F;a&gt; as an experiment on how
+to build a functional, modern web application without necessarily using a large
+front-end framework (e.g. Angular, Ember, React). The idea is to mostly develop
+applications as one would within the usual semantics of the normal
+Request-Response cycle. If you’ve used &lt;a href=&quot;https:&#x2F;&#x2F;yuilibrary.com&#x2F;yui&#x2F;docs&#x2F;pjax&#x2F;&quot;&gt;Pjax&lt;&#x2F;a&gt;,
+or &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;turbolinks&#x2F;turbolinks&quot;&gt;Turbolinks&lt;&#x2F;a&gt; then you’re familiar
+with this.&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;As the name might imply, Nitrolinks was inspired by Turbolinks. In fact, some of
+the code on the Rails-side is shamelessly stolen from Turbolinks and the events
+fired are named similarly. However, there are two major differences between
+them. For one, Turbolinks right now only supports GET requests (it will support
+POST in the future). The other is while Turbolinks replaces the code in the
+&lt;code&gt;&amp;lt;body&amp;gt;&lt;&#x2F;code&gt; element in its entirety, Nitrolinks uses
+&lt;a href=&quot;https:&#x2F;&#x2F;www.npmjs.com&#x2F;package&#x2F;set-dom&quot;&gt;set-dom&lt;&#x2F;a&gt; to only update the elements
+that actually changed. This is similar to how the virtual dom works in React.&lt;&#x2F;p&gt;
+&lt;p&gt;Pondo is meant to be an experiment and that is why Nitrolinks lives inside its
+codebase. However, it does make testing and refactoring Nitrolinks harder. The
+plan is to move the Nitrolinks code to a gem so I can test it separately.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-plan&quot;&gt;The Plan&lt;&#x2F;h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Move Nitrolinks out into its own gem&lt;&#x2F;li&gt;
+&lt;li&gt;Create tests within Nitrolinks that mirror tests in Pondo&lt;&#x2F;li&gt;
+&lt;li&gt;Remove Nitrolinks-specific tests out of Pondo&lt;&#x2F;li&gt;
+&lt;li&gt;Rewrite Nitrolinks in ES6&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Today’s task will only cover #1.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;creating-a-gem&quot;&gt;Creating a Gem&lt;&#x2F;h2&gt;
+&lt;p&gt;I haven’t created a ruby gem before so this is going to be a learning experience.
+I am using &lt;a href=&quot;https:&#x2F;&#x2F;bundler.io&#x2F;v1.15&#x2F;guides&#x2F;creating_gem.html&quot;&gt;this tutorial from bundler&lt;&#x2F;a&gt;
+and &lt;a href=&quot;http:&#x2F;&#x2F;geekhmer.github.io&#x2F;blog&#x2F;2015&#x2F;01&#x2F;02&#x2F;develop-your-own-gem-and-gemify-your-own-assets-using-rails-engine&#x2F;&quot;&gt;this guide on creating an asset gem&lt;&#x2F;a&gt; to help me.&lt;&#x2F;p&gt;
+&lt;p&gt;We need to make sure that Pondo still works even when we remove Nitrolinks.
+Luckily, Pondo has good test coverage. Nitrolinks itself has some tests that
+were written for it specifically, but we’ll have to leave them on the Pondo
+codebase for now to make things simpler.&lt;&#x2F;p&gt;
+&lt;p&gt;First, we’ll create the gem using bundler:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;$ bundle gem nitrolinks-rails
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Bundler makes creating gems really easy. Running the previous command creates
+the files and directories we need to get started. However, we need to clean it
+up a bit. We don’t need the bin and spec directories right now and some other
+files. Here’s what it looks now:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;├── Gemfile
+├── Rakefile
+├── README.md
+├── lib
+│   └── nitrolinks
+│       ├── rails
+│       │   └── version.rb
+│       └── rails.rb
+└── nitrolinks-rails.gemspec
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;rails-engine&quot;&gt;Rails Engine&lt;&#x2F;h2&gt;
+&lt;p&gt;Since we’re using this with Rails, we’ll turn this gem into a
+&lt;a href=&quot;http:&#x2F;&#x2F;guides.rubyonrails.org&#x2F;engines.html&quot;&gt;Rails Engine&lt;&#x2F;a&gt;. To do that, let’s
+create an &lt;code&gt;Engine&lt;&#x2F;code&gt; class under nitrolinks.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;ruby&quot; class=&quot;language-ruby &quot;&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;# lib&amp;#x2F;nitrolinks&amp;#x2F;rails&amp;#x2F;engine.rb
+
+module Nitrolinks
+  module Rails
+    class Engine &amp;lt; ::Rails::Engine
+      isolate_namespace Nitrolinks
+    end
+  end
+end
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And we can require this on the nitrolinks module code itself.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;ruby&quot; class=&quot;language-ruby &quot;&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;# lib&amp;#x2F;nitrolinks.rb
+
+require &amp;quot;nitrolinks&amp;#x2F;version&amp;quot;
+require &amp;quot;nitrolinks&amp;#x2F;engine&amp;quot;
+
+module Nitrolinks
+end
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The next part is just moving the nitrolinks javascript code from Pondo to
+Nitrolinks itself. We’re going to match the directory structure here. We’re also
+going to need the set-dom library so we’ll place it at the vendor directory.
+Here’s what the directory looks now:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;├── Gemfile
+├── Rakefile
+├── README.md
+├── app
+│   └── assets
+│       └── javascripts
+│           └── nitrolinks.coffee
+├── lib
+│   └── nitrolinks
+│       ├── rails
+│       │   ├── engine.rb
+│       │   └── version.rb
+│       └── rails.rb
+├── nitrolinks-rails.gemspec
+└── vendor
+    └── assets
+        └── javascripts
+            └── set-dom.js
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;importing-nitrolinks&quot;&gt;Importing Nitrolinks&lt;&#x2F;h2&gt;
+&lt;p&gt;On Pondo, let’s add &lt;code&gt;nitrolinks-rails&lt;&#x2F;code&gt; as a dependency. We’ll point
+it to our local copy for now for testing.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;ruby&quot; class=&quot;language-ruby &quot;&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;# Gemfile
+gem &amp;quot;nitrolinks-rails&amp;quot;, path: &amp;quot;..&amp;#x2F;nitrolinks-rails&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;After that, we’ll have to remove Pondo’s copy of nitrolinks code. At this point,
+we need to make sure that everything works as expected. Luckily, we still have
+our nitrolinks tests on Pondo so this really helps.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;# Pondo directory
+$ bundle exec cucumber
+
+# TEST RUN OUTPUT #
+
+29 scenarios (29 passed)
+148 steps (148 passed)
+0m35.374s
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Great!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;a-temporary-duplication&quot;&gt;A Temporary Duplication&lt;&#x2F;h2&gt;
+&lt;p&gt;Between Pondo app itself and Nitrolinks, they share a common js script I wrote
+called &lt;code&gt;pu&lt;&#x2F;code&gt; (for “pondo utilities”, :&#x2F; ). Some of them may need to be moved to
+nitrolinks. Let’s tally all the calls we make to &lt;code&gt;pu&lt;&#x2F;code&gt; on the nitrolinks side:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;pu.getContentOfElement&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;pu.isCurrentPageReloaded&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;pu.handleLinkClicks&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;pu.handleFormSubmits&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;pu.merge&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;pu.uuid&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;That’s a lot! We’ll need to have them on nitrolinks. To simplify things, we’ll
+copy all of the pu script for now. We’ll manage this duplication of code later.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;rails-engine-part-2&quot;&gt;Rails Engine Part 2&lt;&#x2F;h2&gt;
+&lt;p&gt;Now that we know that the Nitrolinks scripts are working, it’s time to move the
+controller-related Nitrolinks code on Pondo to Nitrolinks itself. That way we
+we’re left with just Pondo code on Pondo.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;ruby&quot; class=&quot;language-ruby &quot;&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;# lib&amp;#x2F;nitrolinks&amp;#x2F;rails&amp;#x2F;engine.rb
+
+module Nitrolinks
+  module Rails
+
+    class Engine &amp;lt; ::Rails::Engine
+      isolate_namespace Nitrolinks
+
+      config.nitrolinks = ActiveSupport::OrderedOptions.new
+      config.nitrolinks.auto_include = true
+
+      initializer :turbolinks do |app|
+        ActiveSupport.on_load(:action_controller) do
+          if app.config.nitrolinks.auto_include
+            include Controller
+          end
+        end
+      end
+    end
+
+  end
+end
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;ruby&quot; class=&quot;language-ruby &quot;&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;# lib&amp;#x2F;nitrolinks&amp;#x2F;rails&amp;#x2F;controller.rb
+
+module Nitrolinks
+  module Rails
+
+    module Controller
+      extend ActiveSupport::Concern
+
+      included do
+        before_action :set_nitrolinks_location_header_from_session if respond_to?(:before_action)
+      end
+
+      def nitrolinks_request?
+        request.headers.key? &amp;quot;nitrolinks-referrer&amp;quot;
+      end
+
+      def redirect_to(url = {}, options = {})
+        super.tap do
+          if nitrolinks_request?
+            store_nitrolinks_location_in_session(location)
+          end
+        end
+      end
+
+      protected
+
+      def nitrolinks_location(location)
+        response.headers[&amp;quot;Nitrolinks-Location&amp;quot;] = location
+      end
+
+      private
+
+      def store_nitrolinks_location_in_session(location)
+        session[:nitrolinks_location] = location if session
+      end
+
+      def set_nitrolinks_location_header_from_session
+        if session &amp;amp;&amp;amp; session[:nitrolinks_location]
+          nitrolinks_location(session.delete(:nitrolinks_location))
+        end
+      end
+    end
+
+  end
+end
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Okay. Is everything still working? Let’s run some tests:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;# Pondo directory
+$ bundle exec cucumber
+
+# TEST RUN OUTPUT #
+
+29 scenarios (29 passed)
+148 steps (148 passed)
+0m29.948s
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Awesome!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;publishing-the-gem&quot;&gt;Publishing the Gem&lt;&#x2F;h2&gt;
+&lt;p&gt;Now it’s time to publish our gem to rubygems. First we’ll update our README to
+talk about what Nitrolinks is and warn people because it’s not yet ready for
+production.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;markdown&quot; class=&quot;language-markdown &quot;&gt;&lt;code class=&quot;language-markdown&quot; data-lang=&quot;markdown&quot;&gt;&amp;lt;!-- README.md --&amp;gt;
+# Nitrolinks
+
+Nitrolinks is PJAX-like library for making website navigation fast and more like
+modern web apps. Nitrolinks is inspired by and borrows heavily from
+[Turbolinks](https:&amp;#x2F;&amp;#x2F;github.com&amp;#x2F;turbolinks&amp;#x2F;turbolinks) implementation on the
+Rails-side.
+
+## Warning! Not Production-Ready
+This is an experiment and not yet heavily tested. Please don&amp;#x27;t use in critical
+applications.
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then we commit everything. And add it to our remote repository, which in this
+case is &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;nitrolinks-rails.git&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;nitrolinks-rails.git&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;And lastly, run a helpful rake task from Bundler:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;$ rake release
+Tagged v0.1.0.
+Pushed git commits and tags.
+Pushed nitrolinks-rails 0.1.0 to rubygems.org.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And we’re done! Now it’s just a matter of testing it out again…&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;# Pondo directory
+$ bundle exec cucumber
+
+# TEST RUN OUTPUT #
+
+29 scenarios (29 passed)
+148 steps (148 passed)
+0m28.503s
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Green! This ends our first task for refactoring Nitrolinks. The next part is
+figuring out how to add tests to our gem. That will be a post for another day.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

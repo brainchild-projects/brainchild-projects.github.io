@@ -1,89 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  
-  
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2">
+  <meta name="description" content="A Filipino developer&#x27;s projects, thoughts, and experiments">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,300i,400" rel="stylesheet">
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="https://brainchild-projects.github.io/atom.xml">
+  
   <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
-  
-  
-  <meta name="generator" content="Hugo 0.103.1" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
+  <script src="/js/prism.js"></script>
+  <script src="/js/scripts.js" type="module"></script>
   <link type="text/plain" rel="author" href="/humans.txt">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-  
-  <link rel="apple-touch-icon" sizes="57x57" href="/images/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="/images/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="/images/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="/images/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="/images/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="/images/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="/images/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  <script type="text/javascript" src="/js/prism.js"></script>
-  <script type="text/javascript" src="/js/scripts.js"></script>
-  
-  <title>Refactoring Nitrolinks, Part 1: Creating a Gem</title>
+  <title>Brainchild Projects</title>
 </head>
-
 <body>
   <div class="container">
     <header class="page-header">
-  <h1 class="branding">
-    <a href="/">
-      <div class="logo">
-        <object data="/images/logo_red.svg" type="image/svg+xml">
-          <img src="/images/logo_blue.png">
-        </object>
-        <noscript><span>Brainchild Projects</span></noscript>
-      </div>
-    </a>
-  </h1>
-  <p>
-    Projects + Thoughts + Experiments
-  </p>
-</header>
+      <h1 class="branding">
+        <a href="/">
+          <div class="logo">
+            <object data="/images/logo_red.svg" type="image/svg+xml">
+              <img src="/images/logo_blue.png" alt="Brainchild Projects Logo">
+            </object>
+            <noscript><span>Brainchild Projects</span></noscript>
+          </div>
+        </a>
+      </h1>
+      <p>
+      Projects + Thoughts + Experiments
+      </p>
+    </header>
 
     <main>
       
-  
-  <article class="article-full">
-    <header>
-      <h1>Refactoring Nitrolinks, Part 1: Creating a Gem</h1>
-      <div class="meta">
-        <div class="time">
-          Posted on 
-          <time datetime="2017-09-20T06:33:29&#43;08:00">
-            Sep 20, 2017
-          </time>
-        </div>
+<article class="article-full">
+  <header>
+    <h1>Refactoring Nitrolinks, Part 1: Creating a Gem</h1>
+    <div class="meta">
+      <div class="time">
+        Posted on 
+        <time datetime="2017-09-20T06:33:29+08:00">
+          Sep. 20, 2017
+        </time>
       </div>
-    </header>
-
-    <section class="article-body">
-      <p>I am building <a href="https://github.com/asartalo/pondo">Pondo</a> as an experiment on how
+    </div>
+  </header>
+  <section class="article-body">
+    <p>I am building <a href="https://github.com/asartalo/pondo">Pondo</a> as an experiment on how
 to build a functional, modern web application without necessarily using a large
 front-end framework (e.g. Angular, Ember, React). The idea is to mostly develop
 applications as one would within the usual semantics of the normal
-Request-Response cycle. If you&rsquo;ve used <a href="https://yuilibrary.com/yui/docs/pjax/">Pjax</a>,
-or <a href="https://github.com/turbolinks/turbolinks">Turbolinks</a> then you&rsquo;re familiar
-with this.</p>
+Request-Response cycle. If you’ve used <a href="https://yuilibrary.com/yui/docs/pjax/">Pjax</a>,
+or <a href="https://github.com/turbolinks/turbolinks">Turbolinks</a> then you’re familiar
+with this.<span id="continue-reading"></span></p>
 <p>As the name might imply, Nitrolinks was inspired by Turbolinks. In fact, some of
 the code on the Rails-side is shamelessly stolen from Turbolinks and the events
 fired are named similarly. However, there are two major differences between
 them. For one, Turbolinks right now only supports GET requests (it will support
 POST in the future). The other is while Turbolinks replaces the code in the
-<!-- raw HTML omitted -->&lt;body&gt;<!-- raw HTML omitted --> element in its entirety, Nitrolinks uses
+<code>&lt;body&gt;</code> element in its entirety, Nitrolinks uses
 <a href="https://www.npmjs.com/package/set-dom">set-dom</a> to only update the elements
 that actually changed. This is similar to how the virtual dom works in React.</p>
 <p>Pondo is meant to be an experiment and that is why Nitrolinks lives inside its
@@ -96,23 +75,23 @@ plan is to move the Nitrolinks code to a gem so I can test it separately.</p>
 <li>Remove Nitrolinks-specific tests out of Pondo</li>
 <li>Rewrite Nitrolinks in ES6</li>
 </ol>
-<p>Today&rsquo;s task will only cover #1.</p>
+<p>Today’s task will only cover #1.</p>
 <h2 id="creating-a-gem">Creating a Gem</h2>
-<p>I haven&rsquo;t created a ruby gem before so this is going to be a learning experience.
+<p>I haven’t created a ruby gem before so this is going to be a learning experience.
 I am using <a href="https://bundler.io/v1.15/guides/creating_gem.html">this tutorial from bundler</a>
 and <a href="http://geekhmer.github.io/blog/2015/01/02/develop-your-own-gem-and-gemify-your-own-assets-using-rails-engine/">this guide on creating an asset gem</a> to help me.</p>
 <p>We need to make sure that Pondo still works even when we remove Nitrolinks.
 Luckily, Pondo has good test coverage. Nitrolinks itself has some tests that
-were written for it specifically, but we&rsquo;ll have to leave them on the Pondo
+were written for it specifically, but we’ll have to leave them on the Pondo
 codebase for now to make things simpler.</p>
-<p>First, we&rsquo;ll create the gem using bundler:</p>
-<pre><code class="language-sh">$ bundle gem nitrolinks-rails
+<p>First, we’ll create the gem using bundler:</p>
+<pre data-lang="sh" class="language-sh "><code class="language-sh" data-lang="sh">$ bundle gem nitrolinks-rails
 </code></pre>
 <p>Bundler makes creating gems really easy. Running the previous command creates
 the files and directories we need to get started. However, we need to clean it
-up a bit. We don&rsquo;t need the bin and spec directories right now and some other
-files. Here&rsquo;s what it looks now:</p>
-<pre><code class="language-sh">├── Gemfile
+up a bit. We don’t need the bin and spec directories right now and some other
+files. Here’s what it looks now:</p>
+<pre data-lang="sh" class="language-sh "><code class="language-sh" data-lang="sh">├── Gemfile
 ├── Rakefile
 ├── README.md
 ├── lib
@@ -123,10 +102,10 @@ files. Here&rsquo;s what it looks now:</p>
 └── nitrolinks-rails.gemspec
 </code></pre>
 <h2 id="rails-engine">Rails Engine</h2>
-<p>Since we&rsquo;re using this with Rails, we&rsquo;ll turn this gem into a
-<a href="http://guides.rubyonrails.org/engines.html">Rails Engine</a>. To do that, let&rsquo;s
-create an <!-- raw HTML omitted -->Engine<!-- raw HTML omitted --> class under nitrolinks.</p>
-<pre><code class="language-ruby"># lib/nitrolinks/rails/engine.rb
+<p>Since we’re using this with Rails, we’ll turn this gem into a
+<a href="http://guides.rubyonrails.org/engines.html">Rails Engine</a>. To do that, let’s
+create an <code>Engine</code> class under nitrolinks.</p>
+<pre data-lang="ruby" class="language-ruby "><code class="language-ruby" data-lang="ruby"># lib&#x2F;nitrolinks&#x2F;rails&#x2F;engine.rb
 
 module Nitrolinks
   module Rails
@@ -138,19 +117,19 @@ end
 
 </code></pre>
 <p>And we can require this on the nitrolinks module code itself.</p>
-<pre><code class="language-ruby"># lib/nitrolinks.rb
+<pre data-lang="ruby" class="language-ruby "><code class="language-ruby" data-lang="ruby"># lib&#x2F;nitrolinks.rb
 
-require &quot;nitrolinks/version&quot;
-require &quot;nitrolinks/engine&quot;
+require &quot;nitrolinks&#x2F;version&quot;
+require &quot;nitrolinks&#x2F;engine&quot;
 
 module Nitrolinks
 end
 </code></pre>
 <p>The next part is just moving the nitrolinks javascript code from Pondo to
-Nitrolinks itself. We&rsquo;re going to match the directory structure here. We&rsquo;re also
-going to need the set-dom library so we&rsquo;ll place it at the vendor directory.
-Here&rsquo;s what the directory looks now:</p>
-<pre><code class="language-sh">├── Gemfile
+Nitrolinks itself. We’re going to match the directory structure here. We’re also
+going to need the set-dom library so we’ll place it at the vendor directory.
+Here’s what the directory looks now:</p>
+<pre data-lang="sh" class="language-sh "><code class="language-sh" data-lang="sh">├── Gemfile
 ├── Rakefile
 ├── README.md
 ├── app
@@ -170,15 +149,15 @@ Here&rsquo;s what the directory looks now:</p>
             └── set-dom.js
 </code></pre>
 <h2 id="importing-nitrolinks">Importing Nitrolinks</h2>
-<p>On Pondo, let&rsquo;s add <!-- raw HTML omitted -->nitrolinks-rails<!-- raw HTML omitted --> as a dependency. We&rsquo;ll point
+<p>On Pondo, let’s add <code>nitrolinks-rails</code> as a dependency. We’ll point
 it to our local copy for now for testing.</p>
-<pre><code class="language-ruby"># Gemfile
-gem &quot;nitrolinks-rails&quot;, path: &quot;../nitrolinks-rails&quot;
+<pre data-lang="ruby" class="language-ruby "><code class="language-ruby" data-lang="ruby"># Gemfile
+gem &quot;nitrolinks-rails&quot;, path: &quot;..&#x2F;nitrolinks-rails&quot;
 </code></pre>
-<p>After that, we&rsquo;ll have to remove Pondo&rsquo;s copy of nitrolinks code. At this point,
+<p>After that, we’ll have to remove Pondo’s copy of nitrolinks code. At this point,
 we need to make sure that everything works as expected. Luckily, we still have
 our nitrolinks tests on Pondo so this really helps.</p>
-<pre><code class="language-sh"># Pondo directory
+<pre data-lang="sh" class="language-sh "><code class="language-sh" data-lang="sh"># Pondo directory
 $ bundle exec cucumber
 
 # TEST RUN OUTPUT #
@@ -190,8 +169,8 @@ $ bundle exec cucumber
 <p>Great!</p>
 <h2 id="a-temporary-duplication">A Temporary Duplication</h2>
 <p>Between Pondo app itself and Nitrolinks, they share a common js script I wrote
-called <code>pu</code> (for &ldquo;pondo utilities&rdquo;, :/ ). Some of them may need to be moved to
-nitrolinks. Let&rsquo;s tally all the calls we make to <code>pu</code> on the nitrolinks side:</p>
+called <code>pu</code> (for “pondo utilities”, :/ ). Some of them may need to be moved to
+nitrolinks. Let’s tally all the calls we make to <code>pu</code> on the nitrolinks side:</p>
 <ul>
 <li><code>pu.getContentOfElement</code></li>
 <li><code>pu.isCurrentPageReloaded</code></li>
@@ -200,13 +179,13 @@ nitrolinks. Let&rsquo;s tally all the calls we make to <code>pu</code> on the ni
 <li><code>pu.merge</code></li>
 <li><code>pu.uuid</code></li>
 </ul>
-<p>That&rsquo;s a lot! We&rsquo;ll need to have them on nitrolinks. To simplify things, we&rsquo;ll
-copy all of the pu script for now. We&rsquo;ll manage this duplication of code later.</p>
+<p>That’s a lot! We’ll need to have them on nitrolinks. To simplify things, we’ll
+copy all of the pu script for now. We’ll manage this duplication of code later.</p>
 <h2 id="rails-engine-part-2">Rails Engine Part 2</h2>
-<p>Now that we know that the Nitrolinks scripts are working, it&rsquo;s time to move the
+<p>Now that we know that the Nitrolinks scripts are working, it’s time to move the
 controller-related Nitrolinks code on Pondo to Nitrolinks itself. That way we
-we&rsquo;re left with just Pondo code on Pondo.</p>
-<pre><code class="language-ruby"># lib/nitrolinks/rails/engine.rb
+we’re left with just Pondo code on Pondo.</p>
+<pre data-lang="ruby" class="language-ruby "><code class="language-ruby" data-lang="ruby"># lib&#x2F;nitrolinks&#x2F;rails&#x2F;engine.rb
 
 module Nitrolinks
   module Rails
@@ -230,7 +209,7 @@ module Nitrolinks
 end
 
 </code></pre>
-<pre><code class="language-ruby"># lib/nitrolinks/rails/controller.rb
+<pre data-lang="ruby" class="language-ruby "><code class="language-ruby" data-lang="ruby"># lib&#x2F;nitrolinks&#x2F;rails&#x2F;controller.rb
 
 module Nitrolinks
   module Rails
@@ -276,8 +255,8 @@ module Nitrolinks
   end
 end
 </code></pre>
-<p>Okay. Is everything still working? Let&rsquo;s run some tests:</p>
-<pre><code class="language-sh"># Pondo directory
+<p>Okay. Is everything still working? Let’s run some tests:</p>
+<pre data-lang="sh" class="language-sh "><code class="language-sh" data-lang="sh"># Pondo directory
 $ bundle exec cucumber
 
 # TEST RUN OUTPUT #
@@ -288,32 +267,32 @@ $ bundle exec cucumber
 </code></pre>
 <p>Awesome!</p>
 <h2 id="publishing-the-gem">Publishing the Gem</h2>
-<p>Now it&rsquo;s time to publish our gem to rubygems. First we&rsquo;ll update our README to
-talk about what Nitrolinks is and warn people because it&rsquo;s not yet ready for
+<p>Now it’s time to publish our gem to rubygems. First we’ll update our README to
+talk about what Nitrolinks is and warn people because it’s not yet ready for
 production.</p>
-<pre><code class="language-markdown">&lt;!-- README.md --&gt;
+<pre data-lang="markdown" class="language-markdown "><code class="language-markdown" data-lang="markdown">&lt;!-- README.md --&gt;
 # Nitrolinks
 
 Nitrolinks is PJAX-like library for making website navigation fast and more like
 modern web apps. Nitrolinks is inspired by and borrows heavily from
-[Turbolinks](https://github.com/turbolinks/turbolinks) implementation on the
+[Turbolinks](https:&#x2F;&#x2F;github.com&#x2F;turbolinks&#x2F;turbolinks) implementation on the
 Rails-side.
 
 ## Warning! Not Production-Ready
-This is an experiment and not yet heavily tested. Please don't use in critical
+This is an experiment and not yet heavily tested. Please don&#x27;t use in critical
 applications.
 
 </code></pre>
 <p>Then we commit everything. And add it to our remote repository, which in this
 case is <a href="https://github.com/asartalo/nitrolinks-rails.git">https://github.com/asartalo/nitrolinks-rails.git</a></p>
 <p>And lastly, run a helpful rake task from Bundler:</p>
-<pre><code class="language-sh">$ rake release
+<pre data-lang="sh" class="language-sh "><code class="language-sh" data-lang="sh">$ rake release
 Tagged v0.1.0.
 Pushed git commits and tags.
 Pushed nitrolinks-rails 0.1.0 to rubygems.org.
 </code></pre>
-<p>And we&rsquo;re done! Now it&rsquo;s just a matter of testing it out again&hellip;</p>
-<pre><code class="language-sh"># Pondo directory
+<p>And we’re done! Now it’s just a matter of testing it out again…</p>
+<pre data-lang="sh" class="language-sh "><code class="language-sh" data-lang="sh"># Pondo directory
 $ bundle exec cucumber
 
 # TEST RUN OUTPUT #
@@ -324,37 +303,51 @@ $ bundle exec cucumber
 </code></pre>
 <p>Green! This ends our first task for refactoring Nitrolinks. The next part is
 figuring out how to add tests to our gem. That will be a post for another day.</p>
-    </section>
-    <footer>
-      <div class="tags">
-        
-          <a href="https://brainchild-projects.github.io//tags/projectpondo" class="c-tag">project:pondo</a>
-        
-          <a href="https://brainchild-projects.github.io//tags/dev-notes" class="c-tag">dev notes</a>
-        
-      </div>
+
+  </section>
+  <footer>
+    <div class="tags">
       
+        
+        
+          <a class="c-tag" href="/tags/project">project</a>
+        
+          <a class="c-tag" href="/tags/pondo">pondo</a>
+        
+          <a class="c-tag" href="/tags/dev notes">dev notes</a>
+        
+      
+    </div>
+    
       <nav class="p-pagination c-pagination">
         <div class="c-pagination__ctrl">
           <div class="c-pagination__older">
             
-              <a href="https://brainchild-projects.github.io/posts/ideas-execution/">Older</a>
+                <span class="nav-label">← Previous</span>
+                <a href="https:&#x2F;&#x2F;brainchild-projects.github.io&#x2F;posts&#x2F;ideas-execution&#x2F;">
+                  Ideas &amp; Execution
+                </a>
             
           </div>
           <div class="c-pagination__newer">
             
-              <a href="https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-2-tests-for-a-rails-engine/">Newer</a>
+              <span class="nav-label">Next →</span>
+              <a href="https:&#x2F;&#x2F;brainchild-projects.github.io&#x2F;posts&#x2F;refactoring-nitrolinks-part-2-tests-for-a-rails-engine&#x2F;">
+                Refactoring Nitrolinks, Part 2: Tests for a Rails Engine
+              </a>
             
           </div>
         </div>
       </nav>
-    </footer>
-  </article>
+    
+  </footer>
+</article>
 
     </main>
-    <footer class="page-footer">
-    <p>&copy; 2022 Wayne Duran</p>
-</footer>
 
+    <footer class="page-footer">
+      <p>© 2017-2023 Wayne Duran</p>
+    </footer>
   </div>
 </body>
+</html>

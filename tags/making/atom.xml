@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-	<title>Brainchild Projects - making</title>
-	<subtitle>A Filipino developer&#x27;s projects, thoughts, and experiments</subtitle>
-	<link href="https://brainchild-projects.github.io/tags/making/atom.xml" rel="self" type="application/atom+xml"/>
-  <link href="https://brainchild-projects.github.io"/>
-	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2017-09-05T23:01:01+08:00</updated>
-	<id>https://brainchild-projects.github.io/tags/making/atom.xml</id>
-	<entry xml:lang="en">
-		<title>Ideas &amp; Execution</title>
-		<published>2017-09-05T23:01:01+08:00</published>
-		<updated>2017-09-05T23:01:01+08:00</updated>
-		<link rel="alternate" href="https://brainchild-projects.github.io/posts/ideas-execution/" type="text/html"/>
-		<id>https://brainchild-projects.github.io/posts/ideas-execution/</id>
-		<content type="html">&lt;p&gt;Ideas are cheap. That’s great. Expend just a few calories and after a while, we
+    <title>Brainchild Projects - making</title>
+    <subtitle>A Filipino developer&#x27;s projects, thoughts, and experiments</subtitle>
+    <link href="https://brainchild-projects.github.io/tags/making/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://brainchild-projects.github.io"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2017-09-05T23:01:01+08:00</updated>
+    <id>https://brainchild-projects.github.io/tags/making/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Ideas &amp; Execution</title>
+        <published>2017-09-05T23:01:01+08:00</published>
+        <updated>2017-09-05T23:01:01+08:00</updated>
+        <author>
+          <name>Wayne Duran</name>
+        </author>
+        <link rel="alternate" href="https://brainchild-projects.github.io/posts/ideas-execution/" type="text/html"/>
+        <id>https://brainchild-projects.github.io/posts/ideas-execution/</id>
+        <content type="html">&lt;p&gt;Ideas are cheap. That’s great. Expend just a few calories and after a while, we
 have a lot of them. Executing on them is harder.&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;p&gt;
 &lt;p&gt;I have, well… ideas. Quite a lot of them have been recorded but not a lot have
 been built.&lt;&#x2F;p&gt;
@@ -33,5 +36,5 @@ along the way with more experience.&lt;&#x2F;p&gt;
 &lt;p&gt;Here’s to &lt;a href=&quot;https:&#x2F;&#x2F;www.goodreads.com&#x2F;quotes&#x2F;201306-when-you-don-t-create-things-you-become-defined-by-your&quot;&gt;making things
 happen&lt;&#x2F;a&gt;!&lt;&#x2F;p&gt;
 </content>
-	</entry>
+    </entry>
 </feed>

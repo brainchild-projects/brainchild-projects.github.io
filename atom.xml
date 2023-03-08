@@ -1,52 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-	<title>Brainchild Projects</title>
-	<subtitle>A Filipino developer&#x27;s projects, thoughts, and experiments</subtitle>
-	<link href="https://brainchild-projects.github.io/atom.xml" rel="self" type="application/atom+xml"/>
-  <link href="https://brainchild-projects.github.io"/>
-	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2021-07-03T12:19:08+00:00</updated>
-	<id>https://brainchild-projects.github.io/atom.xml</id>
-	<entry xml:lang="en">
-		<title>Printables</title>
-		<published>2021-07-03T12:19:08+00:00</published>
-		<updated>2021-07-03T12:19:08+00:00</updated>
-		<link rel="alternate" href="https://brainchild-projects.github.io/projects/printables/" type="text/html"/>
-		<id>https://brainchild-projects.github.io/projects/printables/</id>
-		<content type="html"></content>
-	</entry>
-	<entry xml:lang="en">
-		<title>Release Tools</title>
-		<published>2021-03-14T06:29:06+00:00</published>
-		<updated>2021-03-14T06:29:06+00:00</updated>
-		<link rel="alternate" href="https://brainchild-projects.github.io/projects/release-tools/" type="text/html"/>
-		<id>https://brainchild-projects.github.io/projects/release-tools/</id>
-		<content type="html"></content>
-	</entry>
-	<entry xml:lang="en">
-		<title>Happy Birthday, Dinosaur</title>
-		<published>2019-04-09T00:33:48+08:00</published>
-		<updated>2019-04-09T00:33:48+08:00</updated>
-		<link rel="alternate" href="https://brainchild-projects.github.io/posts/happy-birthday-dinosaur/" type="text/html"/>
-		<id>https://brainchild-projects.github.io/posts/happy-birthday-dinosaur/</id>
-		<content type="html">&lt;p&gt;Happy birthday, Dinosaur. You’re still here and that’s awesome.&lt;&#x2F;p&gt;
+    <title>Brainchild Projects</title>
+    <subtitle>A Filipino developer&#x27;s projects, thoughts, and experiments</subtitle>
+    <link href="https://brainchild-projects.github.io/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://brainchild-projects.github.io"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2021-07-03T12:19:08+00:00</updated>
+    <id>https://brainchild-projects.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Printables</title>
+        <published>2021-07-03T12:19:08+00:00</published>
+        <updated>2021-07-03T12:19:08+00:00</updated>
+        <author>
+          <name>Wayne Duran</name>
+        </author>
+        <link rel="alternate" href="https://brainchild-projects.github.io/projects/printables/" type="text/html"/>
+        <id>https://brainchild-projects.github.io/projects/printables/</id>
+        <content type="html"></content>
+    </entry>
+    <entry xml:lang="en">
+        <title>Release Tools</title>
+        <published>2021-03-14T06:29:06+00:00</published>
+        <updated>2021-03-14T06:29:06+00:00</updated>
+        <author>
+          <name>Wayne Duran</name>
+        </author>
+        <link rel="alternate" href="https://brainchild-projects.github.io/projects/release-tools/" type="text/html"/>
+        <id>https://brainchild-projects.github.io/projects/release-tools/</id>
+        <content type="html"></content>
+    </entry>
+    <entry xml:lang="en">
+        <title>Happy Birthday, Dinosaur</title>
+        <published>2019-04-09T00:33:48+08:00</published>
+        <updated>2019-04-09T00:33:48+08:00</updated>
+        <author>
+          <name>Wayne Duran</name>
+        </author>
+        <link rel="alternate" href="https://brainchild-projects.github.io/posts/happy-birthday-dinosaur/" type="text/html"/>
+        <id>https://brainchild-projects.github.io/posts/happy-birthday-dinosaur/</id>
+        <content type="html">&lt;p&gt;Happy birthday, Dinosaur. You’re still here and that’s awesome.&lt;&#x2F;p&gt;
 </content>
-	</entry>
-	<entry xml:lang="en">
-		<title>Okee!</title>
-		<published>2018-07-06T22:59:48+00:00</published>
-		<updated>2018-07-06T22:59:48+00:00</updated>
-		<link rel="alternate" href="https://brainchild-projects.github.io/projects/okee/" type="text/html"/>
-		<id>https://brainchild-projects.github.io/projects/okee/</id>
-		<content type="html"></content>
-	</entry>
-	<entry xml:lang="en">
-		<title>Refactoring Nitrolinks Part 3: Pondo Cleanup</title>
-		<published>2017-10-12T00:08:01+08:00</published>
-		<updated>2017-10-12T00:08:01+08:00</updated>
-		<link rel="alternate" href="https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-3-pondo-cleanup/" type="text/html"/>
-		<id>https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-3-pondo-cleanup/</id>
-		<content type="html">&lt;p&gt;This is Part 3 of a series of posts about refactoring
+    </entry>
+    <entry xml:lang="en">
+        <title>Okee!</title>
+        <published>2018-07-06T22:59:48+00:00</published>
+        <updated>2018-07-06T22:59:48+00:00</updated>
+        <author>
+          <name>Wayne Duran</name>
+        </author>
+        <link rel="alternate" href="https://brainchild-projects.github.io/projects/okee/" type="text/html"/>
+        <id>https://brainchild-projects.github.io/projects/okee/</id>
+        <content type="html"></content>
+    </entry>
+    <entry xml:lang="en">
+        <title>Refactoring Nitrolinks Part 3: Pondo Cleanup</title>
+        <published>2017-10-12T00:08:01+08:00</published>
+        <updated>2017-10-12T00:08:01+08:00</updated>
+        <author>
+          <name>Wayne Duran</name>
+        </author>
+        <link rel="alternate" href="https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-3-pondo-cleanup/" type="text/html"/>
+        <id>https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-3-pondo-cleanup/</id>
+        <content type="html">&lt;p&gt;This is Part 3 of a series of posts about refactoring
 &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;pondo&quot;&gt;Nitrolinks&lt;&#x2F;a&gt;
 out of &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;pondo&quot;&gt;Pondo&lt;&#x2F;a&gt;. Last time we’ve
 &lt;a href=&quot;https:&#x2F;&#x2F;brainchild-projects.github.io&#x2F;posts&#x2F;refactoring-nitrolinks-part-2-tests-for-a-rails-engine&#x2F;&quot;&gt;successfully copied the Nitrolinks tests from Pondo&lt;&#x2F;a&gt;
@@ -432,14 +447,17 @@ works as expected. Here are links to commits in &lt;a href=&quot;https:&#x2F;&#x
 0m20.662s
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 </content>
-	</entry>
-	<entry xml:lang="en">
-		<title>Refactoring Nitrolinks, Part 2: Tests for a Rails Engine</title>
-		<published>2017-10-11T18:00:33+08:00</published>
-		<updated>2017-10-11T18:00:33+08:00</updated>
-		<link rel="alternate" href="https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-2-tests-for-a-rails-engine/" type="text/html"/>
-		<id>https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-2-tests-for-a-rails-engine/</id>
-		<content type="html">&lt;p&gt;This is Part 2 of a series of posts about refactoring
+    </entry>
+    <entry xml:lang="en">
+        <title>Refactoring Nitrolinks, Part 2: Tests for a Rails Engine</title>
+        <published>2017-10-11T18:00:33+08:00</published>
+        <updated>2017-10-11T18:00:33+08:00</updated>
+        <author>
+          <name>Wayne Duran</name>
+        </author>
+        <link rel="alternate" href="https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-2-tests-for-a-rails-engine/" type="text/html"/>
+        <id>https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-2-tests-for-a-rails-engine/</id>
+        <content type="html">&lt;p&gt;This is Part 2 of a series of posts about refactoring
 &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;pondo&quot;&gt;Nitrolinks&lt;&#x2F;a&gt;
 out of &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;pondo&quot;&gt;Pondo&lt;&#x2F;a&gt;. Last time we’ve
 &lt;a href=&quot;https:&#x2F;&#x2F;brainchild-projects.github.io&#x2F;posts&#x2F;refactoring-nitrolinks-part-1-creating-a-gem&#x2F;&quot;&gt;successfully moved Nitrolinks out of Pondo&lt;&#x2F;a&gt;
@@ -578,14 +596,17 @@ missed anything.&lt;&#x2F;p&gt;
 &lt;p&gt;And that’s it. We now have a well-tested rails engine. That took more effort
 than I anticipated but it’s well worth it.&lt;&#x2F;p&gt;
 </content>
-	</entry>
-	<entry xml:lang="en">
-		<title>Refactoring Nitrolinks, Part 1: Creating a Gem</title>
-		<published>2017-09-20T06:33:29+08:00</published>
-		<updated>2017-09-20T06:33:29+08:00</updated>
-		<link rel="alternate" href="https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-1-creating-a-gem/" type="text/html"/>
-		<id>https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-1-creating-a-gem/</id>
-		<content type="html">&lt;p&gt;I am building &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;pondo&quot;&gt;Pondo&lt;&#x2F;a&gt; as an experiment on how
+    </entry>
+    <entry xml:lang="en">
+        <title>Refactoring Nitrolinks, Part 1: Creating a Gem</title>
+        <published>2017-09-20T06:33:29+08:00</published>
+        <updated>2017-09-20T06:33:29+08:00</updated>
+        <author>
+          <name>Wayne Duran</name>
+        </author>
+        <link rel="alternate" href="https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-1-creating-a-gem/" type="text/html"/>
+        <id>https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-1-creating-a-gem/</id>
+        <content type="html">&lt;p&gt;I am building &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;pondo&quot;&gt;Pondo&lt;&#x2F;a&gt; as an experiment on how
 to build a functional, modern web application without necessarily using a large
 front-end framework (e.g. Angular, Ember, React). The idea is to mostly develop
 applications as one would within the usual semantics of the normal
@@ -839,22 +860,28 @@ $ bundle exec cucumber
 &lt;p&gt;Green! This ends our first task for refactoring Nitrolinks. The next part is
 figuring out how to add tests to our gem. That will be a post for another day.&lt;&#x2F;p&gt;
 </content>
-	</entry>
-	<entry xml:lang="en">
-		<title>Nitrolinks</title>
-		<published>2017-09-19T16:44:06+00:00</published>
-		<updated>2017-09-19T16:44:06+00:00</updated>
-		<link rel="alternate" href="https://brainchild-projects.github.io/projects/nitrolinks/" type="text/html"/>
-		<id>https://brainchild-projects.github.io/projects/nitrolinks/</id>
-		<content type="html"></content>
-	</entry>
-	<entry xml:lang="en">
-		<title>Ideas &amp; Execution</title>
-		<published>2017-09-05T23:01:01+08:00</published>
-		<updated>2017-09-05T23:01:01+08:00</updated>
-		<link rel="alternate" href="https://brainchild-projects.github.io/posts/ideas-execution/" type="text/html"/>
-		<id>https://brainchild-projects.github.io/posts/ideas-execution/</id>
-		<content type="html">&lt;p&gt;Ideas are cheap. That’s great. Expend just a few calories and after a while, we
+    </entry>
+    <entry xml:lang="en">
+        <title>Nitrolinks</title>
+        <published>2017-09-19T16:44:06+00:00</published>
+        <updated>2017-09-19T16:44:06+00:00</updated>
+        <author>
+          <name>Wayne Duran</name>
+        </author>
+        <link rel="alternate" href="https://brainchild-projects.github.io/projects/nitrolinks/" type="text/html"/>
+        <id>https://brainchild-projects.github.io/projects/nitrolinks/</id>
+        <content type="html"></content>
+    </entry>
+    <entry xml:lang="en">
+        <title>Ideas &amp; Execution</title>
+        <published>2017-09-05T23:01:01+08:00</published>
+        <updated>2017-09-05T23:01:01+08:00</updated>
+        <author>
+          <name>Wayne Duran</name>
+        </author>
+        <link rel="alternate" href="https://brainchild-projects.github.io/posts/ideas-execution/" type="text/html"/>
+        <id>https://brainchild-projects.github.io/posts/ideas-execution/</id>
+        <content type="html">&lt;p&gt;Ideas are cheap. That’s great. Expend just a few calories and after a while, we
 have a lot of them. Executing on them is harder.&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;p&gt;
 &lt;p&gt;I have, well… ideas. Quite a lot of them have been recorded but not a lot have
 been built.&lt;&#x2F;p&gt;
@@ -874,14 +901,17 @@ along the way with more experience.&lt;&#x2F;p&gt;
 &lt;p&gt;Here’s to &lt;a href=&quot;https:&#x2F;&#x2F;www.goodreads.com&#x2F;quotes&#x2F;201306-when-you-don-t-create-things-you-become-defined-by-your&quot;&gt;making things
 happen&lt;&#x2F;a&gt;!&lt;&#x2F;p&gt;
 </content>
-	</entry>
-	<entry xml:lang="en">
-		<title>Style Guide</title>
-		<published>2017-08-30T21:47:01+08:00</published>
-		<updated>2017-08-30T21:47:01+08:00</updated>
-		<link rel="alternate" href="https://brainchild-projects.github.io/style-guide/" type="text/html"/>
-		<id>https://brainchild-projects.github.io/style-guide/</id>
-		<content type="html">&lt;h1 id=&quot;headings-with-paragraphs&quot;&gt;Headings with paragraphs&lt;&#x2F;h1&gt;
+    </entry>
+    <entry xml:lang="en">
+        <title>Style Guide</title>
+        <published>2017-08-30T21:47:01+08:00</published>
+        <updated>2017-08-30T21:47:01+08:00</updated>
+        <author>
+          <name>Wayne Duran</name>
+        </author>
+        <link rel="alternate" href="https://brainchild-projects.github.io/style-guide/" type="text/html"/>
+        <id>https://brainchild-projects.github.io/style-guide/</id>
+        <content type="html">&lt;h1 id=&quot;headings-with-paragraphs&quot;&gt;Headings with paragraphs&lt;&#x2F;h1&gt;
 &lt;h1 id=&quot;h1-heading&quot;&gt;h1. Heading&lt;&#x2F;h1&gt;
 &lt;p&gt;The home page, or landing page, is the first page that many visitors to a site see. It is the index.html file in the root directory of the web site. Since Hugo writes files to the public&#x2F; directory, our home page is public&#x2F;index.html.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;h2-heading&quot;&gt;h2. Heading&lt;&#x2F;h2&gt;
@@ -1023,45 +1053,60 @@ bah and humbug
   &lt;&#x2F;tbody&gt;
 &lt;&#x2F;table&gt;
 </content>
-	</entry>
-	<entry xml:lang="en">
-		<title>Pondo</title>
-		<published>2016-10-31T18:47:15+00:00</published>
-		<updated>2016-10-31T18:47:15+00:00</updated>
-		<link rel="alternate" href="https://brainchild-projects.github.io/projects/pondo/" type="text/html"/>
-		<id>https://brainchild-projects.github.io/projects/pondo/</id>
-		<content type="html"></content>
-	</entry>
-	<entry xml:lang="en">
-		<title>Spogoto</title>
-		<published>2014-10-26T13:07:52+00:00</published>
-		<updated>2014-10-26T13:07:52+00:00</updated>
-		<link rel="alternate" href="https://brainchild-projects.github.io/projects/spogoto/" type="text/html"/>
-		<id>https://brainchild-projects.github.io/projects/spogoto/</id>
-		<content type="html"></content>
-	</entry>
-	<entry xml:lang="en">
-		<title>Asar Web Framework</title>
-		<published>2012-05-17T06:26:38+00:00</published>
-		<updated>2012-05-17T06:26:38+00:00</updated>
-		<link rel="alternate" href="https://brainchild-projects.github.io/projects/aswf/" type="text/html"/>
-		<id>https://brainchild-projects.github.io/projects/aswf/</id>
-		<content type="html"></content>
-	</entry>
-	<entry xml:lang="en">
-		<title>Silly: The Silly Little CLI Tool</title>
-		<published>2011-10-23T06:25:01+00:00</published>
-		<updated>2011-10-23T06:25:01+00:00</updated>
-		<link rel="alternate" href="https://brainchild-projects.github.io/projects/silly/" type="text/html"/>
-		<id>https://brainchild-projects.github.io/projects/silly/</id>
-		<content type="html"></content>
-	</entry>
-	<entry xml:lang="en">
-		<title>Anodoc</title>
-		<published>2011-04-15T17:24:27+00:00</published>
-		<updated>2011-04-15T17:24:27+00:00</updated>
-		<link rel="alternate" href="https://brainchild-projects.github.io/projects/anodoc/" type="text/html"/>
-		<id>https://brainchild-projects.github.io/projects/anodoc/</id>
-		<content type="html"></content>
-	</entry>
+    </entry>
+    <entry xml:lang="en">
+        <title>Pondo</title>
+        <published>2016-10-31T18:47:15+00:00</published>
+        <updated>2016-10-31T18:47:15+00:00</updated>
+        <author>
+          <name>Wayne Duran</name>
+        </author>
+        <link rel="alternate" href="https://brainchild-projects.github.io/projects/pondo/" type="text/html"/>
+        <id>https://brainchild-projects.github.io/projects/pondo/</id>
+        <content type="html"></content>
+    </entry>
+    <entry xml:lang="en">
+        <title>Spogoto</title>
+        <published>2014-10-26T13:07:52+00:00</published>
+        <updated>2014-10-26T13:07:52+00:00</updated>
+        <author>
+          <name>Wayne Duran</name>
+        </author>
+        <link rel="alternate" href="https://brainchild-projects.github.io/projects/spogoto/" type="text/html"/>
+        <id>https://brainchild-projects.github.io/projects/spogoto/</id>
+        <content type="html"></content>
+    </entry>
+    <entry xml:lang="en">
+        <title>Asar Web Framework</title>
+        <published>2012-05-17T06:26:38+00:00</published>
+        <updated>2012-05-17T06:26:38+00:00</updated>
+        <author>
+          <name>Wayne Duran</name>
+        </author>
+        <link rel="alternate" href="https://brainchild-projects.github.io/projects/aswf/" type="text/html"/>
+        <id>https://brainchild-projects.github.io/projects/aswf/</id>
+        <content type="html"></content>
+    </entry>
+    <entry xml:lang="en">
+        <title>Silly: The Silly Little CLI Tool</title>
+        <published>2011-10-23T06:25:01+00:00</published>
+        <updated>2011-10-23T06:25:01+00:00</updated>
+        <author>
+          <name>Wayne Duran</name>
+        </author>
+        <link rel="alternate" href="https://brainchild-projects.github.io/projects/silly/" type="text/html"/>
+        <id>https://brainchild-projects.github.io/projects/silly/</id>
+        <content type="html"></content>
+    </entry>
+    <entry xml:lang="en">
+        <title>Anodoc</title>
+        <published>2011-04-15T17:24:27+00:00</published>
+        <updated>2011-04-15T17:24:27+00:00</updated>
+        <author>
+          <name>Wayne Duran</name>
+        </author>
+        <link rel="alternate" href="https://brainchild-projects.github.io/projects/anodoc/" type="text/html"/>
+        <id>https://brainchild-projects.github.io/projects/anodoc/</id>
+        <content type="html"></content>
+    </entry>
 </feed>

@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-	<title>Brainchild Projects - life</title>
-	<subtitle>A Filipino developer&#x27;s projects, thoughts, and experiments</subtitle>
-	<link href="https://brainchild-projects.github.io/tags/life/atom.xml" rel="self" type="application/atom+xml"/>
-  <link href="https://brainchild-projects.github.io"/>
-	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2019-04-09T00:33:48+08:00</updated>
-	<id>https://brainchild-projects.github.io/tags/life/atom.xml</id>
-	<entry xml:lang="en">
-		<title>Happy Birthday, Dinosaur</title>
-		<published>2019-04-09T00:33:48+08:00</published>
-		<updated>2019-04-09T00:33:48+08:00</updated>
-		<link rel="alternate" href="https://brainchild-projects.github.io/posts/happy-birthday-dinosaur/" type="text/html"/>
-		<id>https://brainchild-projects.github.io/posts/happy-birthday-dinosaur/</id>
-		<content type="html">&lt;p&gt;Happy birthday, Dinosaur. You’re still here and that’s awesome.&lt;&#x2F;p&gt;
+    <title>Brainchild Projects - life</title>
+    <subtitle>A Filipino developer&#x27;s projects, thoughts, and experiments</subtitle>
+    <link href="https://brainchild-projects.github.io/tags/life/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://brainchild-projects.github.io"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2019-04-09T00:33:48+08:00</updated>
+    <id>https://brainchild-projects.github.io/tags/life/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Happy Birthday, Dinosaur</title>
+        <published>2019-04-09T00:33:48+08:00</published>
+        <updated>2019-04-09T00:33:48+08:00</updated>
+        <author>
+          <name>Wayne Duran</name>
+        </author>
+        <link rel="alternate" href="https://brainchild-projects.github.io/posts/happy-birthday-dinosaur/" type="text/html"/>
+        <id>https://brainchild-projects.github.io/posts/happy-birthday-dinosaur/</id>
+        <content type="html">&lt;p&gt;Happy birthday, Dinosaur. You’re still here and that’s awesome.&lt;&#x2F;p&gt;
 </content>
-	</entry>
+    </entry>
 </feed>

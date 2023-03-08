@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-	<title>Brainchild Projects - pondo</title>
-	<subtitle>A Filipino developer&#x27;s projects, thoughts, and experiments</subtitle>
-	<link href="https://brainchild-projects.github.io/tags/pondo/atom.xml" rel="self" type="application/atom+xml"/>
-  <link href="https://brainchild-projects.github.io"/>
-	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2017-10-12T00:08:01+08:00</updated>
-	<id>https://brainchild-projects.github.io/tags/pondo/atom.xml</id>
-	<entry xml:lang="en">
-		<title>Refactoring Nitrolinks Part 3: Pondo Cleanup</title>
-		<published>2017-10-12T00:08:01+08:00</published>
-		<updated>2017-10-12T00:08:01+08:00</updated>
-		<link rel="alternate" href="https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-3-pondo-cleanup/" type="text/html"/>
-		<id>https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-3-pondo-cleanup/</id>
-		<content type="html">&lt;p&gt;This is Part 3 of a series of posts about refactoring
+    <title>Brainchild Projects - pondo</title>
+    <subtitle>A Filipino developer&#x27;s projects, thoughts, and experiments</subtitle>
+    <link href="https://brainchild-projects.github.io/tags/pondo/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://brainchild-projects.github.io"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2017-10-12T00:08:01+08:00</updated>
+    <id>https://brainchild-projects.github.io/tags/pondo/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Refactoring Nitrolinks Part 3: Pondo Cleanup</title>
+        <published>2017-10-12T00:08:01+08:00</published>
+        <updated>2017-10-12T00:08:01+08:00</updated>
+        <author>
+          <name>Wayne Duran</name>
+        </author>
+        <link rel="alternate" href="https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-3-pondo-cleanup/" type="text/html"/>
+        <id>https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-3-pondo-cleanup/</id>
+        <content type="html">&lt;p&gt;This is Part 3 of a series of posts about refactoring
 &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;pondo&quot;&gt;Nitrolinks&lt;&#x2F;a&gt;
 out of &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;pondo&quot;&gt;Pondo&lt;&#x2F;a&gt;. Last time we’ve
 &lt;a href=&quot;https:&#x2F;&#x2F;brainchild-projects.github.io&#x2F;posts&#x2F;refactoring-nitrolinks-part-2-tests-for-a-rails-engine&#x2F;&quot;&gt;successfully copied the Nitrolinks tests from Pondo&lt;&#x2F;a&gt;
@@ -399,14 +402,17 @@ works as expected. Here are links to commits in &lt;a href=&quot;https:&#x2F;&#x
 0m20.662s
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 </content>
-	</entry>
-	<entry xml:lang="en">
-		<title>Refactoring Nitrolinks, Part 2: Tests for a Rails Engine</title>
-		<published>2017-10-11T18:00:33+08:00</published>
-		<updated>2017-10-11T18:00:33+08:00</updated>
-		<link rel="alternate" href="https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-2-tests-for-a-rails-engine/" type="text/html"/>
-		<id>https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-2-tests-for-a-rails-engine/</id>
-		<content type="html">&lt;p&gt;This is Part 2 of a series of posts about refactoring
+    </entry>
+    <entry xml:lang="en">
+        <title>Refactoring Nitrolinks, Part 2: Tests for a Rails Engine</title>
+        <published>2017-10-11T18:00:33+08:00</published>
+        <updated>2017-10-11T18:00:33+08:00</updated>
+        <author>
+          <name>Wayne Duran</name>
+        </author>
+        <link rel="alternate" href="https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-2-tests-for-a-rails-engine/" type="text/html"/>
+        <id>https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-2-tests-for-a-rails-engine/</id>
+        <content type="html">&lt;p&gt;This is Part 2 of a series of posts about refactoring
 &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;pondo&quot;&gt;Nitrolinks&lt;&#x2F;a&gt;
 out of &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;pondo&quot;&gt;Pondo&lt;&#x2F;a&gt;. Last time we’ve
 &lt;a href=&quot;https:&#x2F;&#x2F;brainchild-projects.github.io&#x2F;posts&#x2F;refactoring-nitrolinks-part-1-creating-a-gem&#x2F;&quot;&gt;successfully moved Nitrolinks out of Pondo&lt;&#x2F;a&gt;
@@ -545,14 +551,17 @@ missed anything.&lt;&#x2F;p&gt;
 &lt;p&gt;And that’s it. We now have a well-tested rails engine. That took more effort
 than I anticipated but it’s well worth it.&lt;&#x2F;p&gt;
 </content>
-	</entry>
-	<entry xml:lang="en">
-		<title>Refactoring Nitrolinks, Part 1: Creating a Gem</title>
-		<published>2017-09-20T06:33:29+08:00</published>
-		<updated>2017-09-20T06:33:29+08:00</updated>
-		<link rel="alternate" href="https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-1-creating-a-gem/" type="text/html"/>
-		<id>https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-1-creating-a-gem/</id>
-		<content type="html">&lt;p&gt;I am building &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;pondo&quot;&gt;Pondo&lt;&#x2F;a&gt; as an experiment on how
+    </entry>
+    <entry xml:lang="en">
+        <title>Refactoring Nitrolinks, Part 1: Creating a Gem</title>
+        <published>2017-09-20T06:33:29+08:00</published>
+        <updated>2017-09-20T06:33:29+08:00</updated>
+        <author>
+          <name>Wayne Duran</name>
+        </author>
+        <link rel="alternate" href="https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-1-creating-a-gem/" type="text/html"/>
+        <id>https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-1-creating-a-gem/</id>
+        <content type="html">&lt;p&gt;I am building &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;asartalo&#x2F;pondo&quot;&gt;Pondo&lt;&#x2F;a&gt; as an experiment on how
 to build a functional, modern web application without necessarily using a large
 front-end framework (e.g. Angular, Ember, React). The idea is to mostly develop
 applications as one would within the usual semantics of the normal
@@ -806,5 +815,5 @@ $ bundle exec cucumber
 &lt;p&gt;Green! This ends our first task for refactoring Nitrolinks. The next part is
 figuring out how to add tests to our gem. That will be a post for another day.&lt;&#x2F;p&gt;
 </content>
-	</entry>
+    </entry>
 </feed>

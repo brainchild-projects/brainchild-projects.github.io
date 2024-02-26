@@ -1,96 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://brainchild-projects.github.io/</loc>
+        <loc>https://brainchildprojects.com/</loc>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/posts/</loc>
+        <loc>https://brainchildprojects.com/posts/</loc>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/posts/happy-birthday-dinosaur/</loc>
+        <loc>https://brainchildprojects.com/posts/exceptions-are-part-of-the-interface/</loc>
+        <lastmod>2024-02-26T15:20:00+08:00</lastmod>
+    </url>
+    <url>
+        <loc>https://brainchildprojects.com/posts/happy-birthday-dinosaur/</loc>
         <lastmod>2019-04-09T00:33:48+08:00</lastmod>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/posts/ideas-execution/</loc>
+        <loc>https://brainchildprojects.com/posts/ideas-execution/</loc>
         <lastmod>2017-09-05T23:01:01+08:00</lastmod>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/posts/page/1/</loc>
+        <loc>https://brainchildprojects.com/posts/page/1/</loc>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/posts/page/2/</loc>
+        <loc>https://brainchildprojects.com/posts/page/2/</loc>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-1-creating-a-gem/</loc>
+        <loc>https://brainchildprojects.com/posts/refactoring-nitrolinks-part-1-creating-a-gem/</loc>
         <lastmod>2017-09-20T06:33:29+08:00</lastmod>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-2-tests-for-a-rails-engine/</loc>
+        <loc>https://brainchildprojects.com/posts/refactoring-nitrolinks-part-2-tests-for-a-rails-engine/</loc>
         <lastmod>2017-10-11T18:00:33+08:00</lastmod>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/posts/refactoring-nitrolinks-part-3-pondo-cleanup/</loc>
+        <loc>https://brainchildprojects.com/posts/refactoring-nitrolinks-part-3-pondo-cleanup/</loc>
         <lastmod>2017-10-12T00:08:01+08:00</lastmod>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/projects/</loc>
+        <loc>https://brainchildprojects.com/projects/</loc>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/projects/anodoc/</loc>
+        <loc>https://brainchildprojects.com/projects/anodoc/</loc>
         <lastmod>2011-04-15T17:24:27Z</lastmod>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/projects/aswf/</loc>
+        <loc>https://brainchildprojects.com/projects/aswf/</loc>
         <lastmod>2012-05-17T06:26:38Z</lastmod>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/projects/nitrolinks/</loc>
+        <loc>https://brainchildprojects.com/projects/nitrolinks/</loc>
         <lastmod>2017-09-19T16:44:06Z</lastmod>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/projects/okee/</loc>
+        <loc>https://brainchildprojects.com/projects/okee/</loc>
         <lastmod>2018-07-06T22:59:48Z</lastmod>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/projects/pondo/</loc>
+        <loc>https://brainchildprojects.com/projects/pondo/</loc>
         <lastmod>2016-10-31T18:47:15Z</lastmod>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/projects/printables/</loc>
+        <loc>https://brainchildprojects.com/projects/printables/</loc>
         <lastmod>2021-07-03T12:19:08Z</lastmod>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/projects/release-tools/</loc>
+        <loc>https://brainchildprojects.com/projects/release-tools/</loc>
         <lastmod>2021-03-14T06:29:06Z</lastmod>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/projects/silly/</loc>
+        <loc>https://brainchildprojects.com/projects/silly/</loc>
         <lastmod>2011-10-23T06:25:01Z</lastmod>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/projects/spogoto/</loc>
+        <loc>https://brainchildprojects.com/projects/spogoto/</loc>
         <lastmod>2014-10-26T13:07:52Z</lastmod>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/style-guide/</loc>
+        <loc>https://brainchildprojects.com/style-guide/</loc>
         <lastmod>2017-08-30T21:47:01+08:00</lastmod>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/tags/</loc>
+        <loc>https://brainchildprojects.com/tags/</loc>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/tags/dev-notes/</loc>
+        <loc>https://brainchildprojects.com/tags/dev-notes/</loc>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/tags/life/</loc>
+        <loc>https://brainchildprojects.com/tags/life/</loc>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/tags/making/</loc>
+        <loc>https://brainchildprojects.com/tags/making/</loc>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/tags/pondo/</loc>
+        <loc>https://brainchildprojects.com/tags/pondo/</loc>
     </url>
     <url>
-        <loc>https://brainchild-projects.github.io/tags/project/</loc>
+        <loc>https://brainchildprojects.com/tags/project/</loc>
     </url>
 </urlset>

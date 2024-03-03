@@ -5,8 +5,30 @@
     <link rel="self" type="application/atom+xml" href="https://brainchildprojects.com/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://brainchildprojects.com"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2024-02-26T15:20:00+08:00</updated>
+    <updated>2024-03-04T00:00:00+08:00</updated>
     <id>https://brainchildprojects.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Close Sourcing as Strategy</title>
+        <published>2024-03-04T00:00:00+08:00</published>
+        <updated>2024-03-04T00:00:00+08:00</updated>
+        
+        <author>
+          <name>
+            
+              Wayne Duran
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://brainchildprojects.com/posts/close-sourcing-as-strategy/"/>
+        <id>https://brainchildprojects.com/posts/close-sourcing-as-strategy/</id>
+        
+        <content type="html" xml:base="https://brainchildprojects.com/posts/close-sourcing-as-strategy/">&lt;p&gt;Today I felt really upset about something that I shouldn’t have to be. I needed to add a tool to an open-source project I’m working on, and after some searching on the web, I found one that I could use. But then I learned that the project had been moved to a paid service after being open source for a while. I felt betrayed and unreasonably angry, even though I understood perfectly why the developers chose to do this.&lt;&#x2F;p&gt;
+&lt;p&gt;To be clear, I don’t hate the developers. I just hate that we have to live like this. Because we as individuals are trapped in this exploitative system, we are forced to do some of these maneuvers to prevent our own exploitation – a perfectly rational response in a hostile environment. However, I feel that while the strategies we employ ensure our individual survival within the hostile system, those inadvertently contribute to the system’s continued existence, thereby perpetuating the very conditions that necessitate those strategies.&lt;&#x2F;p&gt;
+&lt;p&gt;We play the game, and the game goes on.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>Exceptions are Part of the Interface</title>
         <published>2024-02-26T15:20:00+08:00</published>

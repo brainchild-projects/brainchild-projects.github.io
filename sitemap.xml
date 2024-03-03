@@ -7,6 +7,10 @@
         <loc>https://brainchildprojects.com/posts/</loc>
     </url>
     <url>
+        <loc>https://brainchildprojects.com/posts/close-sourcing-as-strategy/</loc>
+        <lastmod>2024-03-04T00:00:00+08:00</lastmod>
+    </url>
+    <url>
         <loc>https://brainchildprojects.com/posts/exceptions-are-part-of-the-interface/</loc>
         <lastmod>2024-02-26T15:20:00+08:00</lastmod>
     </url>
@@ -23,6 +27,9 @@
     </url>
     <url>
         <loc>https://brainchildprojects.com/posts/page/2/</loc>
+    </url>
+    <url>
+        <loc>https://brainchildprojects.com/posts/page/3/</loc>
     </url>
     <url>
         <loc>https://brainchildprojects.com/posts/refactoring-nitrolinks-part-1-creating-a-gem/</loc>
@@ -92,9 +99,15 @@
         <loc>https://brainchildprojects.com/tags/making/</loc>
     </url>
     <url>
+        <loc>https://brainchildprojects.com/tags/open-source/</loc>
+    </url>
+    <url>
         <loc>https://brainchildprojects.com/tags/pondo/</loc>
     </url>
     <url>
         <loc>https://brainchildprojects.com/tags/project/</loc>
+    </url>
+    <url>
+        <loc>https://brainchildprojects.com/tags/thoughts/</loc>
     </url>
 </urlset>

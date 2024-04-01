@@ -5,8 +5,27 @@
     <link rel="self" type="application/atom+xml" href="https://brainchildprojects.com/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://brainchildprojects.com"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2024-03-04T00:00:00+08:00</updated>
+    <updated>2024-03-30T00:00:08+00:00</updated>
     <id>https://brainchildprojects.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Diligence</title>
+        <published>2024-03-30T00:00:08+00:00</published>
+        <updated>2024-03-30T00:00:08+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Wayne Duran
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://brainchildprojects.com/projects/diligence/"/>
+        <id>https://brainchildprojects.com/projects/diligence/</id>
+        
+        <content type="html" xml:base="https://brainchildprojects.com/projects/diligence/"></content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>Close Sourcing as Strategy</title>
         <published>2024-03-04T00:00:00+08:00</published>
@@ -49,6 +68,25 @@
 &lt;p&gt;The reason why I appreciate Go’s “errors as values” approach and the enums in Rust is that in those languages, I tend to write functions&#x2F;methods that are more explicit in their behavior. I tend to declare this behavior in the interface itself.&lt;&#x2F;p&gt;
 &lt;p&gt;Exception handling as a strategy adds some cognitive tax to my code. Those exceptions are part of the interface even when they are not explicitly declared.&lt;&#x2F;p&gt;
 </content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>shfonts</title>
+        <published>2023-04-10T00:00:08+00:00</published>
+        <updated>2023-04-10T00:00:08+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Wayne Duran
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://brainchildprojects.com/projects/shfonts/"/>
+        <id>https://brainchildprojects.com/projects/shfonts/</id>
+        
+        <content type="html" xml:base="https://brainchildprojects.com/projects/shfonts/"></content>
         
     </entry>
     <entry xml:lang="en">

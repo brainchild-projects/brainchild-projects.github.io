@@ -1,7 +1,7 @@
 @charset "UTF-8";
 button, [type=button], [type=reset], [type=submit] {
   appearance: none;
-  background-color: #039cd4;
+  background-color: #0066a4;
   border: 0;
   border-radius: 3px;
   color: #fff;
@@ -20,7 +20,7 @@ button, [type=button], [type=reset], [type=submit] {
   white-space: nowrap;
 }
 button:hover, button:focus, [type=button]:hover, [type=button]:focus, [type=reset]:hover, [type=reset]:focus, [type=submit]:hover, [type=submit]:focus {
-  background-color: rgb(2.4, 124.8, 169.6);
+  background-color: rgb(0, 81.6, 131.2);
   color: #fff;
 }
 button:disabled, [type=button]:disabled, [type=reset]:disabled, [type=submit]:disabled {
@@ -28,7 +28,7 @@ button:disabled, [type=button]:disabled, [type=reset]:disabled, [type=submit]:di
   opacity: 0.5;
 }
 button:disabled:hover, [type=button]:disabled:hover, [type=reset]:disabled:hover, [type=submit]:disabled:hover {
-  background-color: #039cd4;
+  background-color: #0066a4;
 }
 
 fieldset {
@@ -77,8 +77,8 @@ select[multiple]:hover {
 }
 [type=color]:focus, [type=date]:focus, [type=datetime]:focus, [type=datetime-local]:focus, [type=email]:focus, [type=month]:focus, [type=number]:focus, [type=password]:focus, [type=search]:focus, [type=tel]:focus, [type=text]:focus, [type=time]:focus, [type=url]:focus, [type=week]:focus, input:not([type]):focus, textarea:focus,
 select[multiple]:focus {
-  border-color: #039cd4;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 5px rgba(2.6441860465, 137.4976744186, 186.8558139535, 0.7);
+  border-color: #0066a4;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 5px rgba(0, 86.1402439024, 138.5, 0.7);
   outline: none;
 }
 [type=color]:disabled, [type=date]:disabled, [type=datetime]:disabled, [type=datetime-local]:disabled, [type=email]:disabled, [type=month]:disabled, [type=number]:disabled, [type=password]:disabled, [type=search]:disabled, [type=tel]:disabled, [type=text]:disabled, [type=time]:disabled, [type=url]:disabled, [type=week]:disabled, input:not([type]):disabled, textarea:disabled,
@@ -377,7 +377,7 @@ main h2 > a, main h3 > a, .summary > h1 > a, .projects-list h2 > a {
 }
 
 a {
-  color: #039cd4;
+  color: #0066a4;
   text-decoration: none;
 }
 

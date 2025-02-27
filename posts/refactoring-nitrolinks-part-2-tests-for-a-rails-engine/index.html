@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    Hello web traveller. Be careful out there.
+  -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2">
+  <meta name="description" content="A Filipino developer’s projects, thoughts, and experiments">
+  <link href="/css/fonts.css" rel="stylesheet">
+  <link rel="alternate" type="application/atom+xml" href="https://brainchildprojects.com/atom.xml">
+  <link rel="stylesheet" href="/css/prism.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="/js/prism.js"></script>
+  <script src="/js/scripts.js" type="module"></script>
+  <link type="text/plain" rel="author" href="/humans.txt">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <title>Refactoring Nitrolinks, Part 2: Tests for a Rails Engine</title>
+</head>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <div class="branding">
+        <a href="/">
+          <span class="logo">
+            <object data="/images/logo_red.svg" type="image/svg+xml">
+              <img src="/images/logo_red.png" alt="Brainchild Projects Logo">
+            </object>
+            <noscript>
+              <span>Brainchild Projects</span>
+            </noscript>
+          </span>
+        </a>
+      </div>
+      <p>Projects + Thoughts + Experiments</p>
+    </header>
+    <main>
+      <article class="article-full">
+        <header>
+          <h1>Refactoring Nitrolinks, Part 2: Tests for a Rails Engine</h1>
+          <div class="meta">
+            <div class="time">
+              Posted on
+              <time datetime="2017-10-11T18:00:33+08:00">Oct 11, 2017</time>
+            </div>
+          </div>
+        </header>
+        <div class="article-body">
+          <p>
+            This is Part 2 of a series of posts about refactoring
+            <a href="https://github.com/asartalo/pondo">Nitrolinks</a>
+            out of <a href="https://github.com/asartalo/pondo">Pondo</a>. Last time we’ve
+            <a href="@/posts/pondo-nitrolinks.md">successfully moved Nitrolinks out of Pondo</a>
+            but we left most of the Nitrolinks-specific tests on the Pondo source code
+            itself. This time we’ll move the tests to Nitrolinks so we can narrow Pondo’s
+            test concerns.
+          </p>
+          <!-- more -->
+          <h2 id="the-plan">The Plan</h2>
+          <p>Just to recap, here is the plan:</p>
+          <ol>
+            <li>Move Nitrolinks out into its own gem ✔</li>
+            <li>Create tests within Nitrolinks that mirror tests in Pondo</li>
+            <li>Remove Nitrolinks-specific tests out of Pondo</li>
+            <li>Rewrite Nitrolinks in ES6</li>
+          </ol>
+          <p>We are going to do Step 2.</p>
+          <h2 id="prepping">Prepping</h2>
+          <p>
+            First we need to make sure that we can run tests on the nitrolinks rails engine.
+            Because I manually built the gem using Bundler’s tutorial, I ended up with some
+            pretty bare-bones rails engine code. That’s a good thing. In practice, we don’t
+            want to burden ourselves with extra code we might need in the future but is
+            useless now.
+          </p>
+          <p>
+            Yet we do need some other things now that we want to make our engine testable.
+            What we need specifically is a dummy app we can use to plug our engine into so
+            we can run the test scenarios. Luckily, rails already provides a tool for this
+            with the <code>rails plugin new</code> generator.
+          </p>
+          <p>Running the command on the parent of our root directory:</p>
+          <pre><code class="language-sh">$ rails plugin new --skip-turbolinks --skip-yarn -TMPOC --mountable nitrolinks-rails
+</code></pre>
+          <p>
+            …will add new files and folders to the engine directory. Some of them we need
+            while others we’ll have to clean up.
+          </p>
+          <p>Here’s what it looks like now after cleaning things up:</p>
+          <pre><code class="language-sh">├── Gemfile
+├── Gemfile.lock
+├── MIT-LICENSE
+├── README.md
+├── Rakefile
+├── app
+│   └── assets
+│       └── javascripts
+│           ├── nitrolinks
+│           │   ├── rails
+│           │   │   └── application.js
+│           │   └── utilities.coffee
+│           └── nitrolinks.coffee
+├── lib
+│   ├── nitrolinks
+│   │   ├── rails
+│   │   │   ├── controller.rb
+│   │   │   ├── engine.rb
+│   │   │   └── version.rb
+│   │   └── rails.rb
+│   └── tasks
+│       └── nitrolinks
+│           └── rails_tasks.rake
+├── nitrolinks-rails.gemspec
+├── features # renamed from spec
+│   └── dummy # Dummy rails app
+└── vendor
+    └── assets
+        └── javascripts
+</code></pre>
+          <h2 id="moving-tests">Moving Tests</h2>
+          <p>
+            These were written as cucumber specs and they work quite well for testing the
+            end-user features. They do make it slow to run the tests. In the future, we’ll
+            figure out a way to use mainly javascript tests for these and concern ourselves
+            with engine-related specs for this engine.
+          </p>
+          <p>
+            First, we’ll need to copy all of the pondo specs related to nitrolinks  to the
+            engine. This is a significant undertaking that it’ll probably fill this whole
+            post with just to describe everything. I’ll just point out the most important
+            changes I did.
+          </p>
+          <h3 id="gemfile">Gemfile</h3>
+          <pre><code class="language-ruby">source &#39;https://rubygems.org&#39;
+
+gemspec
+
+group :test do
+  gem &#34;cucumber-rails&#34;, &#34;&gt;= 1.5.0&#34;, require: false
+  gem &#39;selenium-webdriver&#39;
+  gem &#39;chromedriver-helper&#39;, &#39;&gt;= 1.1.0&#39;
+end
+
+group :test, :development do
+  gem &#34;slim-rails&#34;, &#34;~&gt; 3.1&#34;
+  gem &#39;sass-rails&#39;, &#39;~&gt; 5.0&#39;
+  gem &#39;coffee-rails&#39;, &#39;~&gt; 4.2&#39;
+end
+</code></pre>
+          <p>
+            To use cucumber, I had to add <code>cucumber-rails</code> and other test dependencies to
+            the Gemfile itself. I wish I didn’t have to but just adding this on the gemspec
+            as a development dependency doesn’t work. We also probably don’t need the
+            <code>:development</code> group here and just leave all of them to the <code>:test</code> group.
+            I’ll
+            remove that in the future.
+          </p>
+          <p>
+            In hindsight, it might have been better if I just used rspec with capybara and
+            that would have solved a lot of these problems. But I haven’t tried it on a
+            rails engine and the feature specs have already been written anyway so we’ll
+            use cucumber for now.
+          </p>
+          <h3 id="binrails">bin/rails</h3>
+          <pre><code class="language-ruby">#!/usr/bin/env ruby
+# This command will automatically be run when you run &#34;rails&#34; with Rails gems
+# installed from the root of your application.
+
+ENGINE_ROOT = File.expand_path(&#39;../..&#39;, __FILE__)
+ENGINE_PATH = File.expand_path(&#39;../../lib/nitrolinks/rails/engine&#39;, __FILE__)
+APP_PATH = File.expand_path(&#39;../../features/dummy/config/application&#39;, __FILE__)
+
+# Set up gems listed in the Gemfile.
+ENV[&#39;BUNDLE_GEMFILE&#39;] ||= File.expand_path(&#39;../../Gemfile&#39;, __FILE__)
+require &#39;bundler/setup&#39; if File.exist?(ENV[&#39;BUNDLE_GEMFILE&#39;])
+
+# Pick the frameworks you want:
+require &#34;action_controller/railtie&#34;
+require &#34;action_view/railtie&#34;
+require &#34;sprockets/railtie&#34;
+
+require &#39;rails/engine/commands&#39;
+</code></pre>
+          <p>
+            I had to add a <code>bin/rails</code> script file so that cucumber will know where the
+            dummy application is. After that, I run the cucumber install task for cucumber.
+          </p>
+          <pre><code class="language-sh">$ rails generate cucumber:install
+</code></pre>
+          <h3 id="feature-specs">Feature Specs</h3>
+          <p>
+            The rest of what I did was just making sure the feature specs copied from pondo
+            would run and removing traces of pondo from the code. That meant a lot of
+            renames and clean up. I’ll have to do a thorough sweep next time in case I
+            missed anything.
+          </p>
+          <p>
+            Here is the <a
+            href="https://github.com/asartalo/nitrolinks-rails/commit/abdae8083e0e472b4ef4c282660b50cc6bd9d47a"
+            >change commit</a>.
+          </p>
+          <p>What does our specs look now?</p>
+          <pre><code class="language-sh">$ cucumber
+
+# ... bunch of tests
+
+14 scenarios (14 passed)
+55 steps (55 passed)
+0m8.182s
+</code></pre>
+          <p>
+            And that’s it. We now have a well-tested rails engine. That took more effort
+            than I anticipated but it’s well worth it.
+          </p>
+        </div>
+        <footer>
+          <div class="tags">
+            <a class="c-tag" href="/tags/dev-notes/">dev notes</a>
+            <a class="c-tag" href="/tags/pondo/">pondo</a>
+            <a class="c-tag" href="/tags/project/">project</a>
+          </div>
+          <nav class="p-pagination c-pagination">
+            <div class="c-pagination__ctrl">
+              <div class="c-pagination__older">
+                <span class="nav-label">← Previous</span>
+                <a href="/posts/refactoring-nitrolinks-part-1-creating-a-gem/">Refactoring Nitrolinks, Part 1: Creating a Gem</a>
+              </div>
+              <div class="c-pagination__newer">
+                <span class="nav-label">Next →</span>
+                <a href="/posts/refactoring-nitrolinks-part-3-pondo-cleanup/">Refactoring Nitrolinks Part 3: Pondo Cleanup</a>
+              </div>
+            </div>
+          </nav>
+        </footer>
+      </article>
+    </main>
+    <footer class="page-footer">
+      <p>
+        <a property="dct:title" rel="cc:attributonURL" href="https://brainchildprojects.com"
+        >BrainchildProjects.com</a><br>
+        © 2017-2025 by <span property="cc:attributionName">Wayne Duran</span><br>
+        All text and media on this site<br>
+        are licensed under<br>
+        <a class="cc-license" href="https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1"
+        target="_blank" rel="license noopener noreferrer">CC BY 4.0
+                  <img alt="CC: Creative Commons"
+        src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1">
+                  <img alt="Attributions"
+        src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1">
+                </a><br>
+        unless stated otherwise
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

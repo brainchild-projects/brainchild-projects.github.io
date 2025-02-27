@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    Hello web traveller. Be careful out there.
+  -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2">
+  <meta name="description" content="A Filipino developer’s projects, thoughts, and experiments">
+  <link href="/css/fonts.css" rel="stylesheet">
+  <link rel="alternate" type="application/atom+xml" href="https://brainchildprojects.com/atom.xml">
+  <link rel="stylesheet" href="/css/prism.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="/js/prism.js"></script>
+  <script src="/js/scripts.js" type="module"></script>
+  <link type="text/plain" rel="author" href="/humans.txt">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <title>Refactoring Nitrolinks Part 3: Pondo Cleanup</title>
+</head>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <div class="branding">
+        <a href="/">
+          <span class="logo">
+            <object data="/images/logo_red.svg" type="image/svg+xml">
+              <img src="/images/logo_red.png" alt="Brainchild Projects Logo">
+            </object>
+            <noscript>
+              <span>Brainchild Projects</span>
+            </noscript>
+          </span>
+        </a>
+      </div>
+      <p>Projects + Thoughts + Experiments</p>
+    </header>
+    <main>
+      <article class="article-full">
+        <header>
+          <h1>Refactoring Nitrolinks Part 3: Pondo Cleanup</h1>
+          <div class="meta">
+            <div class="time">
+              Posted on
+              <time datetime="2017-10-12T00:08:01+08:00">Oct 12, 2017</time>
+            </div>
+          </div>
+        </header>
+        <div class="article-body">
+          <p>
+            This is Part 3 of a series of posts about refactoring
+            <a href="https://github.com/asartalo/pondo">Nitrolinks</a>
+            out of <a href="https://github.com/asartalo/pondo">Pondo</a>. Last time we’ve
+            <a href="@/posts/refactoring-nitrolinks-part-2.md">successfully copied the Nitrolinks tests from
+            Pondo</a>
+            but left the original tests on Pondo. This time we’ll move them out of Pondo for
+            good.
+          </p>
+          <!-- more -->
+          <h2 id="the-plan">The Plan</h2>
+          <p>Just to recap, here is the plan:</p>
+          <ol>
+            <li>Move Nitrolinks out into its own gem ✔</li>
+            <li>Create tests within Nitrolinks that mirror tests in Pondo ✔</li>
+            <li>Remove Nitrolinks-specific tests out of Pondo</li>
+            <li>Rewrite Nitrolinks in ES6</li>
+          </ol>
+          <p>We are going to do Step 3.</p>
+          <h2 id="nitrolinks-bump">Nitrolinks Bump</h2>
+          <p>
+            Since last time we bumped nitrolinks-rails gem’s version number. Let’s use that
+            in pondo.
+          </p>
+          <pre><code class="language-ruby"># Gemfile
+gem &#34;nitrolinks-rails&#34;, &#34;&gt;= 0.2.0&#34;
+</code></pre>
+          <p>Let’s do a test run to make sure everything is green.</p>
+          <pre><code class="language-bash">$ cucumber
+
+# Bunch of spec output
+
+29 scenarios (29 passed)
+148 steps (148 passed)
+0m27.379s
+</code></pre>
+          <p>Great! We’re in a good place now.</p>
+          <h2 id="cleanup">Cleanup</h2>
+          <p>Next we’ll remove nitrolinks feature specs.</p>
+          <pre><code class="language-bash">$ tree -l features
+features
+├── adding_income.feature
+├── deducting_expense.feature
+├── first_time.feature
+├── inviting_subscribers.feature
+├── login.feature
+├── nitrolinks # DELETED
+│   ├── errors.feature # DELETED
+│   ├── get.feature # DELETED
+│   ├── hash.feature # DELETED
+│   └── loading.feature # DELETED
+├── step_definitions
+│   ├── authentication_steps.rb
+│   ├── common_steps.rb
+│   ├── first_time_steps.rb
+│   ├── money_steps.rb
+│   ├── nitrolinks_steps.rb
+│   ├── pondo_specs
+│   │   └── pages.rb
+│   └── subscription_steps.rb
+├── subscribing.feature
+└── support
+    ├── env.rb
+    ├── pondo_testing_utils.rb
+    └── wait_for_things.rb
+</code></pre>
+          <p>How are we on the specs?</p>
+          <pre><code class="language-bash">$ cucumber
+
+# Bunch of spec output
+
+15 scenarios (15 passed)
+93 steps (93 passed)
+0m21.142s
+</code></pre>
+          <p>
+            That reduced our scenario count from 29 to 15 and our steps from 148 to 93. Next
+            let’s remove the nitrolinks step definitions and check our specs again.
+          </p>
+          <pre><code class="language-bash">tree -l features
+features
+├── adding_income.feature
+├── deducting_expense.feature
+├── first_time.feature
+├── inviting_subscribers.feature
+├── login.feature
+├── step_definitions
+│   ├── authentication_steps.rb
+│   ├── common_steps.rb
+│   ├── first_time_steps.rb
+│   ├── money_steps.rb
+│   ├── nitrolinks_steps.rb # DELETED
+│   ├── pondo_specs
+│   │   └── pages.rb
+│   └── subscription_steps.rb
+├── subscribing.feature
+└── support
+    ├── env.rb
+    ├── pondo_testing_utils.rb
+    └── wait_for_things.rb
+</code></pre>
+          <pre><code class="language-bash">$ cucumber
+
+# Bunch of spec output
+
+15 scenarios (15 passed)
+93 steps (93 passed)
+0m26.099s
+</code></pre>
+          <p>
+            Good we’re still green. Next we’ll edit our pages helper and step definitions to
+            remove any trace of nitrolinks.
+          </p>
+          <pre><code class="language-ruby"># features/step_definitions/pondo_specs/pages.rb
+module PondoSpecs
+  module Pages
+    module_function
+
+    {
+      home: {
+        path: &#39;/&#39;
+      },
+
+      welcome: {
+        path: &#39;/welcome&#39;
+      },
+
+      # NITROLINKS WAS HERE
+
+    }.each do |page_name, data|
+      define_method :&#34;#{page_name}_page&#34; do
+        data[:path]
+      end
+
+      define_method :&#34;#{page_name}_page_content&#34; do
+        data[:content]
+      end
+    end
+
+  end
+end
+
+</code></pre>
+          <pre><code class="language-ruby"># features/support/pondo_testing_utils.rb
+module PondoTestingUtils
+  def jscript(code)
+    page.evaluate_script(code)
+  end
+
+  # NITROLINKS WAS HERE
+
+  def pondo_page(name)
+    PondoSpecs::Pages.send(&#34;#{ name }_page&#34;)
+  end
+
+  def pondo_page_content(name)
+    PondoSpecs::Pages.send(&#34;#{ name }_page_content&#34;)
+  end
+
+  # ...AND HERE
+
+  def safe_date_fill_in(finder, date)
+    field = find_field(finder)
+    date_formatted = date.strftime(&#34;%Y-%m-%d&#34;)
+    jscript(&#34;document.evaluate(&#39;#{field.path}&#39;, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.value=&#39;#{date_formatted}&#39;&#34;)
+  end
+
+  # ...AND HERE
+end
+
+World(PondoTestingUtils)
+World(ActiveJob::TestHelper)
+</code></pre>
+          <pre><code class="language-bash">$ cucumber
+
+# Bunch of spec output
+
+15 scenarios (15 passed)
+93 steps (93 passed)
+0m21.421s
+</code></pre>
+          <p>
+            We’re still green! This is getting a little repetetive so we’ll finish up with
+            some more code cleanups by removing any unnecessary references to nitrolinks.
+            That includes routes, controllers, and views related to just nitrolinks testing.
+          </p>
+          <p>After all that, you know what’s coming…</p>
+          <pre><code class="language-bash">$ cucumber
+
+# Bunch of spec output
+
+15 scenarios (15 passed)
+93 steps (93 passed)
+0m26.659s
+</code></pre>
+          <p>
+            We’re in a good place right now so let’s commit our code first. Here’s
+            <a href="https://github.com/asartalo/pondo/commit/a6a62e20948f9a6662c0d641c067b8f82f0aa9bf"
+            >everything we’ve done so far</a>.
+          </p>
+          <h2 id="fearless-refactoring">Fearless Refactoring</h2>
+          <p>
+            You’ll notice that for every significant change we do, we always run the specs
+            to ensure we haven’t introduced regressions. This is what great test coverage
+            enables. We can remove code and refactor without fear. If we make a mistake,
+            we get feedback on where it happened and what went wrong.
+          </p>
+          <p>
+            Introducing tests adds a lot of upfront cost to a project but it is all worth
+            it. That upfront cost will payoff sooner than you think.
+          </p>
+          <p>
+            It’s important to note that great test coverage alone is not enough. We also
+            need to make sure that we are testing correctly and that our tests are fast
+            enough to encourage us to run them frequently.
+          </p>
+          <h2 id="constraints-in-testing-nitro-apps">Constraints in Testing Nitro Apps</h2>
+          <p>
+            There is still some nitro-specific thing we’re doing in Pondo and it starts
+            here:
+          </p>
+          <pre><code class="language-coffeescript"># app/assets/javascripts/testing.coffee
+class PondoTesting
+
+  # Bunch of code...
+
+  markAsLoading: (from)-&gt;
+    @active = true
+    @body.addClass(&#39;testing-visiting&#39;)
+
+  markAsDoneLoading: -&gt;
+    @active = false
+    @body.removeClass(&#39;testing-visiting&#39;)
+
+  listen: -&gt;
+    @document.on &#39;nitrolinks:visit&#39;, =&gt;
+      @markAsLoading(&#39;nitrolinks:visit&#39;)
+
+    @document.on &#39;nitrolinks:load nitrolinks:load-blank&#39;, (e) =&gt;
+      @markAsDoneLoading()
+
+  # etc....
+</code></pre>
+          <p>…and used here:</p>
+          <pre><code class="language-ruby"># features/support/wait_for_things.rb
+module WaitForThings
+  def wait_for_page_load
+    Timeout.timeout(Capybara.default_max_wait_time) do
+      loop until finished_loading?
+    end
+  end
+
+  def finished_loading?
+    jscript(&#39;document.getElementsByClassName(&#34;testing-visiting&#34;).length&#39;).zero?
+  end
+
+  def wait_for_remote_request
+    wait_for_page_load
+  end
+
+  # ...
+end
+
+</code></pre>
+          <p>
+            Because nitrolinks overrides the navigation behavior by fetching the page
+            through xhr, there’s no way for Capybara to know to wait for a new page load.
+            This code allows us to tell Capybara to wait until the page has been loaded.
+            It’s a clunky hack but it serves us for now.
+          </p>
+          <p>
+            The problem is that this really ought to be in Nitrolinks. We have to let
+            nitrolinks handle this and provide a way for clients of the gem to use this
+            feature in their tests.
+          </p>
+          <p>
+            We’ve duplicated this code on Nitrolinks. Let’s move it to the <code>lib</code> so we can
+            requrie it from Pondo.
+          </p>
+          <pre><code class="language-ruby"># lib/nitrolinks/capybara/wait_for_things.rb
+module Nitrolinks
+  module Capybara
+    module WaitForThings
+      def wait_for_page_load
+        Timeout.timeout(::Capybara.default_max_wait_time) do
+          loop until finished_loading?
+        end
+      end
+
+      def finished_loading?
+        jscript(&#39;document.getElementsByClassName(&#34;testing-visiting&#34;).length&#39;).zero?
+      end
+
+      def finished_all_ajax_requests?
+        page.evaluate_script(&#39;jQuery.active&#39;).zero?
+      end
+
+      def pause_pls
+        $stderr.write &#39;Press enter to continue&#39;
+        $stdin.gets
+      end
+    end
+  end
+end
+</code></pre>
+          <p>Let’s also move that jscript method into another module:</p>
+          <pre><code class="language-ruby"># lib/nitrolinks/capybara/jscript.rb
+module Nitrolinks
+  module Capybara
+    module Jscript
+      def jscript(code)
+        page.evaluate_script(code)
+      end
+
+      def expect_script(code, filter = nil)
+        result = jscript(code)
+        if filter
+          result = result.send(filter)
+        end
+        expect(result)
+      end
+    end
+  end
+end
+
+</code></pre>
+          <p>To use, we’ll only need to add this on pondo:</p>
+          <pre><code class="language-ruby"># features/support/wait_for_things.rb
+require &#39;nitrolinks/capybara/jscript&#39;
+require &#39;nitrolinks/capybara/wait_for_things&#39;
+
+World(Nitrolinks::Capybara::Jscript)
+World(Nitrolinks::Capybara::WaitForThings)
+</code></pre>
+          <p>We’ll also refactor out the loading-related code into a separate script:</p>
+          <pre><code class="language-coffeescript"># app/assets/javascripts/nitrolinks/load-helper.coffee
+whenReady = (fn) -&gt;
+  if (if document.attachEvent then document.readyState == &#39;complete&#39; else document.readyState != &#39;loading&#39;)
+    fn()
+  else
+    document.addEventListener &#34;DOMContentLoaded&#34;, -&gt;
+      fn()
+
+eventListen = (event, handler) -&gt;
+  document.addEventListener event, (e) -&gt;
+    handler.call document, e
+
+class NitrolinksLoadHelper
+  constructor: (@window, @document) -&gt;
+    @active = false
+
+  body: -&gt;
+    document.querySelector(&#39;body&#39;)
+
+  markAsLoading: (from)-&gt;
+    @active = true
+    @body().classList.add(&#39;testing-visiting&#39;)
+
+  markAsDoneLoading: -&gt;
+    @active = false
+    @body().classList.remove(&#39;testing-visiting&#39;)
+
+  listen: -&gt;
+    eventListen &#39;nitrolinks:visit&#39;, =&gt;
+      @markAsLoading(&#39;nitrolinks:visit&#39;)
+
+    loads = (e) =&gt;
+      @markAsDoneLoading()
+
+    eventListen &#39;nitrolinks:load&#39;, loads
+    eventListen &#39;nitrolinks:load-blank&#39;, loads
+
+whenReady =&gt;
+  @nitroLoadHelper = new NitrolinksLoadHelper(window, document)
+  @nitroLoadHelper.listen()
+  @nitroLoadHelper.markAsDoneLoading()
+
+</code></pre>
+          <p>On the pondo side, we’ll just require it on our testing javascript:</p>
+          <pre><code class="language-coffeescript"># app/assets/javascripts/nitrolinks/load-helper.coffee
+#= require nitrolinks/load-helper
+
+class PondoTesting
+  constructor: (@window) -&gt;
+    @errors = []
+
+  listen: -&gt;
+    @window.addEventListener &#39;error&#39;, (e) =&gt;
+      @addToErrors(e)
+
+  addToErrors: (e) -&gt;
+    if e.error
+      @errors.push e.error.message
+    else
+      @errors.push e
+    console.log e
+
+  hasJavascriptErrors: -&gt;
+    @error.length &gt; 0
+
+$ =&gt;
+  @pondoTesting = new PondoTesting(window)
+  @pondoTesting.listen()
+</code></pre>
+          <p>
+            Bumping our nitrolinks-rails gem version and including it in Pondo, everything
+            works as expected. Here are links to commits in <a
+            href="https://github.com/asartalo/nitrolinks-rails/commit/7f1566f52a24eebf4704628629ea9b5ae86345b4"
+            >Nitrolinks</a> and <a
+            href="https://github.com/asartalo/pondo/commit/a6a62e20948f9a6662c0d641c067b8f82f0aa9bf">Pondo</a>
+            <a href="https://github.com/asartalo/pondo/commit/1445e6109fa4fb364078ab2a39aba31bfd807c8b">2</a>.
+          </p>
+          <pre><code class="language-bash">$ cucumber
+
+# Bunch of spec output
+
+15 scenarios (15 passed)
+93 steps (93 passed)
+0m20.662s
+</code></pre>
+        </div>
+        <footer>
+          <div class="tags">
+            <a class="c-tag" href="/tags/dev-notes/">dev notes</a>
+            <a class="c-tag" href="/tags/pondo/">pondo</a>
+            <a class="c-tag" href="/tags/project/">project</a>
+          </div>
+          <nav class="p-pagination c-pagination">
+            <div class="c-pagination__ctrl">
+              <div class="c-pagination__older">
+                <span class="nav-label">← Previous</span>
+                <a href="/posts/refactoring-nitrolinks-part-2-tests-for-a-rails-engine/">Refactoring Nitrolinks, Part 2: Tests for a Rails Engine</a>
+              </div>
+              <div class="c-pagination__newer">
+                <span class="nav-label">Next →</span>
+                <a href="/posts/happy-birthday-dinosaur/">Happy Birthday, Dinosaur</a>
+              </div>
+            </div>
+          </nav>
+        </footer>
+      </article>
+    </main>
+    <footer class="page-footer">
+      <p>
+        <a property="dct:title" rel="cc:attributonURL" href="https://brainchildprojects.com"
+        >BrainchildProjects.com</a><br>
+        © 2017-2025 by <span property="cc:attributionName">Wayne Duran</span><br>
+        All text and media on this site<br>
+        are licensed under<br>
+        <a class="cc-license" href="https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1"
+        target="_blank" rel="license noopener noreferrer">CC BY 4.0
+                  <img alt="CC: Creative Commons"
+        src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1">
+                  <img alt="Attributions"
+        src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1">
+                </a><br>
+        unless stated otherwise
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

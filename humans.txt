@@ -1,0 +1,15 @@
+/* TEAM */
+	Dictator: Wayne Duran
+	Twitter: @asartalo
+	Location: Philippines
+
+/* THANKS */
+	Jhang
+	Alia
+
+/* SITE */
+	Site Name: Brainchild Projects
+	Site URL: https://brainchild-projects.github.io
+	Last Update: 2020/07/15
+	Language: English
+	Generator: Hugo

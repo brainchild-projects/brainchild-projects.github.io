@@ -487,7 +487,7 @@ main {
   width: 100%;
 }
 .page-header p {
-  color: #828282;
+  color: #666666;
   font-weight: 300;
 }
 
@@ -516,7 +516,7 @@ main {
 }
 
 article .meta {
-  color: #828282;
+  color: #666666;
 }
 article time {
   margin: 0 0.25rem 0 0;
@@ -531,7 +531,7 @@ header.basic-header {
   padding-bottom: 2rem;
 }
 header.basic-header .intro {
-  color: #828282;
+  color: #666666;
   margin: 0;
 }
 header.basic-header h1 {
@@ -609,7 +609,7 @@ header.basic-header h1 {
 
 .tags a {
   display: inline-block;
-  color: #828282;
+  color: #666666;
   margin: 0 0.5rem 0 0;
 }
 

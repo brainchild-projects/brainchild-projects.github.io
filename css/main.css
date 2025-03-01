@@ -477,7 +477,7 @@ main {
   padding-top: 34.1463414634%;
   position: relative;
 }
-.page-header .logo > object {
+.page-header .logo > img {
   pointer-events: none;
   position: absolute;
   left: 0;
